@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/provider.dart';
+import 'package:lifeos/feature/dashboard/service/weather.dart';
 import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
@@ -20,6 +21,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  final WeatherService weatherservice = WeatherService();
   final userdatabase = Userdatabase();
   final buttonwidget = Buttonwidget();
   @override
@@ -120,38 +122,48 @@ class _DashboardState extends State<Dashboard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Consumer<Userprovider>(
-                builder: (context, value, child) {
-                  return Row(
-                    spacing: 10,
-                    children: [
-                      Text(
-                        "${value.gettime},",
-                        style: GoogleFonts.poppins(
-                          fontSize: screenwidth * 0.05,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey.shade600,
-                          letterSpacing: 0.3,
-                        ),
-                      ),
-                      Image.asset(value.imagePath, height: 30),
-                    ],
-                  );
-                },
-              ),
-              Consumer<Userprovider>(
-                builder: (context, value, child) => Text(
-                  value.username,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: GoogleFonts.poppins(
-                    fontSize: screenwidth * 0.06,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                    height: 1.2,
+              Row(
+                children: [
+                  Text(
+                    "Hello ,",
+                    overflow: TextOverflow.visible,
+                    maxLines: 2,
+                    style: GoogleFonts.poppins(
+                      fontSize: screenwidth * 0.07,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                      height: 1.2,
+                    ),
                   ),
+                  Consumer<Userprovider>(
+                    builder: (context, value, child) => Text(
+                      value.username,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: GoogleFonts.poppins(
+                        fontSize: screenwidth * 0.07,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                        height: 1.2,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Text(
+                "Ready for your peak performance today?",
+                overflow: TextOverflow.visible,
+                maxLines: 2,
+                style: GoogleFonts.poppins(
+                  fontSize: screenwidth * 0.045,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF7F8284),
+                  height: 1.2,
                 ),
               ),
+              const SizedBox(height: 15),
+              buttonwidget.morningdetails(context),
               const SizedBox(height: 15),
               Container(
                 padding: const EdgeInsets.all(20),
