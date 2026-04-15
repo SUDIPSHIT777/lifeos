@@ -11,6 +11,7 @@ class WeatherService {
     final response = await http.get(Uri.parse(finalbaseurl));
     if (response.statusCode == 200) {
       log(response.body);
+      log(response.body);
     }
   }
 }
