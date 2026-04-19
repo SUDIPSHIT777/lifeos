@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifeos/feature/dashboard/controller/provider.dart';
+import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/service/weather.dart';
 import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
@@ -117,7 +117,7 @@ class _DashboardState extends State<Dashboard> {
       drawer: Drawer(child: ProfilePage()),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -164,7 +164,7 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 15),
               cardwidget.morningdetails(context),
               const SizedBox(height: 15),
-              cardwidget.progress(context),
+              cardwidget.progressCard(context),
               // const SizedBox(height: 10),
               // Center(child: AIModel()),
               const SizedBox(height: 10),
@@ -182,46 +182,53 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
               const SizedBox(height: 15),
-              Card(
-                elevation: 0.1,
-                color: Color(0XFFFFFFFF),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () => openTaskBottomSheet(context),
-                        child: buttonwidget.button(
-                          titel: "Add Task",
-                          icon: Icons.add_task_sharp,
-                          backgroundcolor: Color(0xFFE2E7F6),
-                          iconcolor: Color(0xFF305EE8),
-                        ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () => openTaskBottomSheet(context),
+                      child: buttonwidget.button(
+                        context,
+                        titel: "Add Task",
+                        icon: Icons.add_task_sharp,
+                        backgroundcolor: Color(0xFFE2E7F6),
+                        iconcolor: Color(0xFF305EE8),
                       ),
-                      buttonwidget.button(
-                        titel: "Log Finance",
-                        icon: Icons.payments,
-                        backgroundcolor: Color(0xFFF6E9E0),
-                        iconcolor: Color(0xFFF97316),
-                      ),
-                      buttonwidget.button(
-                        titel: "Habit",
-                        icon: Icons.fitness_center_sharp,
-                        backgroundcolor: Color(0xFFEBE6F7),
-                        iconcolor: Color(0xFF8B5CF6),
-                      ),
-                      buttonwidget.button(
-                        titel: "New Note",
-                        icon: Icons.note_alt,
-                        backgroundcolor: Color(0xFFDFF0EB),
-                        iconcolor: Color(0xFF10B981),
-                      ),
-                    ],
-                  ),
+                    ),
+                    buttonwidget.button(
+                      context,
+                      titel: "Log Finance",
+                      icon: Icons.payments,
+                      backgroundcolor: Color(0xFFF6E9E0),
+                      iconcolor: Color(0xFFF97316),
+                    ),
+                  ],
                 ),
               ),
-
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    buttonwidget.button(
+                      context,
+                      titel: "Habit",
+                      icon: Icons.fitness_center_sharp,
+                      backgroundcolor: Color(0xFFEBE6F7),
+                      iconcolor: Color(0xFF8B5CF6),
+                    ),
+                    buttonwidget.button(
+                      context,
+                      titel: "New Note",
+                      icon: Icons.note_alt,
+                      backgroundcolor: Color(0xFFDFF0EB),
+                      iconcolor: Color(0xFF10B981),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(height: 15),
               cardwidget.monthlySpendingCard(
                 totalSpending: 3240.50,

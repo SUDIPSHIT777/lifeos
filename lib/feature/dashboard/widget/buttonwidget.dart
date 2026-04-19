@@ -3,48 +3,44 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Buttonwidget {
   // ========================== Button ==============================
-  Widget button({
+  Widget button(
+    BuildContext context, {
     required String titel,
     required IconData icon,
-    required Color? backgroundcolor,
-    required Color? iconcolor,
+    required Color backgroundcolor,
+    required Color iconcolor,
   }) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          height: 60,
-          width: 60,
-          decoration: BoxDecoration(
-            color: backgroundcolor ?? const Color(0xffF1F5F9),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
-              ),
-            ],
+    return Container(
+      height: 120,
+      width: 150,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: backgroundcolor,
+        borderRadius: BorderRadius.circular(22),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: iconcolor.withValues(alpha: 0.15),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, color: iconcolor, size: 22),
           ),
-          child: Icon(
-            icon,
-            color: iconcolor ?? const Color(0xff3B82F6),
-            fontWeight: FontWeight.w500,
-            size: 27.0,
+          const Spacer(),
+          Text(
+            titel,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+            ),
           ),
-        ),
-        const SizedBox(height: 10),
-        Text(
-          titel,
-          style: GoogleFonts.poppins(
-            fontSize: 13,
-            fontWeight: FontWeight.w500,
-            color: const Color(0xff6B7280),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
-
 }

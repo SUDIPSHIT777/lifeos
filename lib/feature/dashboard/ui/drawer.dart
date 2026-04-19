@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifeos/feature/dashboard/controller/provider.dart';
+import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/login/googleauth/googleauth.dart';
 import 'package:provider/provider.dart';
 

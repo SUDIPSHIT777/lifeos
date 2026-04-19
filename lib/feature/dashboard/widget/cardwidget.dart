@@ -1,9 +1,7 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifeos/feature/dashboard/controller/provider.dart';
+import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class Cardwidget {
@@ -221,85 +219,124 @@ class Cardwidget {
     );
   }
 
-  Widget progress(BuildContext context) {
+  Widget progressCard(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
-    return Container(
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: const Color(0xffffffff),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Color(0xFF6D23DE), width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 20,
-            offset: Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Consumer<Taskprovider>(
-        builder: (context, task, child) => Row(
+    return Center(
+      child: Container(
+        width: double.infinity,
+
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: .08),
+              blurRadius: 25,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            Consumer<Taskprovider>(
+              builder: (context, taskprovider, child) => Stack(
+                alignment: Alignment.center,
                 children: [
-                  Text(
-                    "YOUR PROGRESS",
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey.shade500,
+                  SizedBox(
+                    height: 140,
+                    width: 140,
+                    child: CircularProgressIndicator(
+                      value: taskprovider.todayPercent,
+                      strokeWidth: 12,
+                      backgroundColor: Colors.grey.shade300,
+                      valueColor: AlwaysStoppedAnimation(
+                        taskprovider.percentagecolor(taskprovider.todayPercent),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${(task.todayPercent * 100).round()}%",
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        "${(taskprovider.todayPercent * 100).round()}%",
                         style: GoogleFonts.poppins(
-                          fontSize: 32,
+                          fontSize: screenwidth * 0.07,
                           fontWeight: FontWeight.bold,
+                          color: taskprovider.percentagecolor(
+                            taskprovider.todayPercent,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 6),
-                      AutoSizeText(
-                        "reached",
+                      const SizedBox(height: 4),
+                      Text(
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        "DAILY GOAL",
                         style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          color: Colors.blueGrey,
+                          fontSize: 12,
+                          letterSpacing: 1.2,
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
-                  AutoSizeText(
-                    "Almost there! ${task.todayTotal - task.todayCompleted} tasks left to\ncomplete your daily goal.",
-                    style: GoogleFonts.poppins(
-                      fontSize: screenwidth * 0.04,
-                      color: Colors.black54,
-                      height: 1.4,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
                 ],
               ),
             ),
-            CircularPercentIndicator(
-              radius: 55,
-              lineWidth: 10,
-              percent: task.todayPercent,
-              progressColor: task.percentagecolor(task.todayPercent),
-              backgroundColor: Colors.grey.shade300,
-              circularStrokeCap: CircularStrokeCap.round,
-              center: Icon(
-                Icons.flash_on,
-                size: 35,
-                color: task.percentagecolor(task.todayPercent),
+            const SizedBox(height: 20),
+            Text(
+              "Momentum is high",
+              style: GoogleFonts.poppins(
+                fontSize: screenwidth * 0.06,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Consumer<Taskprovider>(
+              builder: (context, taskprovider, child) => Text(
+                "You've completed ${taskprovider.todayCompleted} of ${taskprovider.todayTotal} core objectives for the morning. Stay focused!",
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  height: 1.5,
+                  color: Colors.grey.shade600,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Container(
+              width: double.infinity,
+              height: 55,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF5B3DF5), Color(0xFF8A7BFF)],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.deepPurple.withValues(alpha: 0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  "Begin Flow",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],
