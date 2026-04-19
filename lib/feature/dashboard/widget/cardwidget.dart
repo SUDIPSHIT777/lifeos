@@ -5,6 +5,7 @@ import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:provider/provider.dart';
 
 class Cardwidget {
+  // ===================== MorningDetails Card ==============
   Widget morningdetails(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     return Container(
@@ -219,6 +220,7 @@ class Cardwidget {
     );
   }
 
+// ================ Proggress Card ====================
   Widget progressCard(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     return Center(
