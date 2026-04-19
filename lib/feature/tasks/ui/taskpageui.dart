@@ -24,7 +24,7 @@ class _TaskpageuiState extends State<Taskpageui>
   final taskpersentage = Taskpersentage();
   late TabController _tabController;
 
-  bool _snackbarShown = false; // ✅ fix repeated snackbar
+  bool _snackbarShown = false;
 
   @override
   void initState() {
@@ -38,7 +38,6 @@ class _TaskpageuiState extends State<Taskpageui>
     final screenwidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      // ✅ removed DefaultTabController (duplicate)
       backgroundColor: Color(0xFFF6F6F8),
       appBar: AppBar(
         surfaceTintColor: Color(0xFFFFFFFF),

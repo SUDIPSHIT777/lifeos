@@ -1,16 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/provider.dart';
 import 'package:lifeos/feature/dashboard/service/weather.dart';
 import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
+import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
-import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:lifeos/model/userdatabase.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -24,6 +22,7 @@ class _DashboardState extends State<Dashboard> {
   final WeatherService weatherservice = WeatherService();
   final userdatabase = Userdatabase();
   final buttonwidget = Buttonwidget();
+  final Cardwidget cardwidget = Cardwidget();
   @override
   void initState() {
     super.initState();
@@ -163,91 +162,9 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               const SizedBox(height: 15),
-              buttonwidget.morningdetails(context),
+              cardwidget.morningdetails(context),
               const SizedBox(height: 15),
-              Container(
-                padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: const Color(0xffffffff),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Color(0xFF6D23DE), width: 2),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
-                      blurRadius: 20,
-                      offset: Offset(0, 8),
-                    ),
-                  ],
-                ),
-                child: Consumer<Taskprovider>(
-                  builder: (context, task, child) => Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "YOUR PROGRESS",
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey.shade500,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Text(
-                                  "${(task.todayPercent * 100).round()}%",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(width: 6),
-                                AutoSizeText(
-                                  "reached",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 18,
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            AutoSizeText(
-                              "Almost there! ${task.todayTotal - task.todayCompleted} tasks left to\ncomplete your daily goal.",
-                              style: GoogleFonts.poppins(
-                                fontSize: screenwidth * 0.04,
-                                color: Colors.black54,
-                                height: 1.4,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                      CircularPercentIndicator(
-                        radius: 55,
-                        lineWidth: 10,
-                        percent: task.todayPercent,
-                        progressColor: task.percentagecolor(task.todayPercent),
-                        backgroundColor: Colors.grey.shade300,
-                        circularStrokeCap: CircularStrokeCap.round,
-                        center: Icon(
-                          Icons.flash_on,
-                          size: 35,
-                          color: task.percentagecolor(task.todayPercent),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              cardwidget.progress(context),
               // const SizedBox(height: 10),
               // Center(child: AIModel()),
               const SizedBox(height: 10),
@@ -306,7 +223,7 @@ class _DashboardState extends State<Dashboard> {
               ),
 
               const SizedBox(height: 15),
-              buttonwidget.monthlySpendingCard(
+              cardwidget.monthlySpendingCard(
                 totalSpending: 3240.50,
                 dailyUsed: 150,
                 dailyLimit: 200,
