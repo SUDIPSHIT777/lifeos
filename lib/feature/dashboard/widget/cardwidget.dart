@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
@@ -220,7 +221,7 @@ class Cardwidget {
     );
   }
 
-// ================ Proggress Card ====================
+  // ================ Proggress Card ====================
   Widget progressCard(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     return Center(

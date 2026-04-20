@@ -7,6 +7,7 @@ import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
+import 'package:lifeos/feature/dashboard/widget/timerwidget.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:lifeos/model/userdatabase.dart';
 import 'package:provider/provider.dart';
@@ -20,9 +21,10 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final WeatherService weatherservice = WeatherService();
-  final userdatabase = Userdatabase();
-  final buttonwidget = Buttonwidget();
+  final Userdatabase userdatabase = Userdatabase();
+  final Buttonwidget buttonwidget = Buttonwidget();
   final Cardwidget cardwidget = Cardwidget();
+  final Timerwidget timerwidget = Timerwidget();
   @override
   void initState() {
     super.initState();
@@ -237,6 +239,18 @@ class _DashboardState extends State<Dashboard> {
                 percentChange: 12.5,
               ),
               const SizedBox(height: 15),
+              Text(
+                "Focus Mode",
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 15),
+              timerwidget.focoustimer(),
+              const SizedBox(height: 15),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
