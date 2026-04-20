@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class FocusTimerProvider extends ChangeNotifier {
-  int _totalSeconds = 25 * 60; // dynamic now
+  int _totalSeconds = 25 * 60;
   int _remainingSeconds = 25 * 60;
 
   Timer? _timer;
@@ -10,6 +11,8 @@ class FocusTimerProvider extends ChangeNotifier {
 
   int get remainingSeconds => _remainingSeconds;
   bool get isRunning => _isRunning;
+
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   String get formattedTime {
     final hours = _remainingSeconds ~/ 3600;
@@ -53,6 +56,7 @@ class FocusTimerProvider extends ChangeNotifier {
         notifyListeners();
       } else {
         stop();
+        _onTimerComplete();
         if (onComplete != null) onComplete();
       }
     });
@@ -73,12 +77,22 @@ class FocusTimerProvider extends ChangeNotifier {
   void reset() {
     _stopInternal();
     _remainingSeconds = _totalSeconds;
+    _audioPlayer.stop();
     notifyListeners();
   }
 
   void _stopInternal() {
     _timer?.cancel();
     _isRunning = false;
+  }
+
+  Future<void> _onTimerComplete() async {
+    stop();
+    try {
+      await _audioPlayer.play(AssetSource('alearm.mp3'));
+    } catch (e) {
+      debugPrint("Audio error: $e");
+    }
   }
 
   @override
