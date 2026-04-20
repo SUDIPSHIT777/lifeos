@@ -44,7 +44,6 @@ dependencies:
   geolocator: ^14.0.2
   http: ^1.6.0
   flutter_dotenv: ^6.0.0
-  fl_chart: ^1.2.0
   
   firebase_core: ^4.5.0
   firebase_auth: ^6.2.0
