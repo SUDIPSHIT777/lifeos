@@ -6,6 +6,7 @@ import 'package:lifeos/feature/dashboard/service/weather.dart';
 import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
+import 'package:lifeos/feature/dashboard/widget/focustimer.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:lifeos/model/userdatabase.dart';
@@ -164,6 +165,15 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 15),
               cardwidget.morningdetails(context),
               const SizedBox(height: 15),
+              Text(
+                "Progress",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 15),
               cardwidget.progressCard(context),
               // const SizedBox(height: 10),
               // Center(child: AIModel()),
@@ -174,7 +184,7 @@ class _DashboardState extends State<Dashboard> {
                   Text(
                     "Quick Action",
                     style: GoogleFonts.poppins(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
@@ -230,6 +240,15 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               const SizedBox(height: 15),
+              Text(
+                "Finance",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 15),
               cardwidget.monthlySpendingCard(
                 totalSpending: 3240.50,
                 dailyUsed: 150,
@@ -240,11 +259,13 @@ class _DashboardState extends State<Dashboard> {
               Text(
                 "Focus Mode",
                 style: GoogleFonts.poppins(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
                 ),
               ),
+              const SizedBox(height: 15),
+              const FocusTimer(),
               const SizedBox(height: 15),
 
               Row(
