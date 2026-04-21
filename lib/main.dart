@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lifeos/core/utils/errorpage.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
-import 'package:lifeos/feature/dashboard/controller/timerset.dart';
 import 'package:lifeos/feature/splashscreen/splashprovider.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/login/googleauth/googleauth.dart';
@@ -25,7 +24,6 @@ void main() async {
         ChangeNotifierProvider(create: (context) => Taskprovider()),
         ChangeNotifierProvider(create: (context) => GoogleAuth()),
         ChangeNotifierProvider(create: (context) => SplashProvider()),
-        ChangeNotifierProvider(create: (context) => FocusTimerProvider()),
       ],
       child: const MyApp(),
     ),

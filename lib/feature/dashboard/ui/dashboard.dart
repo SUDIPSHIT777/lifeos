@@ -7,7 +7,6 @@ import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
-import 'package:lifeos/feature/dashboard/widget/timerwidget.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:lifeos/model/userdatabase.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +23,6 @@ class _DashboardState extends State<Dashboard> {
   final Userdatabase userdatabase = Userdatabase();
   final Buttonwidget buttonwidget = Buttonwidget();
   final Cardwidget cardwidget = Cardwidget();
-  final Timerwidget timerwidget = Timerwidget();
   @override
   void initState() {
     super.initState();
@@ -247,8 +245,6 @@ class _DashboardState extends State<Dashboard> {
                   color: Colors.black87,
                 ),
               ),
-              const SizedBox(height: 15),
-              timerwidget.focoustimer(),
               const SizedBox(height: 15),
 
               Row(
