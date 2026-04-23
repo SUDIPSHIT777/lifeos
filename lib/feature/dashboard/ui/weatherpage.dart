@@ -137,6 +137,7 @@ class _WeatherpageState extends State<Weatherpage> {
                             decoration: BoxDecoration(
                               color: Colors.grey.withValues(alpha: 0.2),
                               shape: BoxShape.circle,
+                              border: Border.all(color: Colors.blue, width: 3),
                             ),
                             child: Image.network(
                               "https:${current['condition']['icon']}",
@@ -161,8 +162,6 @@ class _WeatherpageState extends State<Weatherpage> {
                     ),
 
                     const SizedBox(height: 30),
-
-                    // 📊 DATA GRID
                     GridView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -195,6 +194,37 @@ class _WeatherpageState extends State<Weatherpage> {
                           Colors.purple,
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 30),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: Container(
+                        width: double.infinity,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF5B3DF5), Color(0xFF8A7BFF)],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.deepPurple.withValues(alpha: 0.3),
+                              blurRadius: 12,
+                              offset: const Offset(0, 6),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Begin Flow",
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
 
                     const SizedBox(height: 30),
