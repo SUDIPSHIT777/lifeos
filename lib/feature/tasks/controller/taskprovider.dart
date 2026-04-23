@@ -134,6 +134,7 @@ class Taskprovider extends ChangeNotifier {
     }
   }
 
+  // ======================== Add Task =================
   Future<void> addTask({
     required String title,
     required String description,
@@ -168,6 +169,33 @@ class Taskprovider extends ChangeNotifier {
       _selectedTime = null;
       _priority = 'medium';
       notifyListeners();
+    }
+  }
+
+  // ====================== Update Task ===================
+  Future<void> updatetask({
+    required String taskid,
+    required String title,
+    required String description,
+    DateTime? date,
+    TimeOfDay? time,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .collection('tasks')
+          .doc(taskid)
+          .update({
+            'title': title,
+            'desc': description,
+            'date': date != null ? Timestamp.fromDate(date) : null,
+            'time': time != null ? '${time.hour}:${time.minute}' : null,
+          });
+    } catch (e) {
+      throw Exception("Not Update The Values");
     }
   }
 
@@ -275,5 +303,23 @@ class Taskprovider extends ChangeNotifier {
     if (inputDate == today) return "Today";
     if (inputDate == tomorrow) return "Tomorrow";
     return "${date.day}/${date.month}/${date.year}";
+  }
+
+  // ================ Delete Task ===================
+  Future<void> deletetask(String taskid) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .collection('tasks')
+          .doc(taskid)
+          .delete();
+      _tasks.removeWhere((task) => task.id == taskid);
+      notifyListeners();
+    } catch (e) {
+      throw Exception("Error Task Not Deleted");
+    }
   }
 }

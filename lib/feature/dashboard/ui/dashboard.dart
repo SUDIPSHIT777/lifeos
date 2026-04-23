@@ -10,6 +10,7 @@ import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/focustimer.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
+import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:lifeos/model/userdatabase.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,8 @@ class _DashboardState extends State<Dashboard> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<Userprovider>().loaduserdata();
       context.read<WeatherProvider>().fetchWeather();
+      final provider = context.read<Taskprovider>();
+      provider.getTasks().listen((_) {});
     });
   }
 
@@ -183,8 +186,6 @@ class _DashboardState extends State<Dashboard> {
               ),
               const SizedBox(height: 15),
               cardwidget.progressCard(context),
-              // const SizedBox(height: 10),
-              // Center(child: AIModel()),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

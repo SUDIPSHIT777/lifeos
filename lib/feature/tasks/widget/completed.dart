@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskdetails.dart';
+import 'package:lifeos/feature/tasks/widget/deletetask.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,7 @@ class Completed extends StatelessWidget {
                   builder: (context) => Taskdetails(alltaskdetails: task),
                 ),
               ),
+              onLongPress: () => confirmDelete(context, task.id),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 padding: const EdgeInsets.symmetric(
