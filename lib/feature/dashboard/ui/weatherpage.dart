@@ -24,7 +24,7 @@ class _WeatherpageState extends State<Weatherpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
@@ -33,14 +33,7 @@ class _WeatherpageState extends State<Weatherpage> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFEEF2FF), Color(0xFFE0E7FF), Color(0xFFF8FAFC)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+      body: SizedBox(
         child: SafeArea(
           child: Consumer<WeatherProvider>(
             builder: (context, provider, child) {
@@ -79,17 +72,18 @@ class _WeatherpageState extends State<Weatherpage> {
                   padding: const EdgeInsets.all(20),
                   children: [
                     Text(
-                      "${location['name']}, ${location['country']}",
+                      "${location['name']}, ${location['region']}, ${location['country']}",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.poppins(
-                        fontSize: 18,
+                        fontSize: 19,
                         color: Colors.black54,
+                        fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.center,
                     ),
 
                     const SizedBox(height: 20),
-
-                    // 🤖 AI CARD (MAIN FOCUS)
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
@@ -98,16 +92,19 @@ class _WeatherpageState extends State<Weatherpage> {
                       ),
                       child: Column(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Lottie.asset(
-                              advice['image'],
-                              fit: BoxFit.cover,
+                          SizedBox(
+                            height: 250,
+                            width: double.infinity,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Lottie.asset(
+                                advice['image'],
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
 
                           const SizedBox(height: 10),
-
                           Text(
                             advice['message'],
                             textAlign: TextAlign.center,
@@ -131,13 +128,21 @@ class _WeatherpageState extends State<Weatherpage> {
 
                     const SizedBox(height: 30),
 
-                    // 🌤 WEATHER SUMMARY (SECONDARY)
                     Center(
                       child: Column(
                         children: [
-                          Image.network(
-                            "https:${current['condition']['icon']}",
-                            height: 70,
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withValues(alpha: 0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              "https:${current['condition']['icon']}",
+                              height: 70,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           const SizedBox(height: 10),
                           Text(

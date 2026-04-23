@@ -45,7 +45,7 @@ class WeatherProvider extends ChangeNotifier {
     final condition = current['condition']['text'].toLowerCase();
 
     final isClear = condition.contains("sun") || condition.contains("clear");
-    final goodTemp = temp >= 18 && temp <= 32;
+    final goodTemp = temp >= 18 && temp <= 35;
     final lowHumidity = humidity <= 90;
     final lowWind = wind <= 25;
 
