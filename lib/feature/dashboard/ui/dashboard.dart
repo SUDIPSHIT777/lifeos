@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
+import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lifeos/feature/dashboard/service/weather.dart';
 import 'package:lifeos/feature/dashboard/ui/drawer.dart';
+import 'package:lifeos/feature/dashboard/ui/weatherpage.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/focustimer.dart';
@@ -29,6 +31,7 @@ class _DashboardState extends State<Dashboard> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<Userprovider>().loaduserdata();
+      context.read<WeatherProvider>().fetchWeather();
     });
   }
 
@@ -163,7 +166,15 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               const SizedBox(height: 15),
-              cardwidget.morningdetails(context),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Weatherpage()),
+                  );
+                },
+                child: cardwidget.morningdetails(context),
+              ),
               const SizedBox(height: 15),
               Text(
                 "Progress",

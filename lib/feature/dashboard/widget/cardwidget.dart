@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
+import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,7 @@ class Cardwidget {
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Consumer<Userprovider>(
@@ -80,30 +82,73 @@ class Cardwidget {
               ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "72°F",
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 26,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                "CLEAR\nSKIES",
-                textAlign: TextAlign.right,
-                style: GoogleFonts.poppins(
-                  color: Colors.white.withValues(alpha: 0.7),
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                  height: 1.3,
-                  letterSpacing: 1,
-                ),
-              ),
-            ],
+          Consumer<WeatherProvider>(
+            builder: (context, weather, child) {
+              if (weather.isLoading) {
+                return Center(
+                  child: const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
+                    ),
+                  ),
+                );
+              }
+              if (weather.error != null) {
+                return const Text(
+                  "Error",
+                  style: TextStyle(color: Colors.white),
+                );
+              }
+
+              final data = weather.weatherData;
+
+              if (data == null) {
+                return const Text(
+                  "No Data",
+                  style: TextStyle(color: Colors.white),
+                );
+              }
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "${data['current']['temp_c']}°C",
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+
+                  Text(
+                    data['current']['condition']['text']
+                        .toString()
+                        .toUpperCase(),
+                    textAlign: TextAlign.right,
+                    style: GoogleFonts.poppins(
+                      color: Colors.white.withValues(alpha: 0.7),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                      height: 1.3,
+                      letterSpacing: 1,
+                    ),
+                  ),
+
+                  const SizedBox(height: 6),
+
+                  /// 🌤 Weather icon
+                  Image.network(
+                    "https:${data['current']['condition']['icon']}",
+                    height: 40,
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),
