@@ -40,12 +40,11 @@ class DateTimeProvider extends ChangeNotifier {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary: Color(0xFF4F46E5), // header + selected date
+              primary: Color(0xFF4F46E5),
               onPrimary: Colors.white,
               onSurface: Colors.black87,
             ),
 
-            /// 🔘 Buttons (OK / Cancel)
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
                 foregroundColor: Color(0xFF4F46E5),
@@ -79,7 +78,6 @@ class DateTimeProvider extends ChangeNotifier {
               onSurface: Colors.black87,
             ),
 
-            /// ⏰ Time picker styling
             timePickerTheme: TimePickerThemeData(
               backgroundColor: Colors.white,
 
@@ -90,7 +88,6 @@ class DateTimeProvider extends ChangeNotifier {
               dayPeriodShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
               ),
-
               hourMinuteColor: Colors.grey.shade100,
               dayPeriodColor: Colors.grey.shade200,
 
@@ -121,5 +118,6 @@ class DateTimeProvider extends ChangeNotifier {
   void setInitial(DateTime? date, TimeOfDay? time) {
     _selectedDate = date;
     _selectedTime = time;
+    notifyListeners();
   }
 }

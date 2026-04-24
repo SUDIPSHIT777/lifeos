@@ -192,7 +192,7 @@ class Taskprovider extends ChangeNotifier {
             'title': title,
             'desc': description,
             'date': date != null ? Timestamp.fromDate(date) : null,
-            'time': time != null ? '${time.hour}:${time.minute}' : null,
+            if (time != null) 'time': '${time.hour}:${time.minute}',
           });
     } catch (e) {
       throw Exception("Not Update The Values");

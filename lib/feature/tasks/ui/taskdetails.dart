@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:lifeos/model/taskmodel.dart';
@@ -59,6 +60,7 @@ class _TaskdetailsState extends State<Taskdetails> {
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
+        leading: Icon(Icons.arrow_back_ios),
       ),
 
       /// ================= BODY =================
@@ -66,15 +68,16 @@ class _TaskdetailsState extends State<Taskdetails> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            /// ================= CONTENT =================
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    /// TITLE
-                    TextField(
+                    TextFormField(
                       controller: titleController,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
                       style: GoogleFonts.poppins(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
@@ -87,7 +90,6 @@ class _TaskdetailsState extends State<Taskdetails> {
 
                     const SizedBox(height: 12),
 
-                    /// PRIORITY CHIP
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,

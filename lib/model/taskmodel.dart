@@ -23,11 +23,21 @@ class TaskModel {
 
   factory TaskModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
+    TimeOfDay? parsedTime;
+
+    if (data['time'] != null) {
+      final parts = data['time'].split(':');
+      parsedTime = TimeOfDay(
+        hour: int.parse(parts[0]),
+        minute: int.parse(parts[1]),
+      );
+    }
     return TaskModel(
       id: doc.id,
       title: data['title'] ?? '',
       desc: data['desc'] ?? '',
       date: (data['date'] as Timestamp?)?.toDate(),
+      time: parsedTime,
       priority: data['priority'] ?? 'low',
       isCompleted: data['isCompleted'] ?? false,
       createdAt: (data['createdAt'] as Timestamp).toDate(),
