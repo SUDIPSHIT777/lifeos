@@ -4,8 +4,6 @@ import 'package:lifeos/feature/dashboard/ui/dashboard.dart';
 import 'package:lifeos/feature/finance/ui/financepage.dart';
 import 'package:lifeos/feature/habit/ui/habitpage.dart';
 import 'package:lifeos/feature/tasks/ui/taskpageui.dart';
-import 'package:lifeos/login/loginscreen/ui/loginscreen.dart';
-import 'package:lifeos/login/signupscreen/ui/signupscreen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class Navigationbar extends StatefulWidget {
