@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lottie/lottie.dart';
@@ -28,9 +28,9 @@ class _WeatherpageState extends State<Weatherpage> {
       appBar: AppBar(
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(CupertinoIcons.back, color: Colors.black, size: 25),
-          onPressed: () => Navigator.pop(context),
+        leading: InkWell(
+          onTap: () => context.pop(),
+          child: Icon(Icons.arrow_back_ios),
         ),
       ),
       body: SizedBox(

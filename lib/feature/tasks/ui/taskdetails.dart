@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:lifeos/model/taskmodel.dart';
@@ -59,7 +60,10 @@ class _TaskdetailsState extends State<Taskdetails> {
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios),
+        leading: InkWell(
+          onTap: () => context.pop(),
+          child: Icon(Icons.arrow_back_ios),
+        ),
       ),
 
       /// ================= BODY =================

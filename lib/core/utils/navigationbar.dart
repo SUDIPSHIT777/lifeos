@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lifeos/feature/ai_assistant/ui/aiassistent.dart';
 import 'package:lifeos/feature/dashboard/ui/dashboard.dart';
-import 'package:lifeos/feature/splashscreen/splashscreen.dart';
+import 'package:lifeos/feature/finance/ui/financepage.dart';
+import 'package:lifeos/feature/habit/ui/habitpage.dart';
 import 'package:lifeos/feature/tasks/ui/taskpageui.dart';
 import 'package:lifeos/login/loginscreen/ui/loginscreen.dart';
 import 'package:lifeos/login/signupscreen/ui/signupscreen.dart';
@@ -22,9 +24,9 @@ class _NavigationbarState extends State<Navigationbar> {
     return const [
       Dashboard(),
       Taskpageui(),
-      Splashscreen(),
-      Loginscreen(),
-      Signupscreen(),
+      AiassistentPage(),
+      HabitPage(),
+      Financepage(),
     ];
   }
 
