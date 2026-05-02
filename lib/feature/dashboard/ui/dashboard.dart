@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lifeos/feature/ai_assistant/controller/deepsheekprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lifeos/feature/dashboard/service/weather.dart';
@@ -35,6 +36,7 @@ class _DashboardState extends State<Dashboard> {
       context.read<WeatherProvider>().fetchWeather();
       final provider = context.read<Taskprovider>();
       provider.getTasks().listen((_) {});
+       context.read<Deepsheekprovider>().fetchGreeting();
     });
   }
 
