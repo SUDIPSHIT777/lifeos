@@ -240,7 +240,13 @@ class _TaskpageuiState extends State<Taskpageui>
                         return Center(child: CircularProgressIndicator());
                       }
 
-                      if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      final tasks = snapshot.hasData
+                          ? snapshot.data!
+                              .where((task) => !task.isCompleted)
+                              .toList()
+                          : <TaskModel>[];
+
+                      if (tasks.isEmpty) {
                         return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -256,9 +262,6 @@ class _TaskpageuiState extends State<Taskpageui>
                           ),
                         );
                       }
-                      final tasks = snapshot.data!
-                          .where((task) => !task.isCompleted)
-                          .toList();
                       final taskprovider = context.read<Taskprovider>();
                       final groupedTasks = taskprovider.groupTasks(tasks);
                       final dates = groupedTasks.keys.toList();
