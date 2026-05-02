@@ -112,41 +112,48 @@ class Cardwidget {
                 );
               }
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "${data['current']['temp_c']}°C",
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 26,
-                      fontWeight: FontWeight.w600,
+              return ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 110),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${data['current']['temp_c']}°C",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 6),
+                    const SizedBox(height: 6),
 
-                  Text(
-                    data['current']['condition']['text']
-                        .toString()
-                        .toUpperCase(),
-                    textAlign: TextAlign.right,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white.withValues(alpha: 0.7),
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      height: 1.3,
-                      letterSpacing: 1,
+                    Text(
+                      data['current']['condition']['text']
+                          .toString()
+                          .toUpperCase(),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white.withValues(alpha: 0.7),
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        height: 1.3,
+                        letterSpacing: 1,
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(height: 6),
+                    const SizedBox(height: 6),
 
-                  /// 🌤 Weather icon
-                  Image.network(
-                    "https:${data['current']['condition']['icon']}",
-                    height: 40,
-                  ),
-                ],
+                    /// 🌤 Weather icon
+                    Image.network(
+                      "https:${data['current']['condition']['icon']}",
+                      height: 40,
+                    ),
+                  ],
+                ),
               );
             },
           ),
