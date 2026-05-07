@@ -6,6 +6,53 @@ class DeepSheekApi {
   final String _apikey = dotenv.env['DEEPSHEK_API_KEY']!;
   final String _baseurl = dotenv.env['DEEPSHEK_BASE_URL']!;
 
+  Stream<String> chatStream(String prompt) async* {
+    try {
+      final request = http.Request('POST', Uri.parse(_baseurl));
+      request.headers.addAll({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_apikey',
+      });
+      request.body = jsonEncode({
+        'model': 'deepseek/deepseek-chat',
+        'messages': [
+          {'role': 'user', 'content': prompt},
+        ],
+        'stream': true,
+      });
+
+      final response = await http.Client().send(request);
+
+      if (response.statusCode == 200) {
+        final stream = response.stream
+            .transform(utf8.decoder)
+            .transform(const LineSplitter());
+
+        await for (final line in stream) {
+          if (line.startsWith('data: ')) {
+            final data = line.substring(6);
+            if (data == '[DONE]') {
+              break;
+            }
+            try {
+              final json = jsonDecode(data);
+              final content = json['choices'][0]['delta']['content'];
+              if (content != null) {
+                yield content as String;
+              }
+            } catch (e) {
+              // Ignore errors on specific chunks
+            }
+          }
+        }
+      } else {
+        yield 'Error: Could not fetch response';
+      }
+    } catch (e) {
+      yield 'An error occurred';
+    }
+  }
+
   Future<String> chat(String prompt) async {
     try {
       final response = await http.post(

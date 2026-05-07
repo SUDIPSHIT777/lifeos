@@ -242,8 +242,8 @@ class _TaskpageuiState extends State<Taskpageui>
 
                       final tasks = snapshot.hasData
                           ? snapshot.data!
-                              .where((task) => !task.isCompleted)
-                              .toList()
+                                .where((task) => !task.isCompleted)
+                                .toList()
                           : <TaskModel>[];
 
                       if (tasks.isEmpty) {

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifeos/feature/ai_assistant/controller/deepsheekprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lifeos/feature/dashboard/service/weather.dart';
@@ -13,7 +12,6 @@ import 'package:lifeos/feature/dashboard/widget/focustimer.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
-import 'package:lifeos/model/userdatabase.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -25,7 +23,6 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final WeatherService weatherservice = WeatherService();
-  final Userdatabase userdatabase = Userdatabase();
   final Buttonwidget buttonwidget = Buttonwidget();
   final Cardwidget cardwidget = Cardwidget();
   @override
@@ -36,7 +33,6 @@ class _DashboardState extends State<Dashboard> {
       context.read<WeatherProvider>().fetchWeather();
       final provider = context.read<Taskprovider>();
       provider.getTasks().listen((_) {});
-       context.read<Deepsheekprovider>().fetchGreeting();
     });
   }
 
