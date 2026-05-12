@@ -16,8 +16,8 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-  final email = TextEditingController();
-  final password = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
   final formkey = GlobalKey<FormState>();
   final Logingetx logincontroller = Get.put(Logingetx());
   @override
@@ -121,30 +121,44 @@ class _LoginscreenState extends State<Loginscreen> {
                       SizedBox(
                         width: double.infinity,
                         height: 55,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            Loginvalidation.validation(context, formkey);
-                            email.clear();
-                            password.clear();
-                          },
-                          icon: const Icon(Icons.login, size: 23),
-                          label: AutoSizeText(
-                            "Login",
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          iconAlignment: IconAlignment.end,
-                          style: ElevatedButton.styleFrom(
-                            elevation: 1,
-                            backgroundColor: Colors.blue,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                        ),
+                        // child: Consumer<LoginProvider>(
+                        //   builder: (context, login, child) => ElevatedButton(
+                        //     onPressed: login.isLoading
+                        //         ? null
+                        //         : () async {
+                        //             if (formkey.currentState!.validate()) {
+                        //               await login.login(
+                        //                 email: email.text,
+                        //                 password: password.text,
+                        //               );
+                        //             }
+                        //             if (!mounted) return;
+                        //             email.clear();
+                        //             password.clear();
+                        //           },
+                        //     style: ElevatedButton.styleFrom(
+                        //       elevation: 1,
+                        //       backgroundColor: Colors.blue,
+                        //       foregroundColor: Colors.white,
+                        //       shape: RoundedRectangleBorder(
+                        //         borderRadius: BorderRadius.circular(12),
+                        //       ),
+                        //     ),
+                        //     child: login.isLoading
+                        //         ? Center(
+                        //             child: const CircularProgressIndicator(
+                        //               color: Colors.white,
+                        //             ),
+                        //           )
+                        //         : AutoSizeText(
+                        //             "Login",
+                        //             style: GoogleFonts.poppins(
+                        //               fontSize: 18,
+                        //               fontWeight: FontWeight.w600,
+                        //             ),
+                        //           ),
+                        //   ),
+                        // ),
                       ),
                       const SizedBox(height: 22),
                       Row(
@@ -261,6 +275,8 @@ class _LoginscreenState extends State<Loginscreen> {
       obscureText: obscureText,
       autofillHints: autofillhint,
       validator: validator,
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
       cursorColor: Colors.blue,
       decoration: InputDecoration(
         hintText: hintText,
@@ -298,8 +314,8 @@ class _LoginscreenState extends State<Loginscreen> {
 
   @override
   void dispose() {
-    super.dispose();
     email.dispose();
     password.dispose();
+    super.dispose();
   }
 }

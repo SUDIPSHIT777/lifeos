@@ -16,9 +16,9 @@ class Signupscreen extends StatefulWidget {
 }
 
 class _SignupscreenState extends State<Signupscreen> {
-  final email = TextEditingController();
-  final password = TextEditingController();
-  final name = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController name = TextEditingController();
   final formkey = GlobalKey<FormState>();
   final Signupcontroller signupcontroller = Get.put(Signupcontroller());
   @override
@@ -91,7 +91,7 @@ class _SignupscreenState extends State<Signupscreen> {
                         obscureText: false,
                         autofillhint: const [AutofillHints.name],
                         validator: (value) =>
-                            SignupValidators.emailValidator(name),
+                            SignupValidators.nameValidator(name),
                       ),
                       const SizedBox(height: 18),
                       const Text(
@@ -139,67 +139,76 @@ class _SignupscreenState extends State<Signupscreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Obx(
-                            () => Checkbox(
-                              value: signupcontroller.ischeck.value,
-                              onChanged: (value) =>
-                                  signupcontroller.ischeckon(),
-                            ),
-                          ),
-                          AutoSizeText(
-                            "I agree to the ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          AutoSizeText(
-                            "Terms & Conditions",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Color(0xFF3C60EA),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 60,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            SignupValidators.validation(
-                              context,
-                              formkey,
-                              signupcontroller,
-                            );
-                            email.clear();
-                            password.clear();
-                            name.clear(); //as go
-                          },
-                          icon: const Icon(Icons.login, size: 23),
-                          label: AutoSizeText(
-                            "Sign Up",
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          iconAlignment: IconAlignment.end,
-                          style: ElevatedButton.styleFrom(
-                            elevation: 2,
-                            backgroundColor: Colors.blue,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Checkbox(
+                      //       value: signup.isChecked,
+                      //       onChanged: (value) =>
+                      //           signup.toggleCheckbox(value!),
+                      //     ),
+                      //     AutoSizeText(
+                      //       "I agree to the ",
+                      //       style: TextStyle(
+                      //         fontWeight: FontWeight.w500,
+                      //         fontSize: 16,
+                      //         color: Colors.grey,
+                      //       ),
+                      //     ),
+                      //     AutoSizeText(
+                      //       "Terms & Conditions",
+                      //       style: TextStyle(
+                      //         fontWeight: FontWeight.bold,
+                      //         fontSize: 16,
+                      //         color: Color(0xFF3C60EA),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      // const SizedBox(height: 10),
+                      // SizedBox(
+                      //   width: double.infinity,
+                      //   height: 60,
+                      //   child: Consumer<SignupProvider>(
+                      //     builder: (context, signupvalue, child) =>
+                      //         ElevatedButton(
+                      //           onPressed: signupvalue.isLoading
+                      //               ? null
+                      //               : () async {
+                      //                   if (formkey.currentState!.validate()) {
+                      //                     await signupvalue.signup(
+                      //                       context: context,
+                      //                       email: email.text,
+                      //                       password: password.text,
+                      //                       name: name.text,
+                      //                     );
+                      //                   }
+                      //                   email.clear();
+                      //                   password.clear();
+                      //                   name.clear();
+                      //                 },
+
+                      //           style: ElevatedButton.styleFrom(
+                      //             elevation: 2,
+                      //             backgroundColor: Colors.blue,
+                      //             foregroundColor: Colors.white,
+                      //             shape: RoundedRectangleBorder(
+                      //               borderRadius: BorderRadius.circular(12),
+                      //             ),
+                      //           ),
+                      //           child: signupvalue.isLoading
+                      //               ? const CircularProgressIndicator(
+                      //                   color: Colors.white,
+                      //                 )
+                      //               : AutoSizeText(
+                      //                   "Sign Up",
+                      //                   style: GoogleFonts.poppins(
+                      //                     fontSize: 18,
+                      //                     fontWeight: FontWeight.w600,
+                      //                   ),
+                      //                 ),
+                      //         ),
+                      //   ),
+                      // ),
                       const SizedBox(height: 22),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -352,9 +361,9 @@ class _SignupscreenState extends State<Signupscreen> {
 
   @override
   void dispose() {
-    super.dispose();
     email.dispose();
     password.dispose();
     name.dispose();
+    super.dispose();
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lifeos/feature/ai_assistant/ui/aiassistent.dart';
+import 'package:lifeos/feature/ai_assistant/ui/aidashboard.dart';
 import 'package:lifeos/feature/dashboard/ui/dashboard.dart';
 import 'package:lifeos/feature/finance/ui/financepage.dart';
 import 'package:lifeos/feature/habit/ui/habitpage.dart';
@@ -22,7 +22,7 @@ class _NavigationbarState extends State<Navigationbar> {
     return const [
       Dashboard(),
       Taskpageui(),
-      AiassistentPage(),
+      AiDashboard(),
       HabitPage(),
       Financepage(),
     ];

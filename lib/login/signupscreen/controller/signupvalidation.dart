@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lifeos/core/utils/snackbar.dart';
-import 'package:lifeos/login/signupscreen/controller/signupcontroller.dart';
 
 class SignupValidators {
   //===================Email Validation=====================
@@ -40,34 +38,4 @@ class SignupValidators {
     return null;
   }
 
-  //===================All Validation=====================
-  static void validation(
-    BuildContext context,
-    GlobalKey<FormState> formKey,
-    Signupcontroller controller,
-  ) {
-    if (!controller.ischeck.value) {
-      return Snackbardesign.showCustomSnackbar(
-        title: "Error",
-        subtitle: "Please accept Terms & Conditions",
-        backgroundColor: Color(0xFFFF9800),
-        icon: Icons.error,
-      );
-    }
-    if (formKey.currentState!.validate()) {
-      return Snackbardesign.showCustomSnackbar(
-        title: "Welcome To Lifeos Manage Your Task With Ai",
-        subtitle: "Signup successful",
-        backgroundColor: Color(0xFF00c247),
-        icon: Icons.auto_awesome,
-      );
-    } else {
-      return Snackbardesign.showCustomSnackbar(
-        title: "Something went wrong",
-        subtitle: "Signup Failed",
-        backgroundColor: Color(0xFFFF9800),
-        icon: Icons.auto_awesome,
-      );
-    }
-  }
 }

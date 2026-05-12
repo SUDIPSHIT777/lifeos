@@ -25,33 +25,4 @@ class Loginvalidation {
     }
     return null;
   }
-
-  static void validation(BuildContext context, GlobalKey<FormState> formKey) {
-    if (formKey.currentState!.validate()) {
-      return Snackbardesign.showCustomSnackbar(
-        title: "Welcome To Lifeos Manage Your Task With Ai",
-        subtitle: "Login Successfully",
-        backgroundColor: Color(0xFF00c247),
-        icon: Icons.auto_awesome,
-      );
-    } else {
-      return Snackbardesign.showCustomSnackbar(
-        title: "There IS Somthing is Wrong",
-        subtitle: "Login Failed",
-        backgroundColor: Color(0xFFFF9800),
-        icon: Icons.auto_awesome,
-      );
-    }
-  }
-
-  static String? nameValidator(TextEditingController name) {
-    final namecontroller = name.text;
-    if (namecontroller.isEmpty) {
-      return "Name is required";
-    }
-    if (namecontroller.length < 6) {
-      return "Name must be at least 3 characters";
-    }
-    return null;
-  }
 }

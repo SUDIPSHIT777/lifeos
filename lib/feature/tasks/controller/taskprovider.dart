@@ -181,40 +181,49 @@ class Taskprovider extends ChangeNotifier {
     TimeOfDay? time,
   }) async {
     final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
+
+    if (user == null) {
+      throw Exception("User not logged in");
+    }
+
     try {
+      final Map<String, dynamic> data = {'title': title, 'desc': description};
+
+      if (date != null) {
+        data['date'] = Timestamp.fromDate(date);
+      }
+
+      if (time != null) {
+        data['time'] = '${time.hour}:${time.minute}';
+      }
+
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .collection('tasks')
           .doc(taskid)
-          .update({
-            'title': title,
-            'desc': description,
-            'date': date != null ? Timestamp.fromDate(date) : null,
-            if (time != null) 'time': '${time.hour}:${time.minute}',
-          });
+          .update(data);
     } catch (e) {
-      throw Exception("Not Update The Values");
+      throw Exception("Update Task Error: $e");
     }
   }
 
   Stream<List<TaskModel>> getTasks() {
     final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return const Stream.empty();
+
+    if (user == null) {
+      return const Stream.empty();
+    }
     return FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
         .collection('tasks')
-        .orderBy('createdAt', descending: false)
+        .orderBy('createdAt')
         .snapshots()
-        .map((snapshot) {
-          final tasks = snapshot.docs
-              .map((doc) => TaskModel.fromFirestore(doc))
-              .toList();
-          setTasks(tasks);
-          return tasks;
-        });
+        .map(
+          (snapshot) =>
+              snapshot.docs.map((doc) => TaskModel.fromFirestore(doc)).toList(),
+        );
   }
 
   Future<void> toggleTask(TaskModel task) async {

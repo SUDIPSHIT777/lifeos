@@ -18,10 +18,10 @@ class Authgate extends StatelessWidget {
           if (!value.isDone) {
             return const Splashscreen();
           }
-          if (snapshot.hasData) {
-            return const Navigationbar();
+          if (!snapshot.hasData) {
+            return const Loginscreen();
           }
-          return const Loginscreen();
+          return const Navigationbar();
         },
       ),
     );
