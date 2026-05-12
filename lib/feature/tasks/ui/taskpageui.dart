@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -124,7 +125,9 @@ class _TaskpageuiState extends State<Taskpageui>
           children: [
             // ================== PROGRESS ==================
             StreamBuilder<List<TaskModel>>(
-              stream: context.read<Taskprovider>().getTasks(),
+              stream: FirebaseAuth.instance.currentUser == null
+                  ? const Stream.empty()
+                  : context.read<Taskprovider>().getTasks(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return taskpersentage.dailyProgressCard(
@@ -234,7 +237,9 @@ class _TaskpageuiState extends State<Taskpageui>
                 controller: _tabController,
                 children: [
                   StreamBuilder<List<TaskModel>>(
-                    stream: context.read<Taskprovider>().getTasks(),
+                    stream: FirebaseAuth.instance.currentUser == null
+                        ? const Stream.empty()
+                        : context.read<Taskprovider>().getTasks(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(child: CircularProgressIndicator());

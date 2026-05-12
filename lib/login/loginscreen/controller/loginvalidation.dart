@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lifeos/core/utils/snackbar.dart';
 
 class Loginvalidation {
   static String? emailValidator(TextEditingController controller) {

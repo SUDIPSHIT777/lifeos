@@ -211,19 +211,20 @@ class Taskprovider extends ChangeNotifier {
   Stream<List<TaskModel>> getTasks() {
     final user = FirebaseAuth.instance.currentUser;
 
-    if (user == null) {
-      return const Stream.empty();
+    if (user != null) {
+      return FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .collection('tasks')
+          .orderBy('createdAt')
+          .snapshots()
+          .map(
+            (snapshot) => snapshot.docs
+                .map((doc) => TaskModel.fromFirestore(doc))
+                .toList(),
+          );
     }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uid)
-        .collection('tasks')
-        .orderBy('createdAt')
-        .snapshots()
-        .map(
-          (snapshot) =>
-              snapshot.docs.map((doc) => TaskModel.fromFirestore(doc)).toList(),
-        );
+    return const Stream.empty();
   }
 
   Future<void> toggleTask(TaskModel task) async {
