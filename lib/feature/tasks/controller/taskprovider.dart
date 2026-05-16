@@ -232,20 +232,16 @@ class Taskprovider extends ChangeNotifier {
     if (user == null) return;
 
     try {
-      final index = _tasks.indexWhere((t) => t.id == task.id);
-
-      if (index != -1) {
-        _tasks[index].isCompleted = !_tasks[index].isCompleted;
-      }
-
+      final newValue = !task.isCompleted;
+      task.isCompleted = newValue;
       notifyListeners();
-
+      // firestore update
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .collection('tasks')
           .doc(task.id)
-          .update({'isCompleted': _tasks[index].isCompleted});
+          .update({'isCompleted': newValue});
     } catch (e) {
       debugPrint("Toggle failed: $e");
     }

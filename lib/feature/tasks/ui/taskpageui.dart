@@ -245,6 +245,12 @@ class _TaskpageuiState extends State<Taskpageui>
                         return Center(child: CircularProgressIndicator());
                       }
 
+                      if (snapshot.hasData) {
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          context.read<Taskprovider>().setTasks(snapshot.data!);
+                        });
+                      }
+
                       final tasks = snapshot.hasData
                           ? snapshot.data!
                                 .where((task) => !task.isCompleted)
