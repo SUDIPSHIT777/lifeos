@@ -9,6 +9,8 @@ import 'package:lifeos/feature/splashscreen/splashprovider.dart';
 import 'package:lifeos/feature/tasks/controller/allupdatefunction.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/login/googleauth/googleauth.dart';
+import 'package:lifeos/login/loginscreen/controller/loginprovider.dart';
+import 'package:lifeos/login/signupscreen/controller/signupprovider.dart';
 import 'package:lifeos/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +34,8 @@ void main() async {
         ChangeNotifierProvider(create: (context) => WeatherProvider()),
         ChangeNotifierProvider(create: (context) => DateTimeProvider()),
         ChangeNotifierProvider(create: (context) => Deepsheekprovider()),
+        ChangeNotifierProvider(create: (context) => Signupprovider()),
+        ChangeNotifierProvider(create: (context) => Loginprovider()),
       ],
       child: const MyApp(),
     ),

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/login/googleauth/googleauth.dart';
 import 'package:lifeos/login/loginscreen/controller/logingetx.dart';
+import 'package:lifeos/login/loginscreen/controller/loginprovider.dart';
 import 'package:lifeos/login/loginscreen/controller/loginvalidation.dart';
 import 'package:provider/provider.dart';
 
@@ -121,44 +122,45 @@ class _LoginscreenState extends State<Loginscreen> {
                       SizedBox(
                         width: double.infinity,
                         height: 55,
-                        // child: Consumer<LoginProvider>(
-                        //   builder: (context, login, child) => ElevatedButton(
-                        //     onPressed: login.isLoading
-                        //         ? null
-                        //         : () async {
-                        //             if (formkey.currentState!.validate()) {
-                        //               await login.login(
-                        //                 email: email.text,
-                        //                 password: password.text,
-                        //               );
-                        //             }
-                        //             if (!mounted) return;
-                        //             email.clear();
-                        //             password.clear();
-                        //           },
-                        //     style: ElevatedButton.styleFrom(
-                        //       elevation: 1,
-                        //       backgroundColor: Colors.blue,
-                        //       foregroundColor: Colors.white,
-                        //       shape: RoundedRectangleBorder(
-                        //         borderRadius: BorderRadius.circular(12),
-                        //       ),
-                        //     ),
-                        //     child: login.isLoading
-                        //         ? Center(
-                        //             child: const CircularProgressIndicator(
-                        //               color: Colors.white,
-                        //             ),
-                        //           )
-                        //         : AutoSizeText(
-                        //             "Login",
-                        //             style: GoogleFonts.poppins(
-                        //               fontSize: 18,
-                        //               fontWeight: FontWeight.w600,
-                        //             ),
-                        //           ),
-                        //   ),
-                        // ),
+                        child: Consumer<Loginprovider>(
+                          builder: (context, login, child) => ElevatedButton(
+                            onPressed: login.isLoading
+                                ? null
+                                : () async {
+                                    if (formkey.currentState!.validate()) {
+                                      await login.login(
+                                        context: context,
+                                        email: email.text,
+                                        password: password.text,
+                                      );
+
+                                      if (!mounted) return;
+                                      context.go('/');
+                                    }
+                                  },
+                            style: ElevatedButton.styleFrom(
+                              elevation: 1,
+                              backgroundColor: Colors.blue,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: login.isLoading
+                                ? Center(
+                                    child: const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : AutoSizeText(
+                                    "Login",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 22),
                       Row(

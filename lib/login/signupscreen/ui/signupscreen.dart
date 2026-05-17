@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/login/googleauth/googleauth.dart';
 import 'package:lifeos/login/signupscreen/controller/signupcontroller.dart';
+import 'package:lifeos/login/signupscreen/controller/signupprovider.dart';
 import 'package:lifeos/login/signupscreen/controller/signupvalidation.dart';
 import 'package:provider/provider.dart';
 
@@ -139,76 +140,79 @@ class _SignupscreenState extends State<Signupscreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      // Row(
-                      //   children: [
-                      //     Checkbox(
-                      //       value: signup.isChecked,
-                      //       onChanged: (value) =>
-                      //           signup.toggleCheckbox(value!),
-                      //     ),
-                      //     AutoSizeText(
-                      //       "I agree to the ",
-                      //       style: TextStyle(
-                      //         fontWeight: FontWeight.w500,
-                      //         fontSize: 16,
-                      //         color: Colors.grey,
-                      //       ),
-                      //     ),
-                      //     AutoSizeText(
-                      //       "Terms & Conditions",
-                      //       style: TextStyle(
-                      //         fontWeight: FontWeight.bold,
-                      //         fontSize: 16,
-                      //         color: Color(0xFF3C60EA),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // const SizedBox(height: 10),
-                      // SizedBox(
-                      //   width: double.infinity,
-                      //   height: 60,
-                      //   child: Consumer<SignupProvider>(
-                      //     builder: (context, signupvalue, child) =>
-                      //         ElevatedButton(
-                      //           onPressed: signupvalue.isLoading
-                      //               ? null
-                      //               : () async {
-                      //                   if (formkey.currentState!.validate()) {
-                      //                     await signupvalue.signup(
-                      //                       context: context,
-                      //                       email: email.text,
-                      //                       password: password.text,
-                      //                       name: name.text,
-                      //                     );
-                      //                   }
-                      //                   email.clear();
-                      //                   password.clear();
-                      //                   name.clear();
-                      //                 },
+                      Consumer<Signupprovider>(
+                        builder: (context, signup, child) => Row(
+                          children: [
+                            Checkbox(
+                              value: signup.isChecked,
+                              onChanged: (value) =>
+                                  signup.toggleCheckbox(value!),
+                            ),
+                            AutoSizeText(
+                              "I agree to the ",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            AutoSizeText(
+                              "Terms & Conditions",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Color(0xFF3C60EA),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 60,
+                        child: Consumer<Signupprovider>(
+                          builder: (context, signupvalue, child) =>
+                              ElevatedButton(
+                                onPressed: signupvalue.isLoading
+                                    ? null
+                                    : () async {
+                                        if (formkey.currentState!.validate()) {
+                                          await signupvalue.signup(
+                                            context: context,
+                                            email: email.text,
+                                            password: password.text,
+                                            name: name.text,
+                                          );
+                                          context.go('/');
+                                        }
+                                        email.clear();
+                                        password.clear();
+                                        name.clear();
+                                      },
 
-                      //           style: ElevatedButton.styleFrom(
-                      //             elevation: 2,
-                      //             backgroundColor: Colors.blue,
-                      //             foregroundColor: Colors.white,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.circular(12),
-                      //             ),
-                      //           ),
-                      //           child: signupvalue.isLoading
-                      //               ? const CircularProgressIndicator(
-                      //                   color: Colors.white,
-                      //                 )
-                      //               : AutoSizeText(
-                      //                   "Sign Up",
-                      //                   style: GoogleFonts.poppins(
-                      //                     fontSize: 18,
-                      //                     fontWeight: FontWeight.w600,
-                      //                   ),
-                      //                 ),
-                      //         ),
-                      //   ),
-                      // ),
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 2,
+                                  backgroundColor: Colors.blue,
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: signupvalue.isLoading
+                                    ? const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      )
+                                    : AutoSizeText(
+                                        "Sign Up",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                        ),
+                      ),
                       const SizedBox(height: 22),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
