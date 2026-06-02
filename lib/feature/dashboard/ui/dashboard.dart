@@ -200,59 +200,65 @@ class _DashboardState extends State<Dashboard> {
               ),
               const SizedBox(height: 15),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 10,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(
-                      onTap: () => openTaskBottomSheet(context),
-                      child: buttonwidget.button(
-                        context,
-                        titel: "Add Task",
-                        icon: Icons.add_task_sharp,
-                        backgroundcolor: Color(0xFFE2E7F6),
-                        iconcolor: Color(0xFF305EE8),
-                      ),
-                    ),
-                    buttonwidget.button(
-                      context,
-                      titel: "Log Finance",
-                      icon: Icons.payments,
-                      backgroundcolor: Color(0xFFF6E9E0),
-                      iconcolor: Color(0xFFF97316),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      childAspectRatio: 1.15,
+
+                      children: [
+                        /// ADD TASK
+                        GestureDetector(
+                          onTap: () => openTaskBottomSheet(context),
+
+                          child: buttonwidget.button(
+                            context,
+                            titel: "Add Task",
+                            icon: Icons.add_task_sharp,
+                            backgroundcolor: const Color(0xFFDBEAFE),
+                            iconcolor: const Color(0xFF2563EB),
+                          ),
+                        ),
+
+                        /// FINANCE
+                        buttonwidget.button(
+                          context,
+                          titel: "Log Finance",
+                          icon: Icons.payments,
+                          backgroundcolor: const Color(0xFFFFEDD5),
+                          iconcolor: const Color(0xFFEA580C),
+                        ),
+
+                        /// HABIT
+                        buttonwidget.button(
+                          context,
+                          titel: "Habit",
+                          icon: Icons.fitness_center_sharp,
+                          backgroundcolor: const Color(0xFFF3E8FF),
+                          iconcolor: const Color(0xFF9333EA),
+                        ),
+
+                        /// NOTE
+                        buttonwidget.button(
+                          context,
+                          titel: "New Note",
+                          icon: Icons.note_alt,
+                          backgroundcolor: const Color(0xFFD1FAE5),
+                          iconcolor: const Color(0xFF059669),
+                        ),
+                      ],
                     ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    buttonwidget.button(
-                      context,
-                      titel: "Habit",
-                      icon: Icons.fitness_center_sharp,
-                      backgroundcolor: Color(0xFFEBE6F7),
-                      iconcolor: Color(0xFF8B5CF6),
-                    ),
-                    buttonwidget.button(
-                      context,
-                      titel: "New Note",
-                      icon: Icons.note_alt,
-                      backgroundcolor: Color(0xFFDFF0EB),
-                      iconcolor: Color(0xFF10B981),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 15),
-              Text(
-                "Finance",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 15),
