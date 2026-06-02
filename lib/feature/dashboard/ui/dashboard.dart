@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,7 @@ import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/focustimer.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
+import 'package:lifeos/feature/dashboard/widget/recenttask.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +27,7 @@ class _DashboardState extends State<Dashboard> {
   final WeatherService weatherservice = WeatherService();
   final Buttonwidget buttonwidget = Buttonwidget();
   final Cardwidget cardwidget = Cardwidget();
+  final Recenttask recenttask = Recenttask();
   @override
   void initState() {
     super.initState();
@@ -185,24 +188,19 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 15),
               cardwidget.progressCard(context),
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Quick Action",
-                    style: GoogleFonts.poppins(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
+              Text(
+                "Quick Action",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
               ),
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 14,
-                  vertical: 10,
+                  vertical: 5,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,6 +257,26 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   ],
+                ),
+              ),
+
+              Text(
+                "Recent Task",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 15),
+              recenttask.recentTaskWidget(context),
+              const SizedBox(height: 15),
+              Text(
+                "Finance Management",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 15),

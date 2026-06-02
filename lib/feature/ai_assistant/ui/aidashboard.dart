@@ -12,104 +12,25 @@ class AiDashboard extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),
-
-      /// ================= APP BAR =================
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: const Color(0xFFF5F7FB),
         surfaceTintColor: Colors.transparent,
 
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 12),
-
-          child: Container(
-            margin: const EdgeInsets.all(6),
-
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.04),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-
-            child: IconButton(
-              onPressed: () => Navigator.pop(context),
-
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Colors.black87,
-                size: 18,
-              ),
-            ),
-          ),
-        ),
-
+        leading: SizedBox(),
         centerTitle: true,
 
-        title: Column(
-          children: [
-            Text(
-              "AI Dashboard",
-              style: GoogleFonts.poppins(
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                color: Colors.black87,
-              ),
-            ),
-
-            Text(
-              "Smart Productivity",
-              style: GoogleFonts.poppins(
-                fontSize: 12,
-                color: Colors.black45,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 14),
-
-            child: Container(
-              width: 48,
-              height: 48,
-
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.04),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-
-              child: IconButton(
-                onPressed: () {},
-
-                icon: const Icon(
-                  Icons.notifications_none_rounded,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
+        title: Text(
+          "AI Dashboard",
+          style: GoogleFonts.poppins(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            color: Colors.black87,
           ),
-        ],
+        ),
       ),
 
-      /// ================= BODY =================
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
