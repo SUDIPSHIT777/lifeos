@@ -132,7 +132,7 @@ class _WeatherpageState extends State<Weatherpage> {
 
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.06),
+                          color: Colors.black.withValues(alpha:0.06),
                           blurRadius: 20,
                           offset: const Offset(0, 10),
                         ),
@@ -217,7 +217,7 @@ class _WeatherpageState extends State<Weatherpage> {
 
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: Colors.black.withValues(alpha:0.05),
                           blurRadius: 20,
                           offset: const Offset(0, 10),
                         ),
@@ -233,7 +233,7 @@ class _WeatherpageState extends State<Weatherpage> {
 
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.orange.withOpacity(0.08),
+                            color: Colors.orange.withValues(alpha:0.08),
                           ),
 
                           child: Image.network(
@@ -282,7 +282,7 @@ class _WeatherpageState extends State<Weatherpage> {
                           ),
 
                           decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.08),
+                            color: Colors.blue.withValues(alpha:0.08),
                             borderRadius: BorderRadius.circular(18),
                           ),
 
@@ -412,7 +412,7 @@ class _WeatherpageState extends State<Weatherpage> {
 
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.deepPurple.withOpacity(0.25),
+                            color: Colors.deepPurple.withValues(alpha:0.25),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -466,7 +466,7 @@ class _WeatherpageState extends State<Weatherpage> {
 
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha:0.08),
             blurRadius: 16,
             offset: const Offset(0, 8),
           ),
@@ -481,7 +481,7 @@ class _WeatherpageState extends State<Weatherpage> {
             child: Icon(
               icon,
               size: width * 0.18,
-              color: Colors.white.withOpacity(0.07),
+              color: Colors.white.withValues(alpha:0.07),
             ),
           ),
 
@@ -517,7 +517,7 @@ class _WeatherpageState extends State<Weatherpage> {
                     height: width * 0.11,
 
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.12),
+                      color: Colors.white.withValues(alpha:0.12),
                       borderRadius: BorderRadius.circular(14),
                     ),
 

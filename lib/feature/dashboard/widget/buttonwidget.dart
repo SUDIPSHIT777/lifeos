@@ -41,7 +41,7 @@ class Buttonwidget {
             child: Icon(
               icon,
               size: width * 0.14,
-              color: iconcolor.withOpacity(0.06),
+              color: iconcolor.withValues(alpha:0.06),
             ),
           ),
 
@@ -56,7 +56,7 @@ class Buttonwidget {
                 height: width * 0.14,
 
                 decoration: BoxDecoration(
-                  color: iconcolor.withOpacity(0.14),
+                  color: iconcolor.withValues(alpha:0.14),
                   shape: BoxShape.circle,
                 ),
 

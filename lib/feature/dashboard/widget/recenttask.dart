@@ -10,12 +10,10 @@ class Recenttask {
       stream: context.read<Taskprovider>().getTasks(),
 
       builder: (context, snapshot) {
-        /// LOADING
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        /// NO TASK
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return Container(
             width: double.infinity,
@@ -40,12 +38,9 @@ class Recenttask {
                   size: 32,
                   color: Colors.white,
                 ),
-
                 const SizedBox(height: 12),
-
                 Text(
                   "No Tasks Yet",
-
                   style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
@@ -98,7 +93,6 @@ class Recenttask {
           );
         }
 
-        /// TASK LIST
         return Column(
           children: tasks.take(3).map((task) {
             return Container(
@@ -113,11 +107,23 @@ class Recenttask {
 
               child: Row(
                 children: [
-                  Icon(
-                    context.read<Taskprovider>().getPriorityIcon(task.priority),
+                  Container(
+                    padding: EdgeInsets.all(5.0),
 
-                    color: context.read<Taskprovider>().getPriorityColor(
-                      task.priority,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: context
+                          .read<Taskprovider>()
+                          .getPriorityColor(task.priority)
+                          .withValues(alpha: 0.4),
+                    ),
+                    child: Icon(
+                      context.read<Taskprovider>().getPriorityIcon(
+                        task.priority,
+                      ),
+                      color: context.read<Taskprovider>().getPriorityColor(
+                        task.priority,
+                      ),
                     ),
                   ),
 
@@ -126,11 +132,11 @@ class Recenttask {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
                         Text(
                           task.title,
-
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w600,
                           ),
@@ -138,17 +144,25 @@ class Recenttask {
 
                         Text(
                           task.desc,
-
                           maxLines: 1,
-
                           overflow: TextOverflow.ellipsis,
-
                           style: GoogleFonts.poppins(
-                            fontSize: 12,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
                             color: Colors.grey,
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Text(
+                    task.priority.toUpperCase(),
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: context.read<Taskprovider>().getPriorityColor(
+                        task.priority,
+                      ),
                     ),
                   ),
                 ],
