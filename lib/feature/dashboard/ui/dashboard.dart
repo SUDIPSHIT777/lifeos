@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lifeos/feature/ai_assistant/widget/tilewidget.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lifeos/feature/dashboard/service/weather.dart';
@@ -176,25 +177,11 @@ class _DashboardState extends State<Dashboard> {
                 child: cardwidget.morningdetails(context),
               ),
               const SizedBox(height: 15),
-              Text(
-                "Progress",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
+              sectionTitle("Progress"),
               const SizedBox(height: 15),
               cardwidget.progressCard(context),
               const SizedBox(height: 10),
-              Text(
-                "Quick Action",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
+              sectionTitle("Quick Action"),
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -259,25 +246,11 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
 
-              Text(
-                "Recent Task",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
+              sectionTitle("Recent Task"),
               const SizedBox(height: 15),
               recenttask.recentTaskWidget(context),
               const SizedBox(height: 15),
-              Text(
-                "Finance Management",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
+              sectionTitle("Finance Management"),
               const SizedBox(height: 15),
               cardwidget.monthlySpendingCard(
                 totalSpending: 3240.50,
@@ -286,14 +259,7 @@ class _DashboardState extends State<Dashboard> {
                 percentChange: 12.5,
               ),
               const SizedBox(height: 15),
-              Text(
-                "Focus Mode",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                ),
-              ),
+              sectionTitle("Focus Mode"),
               const SizedBox(height: 15),
               const FocusTimer(),
               const SizedBox(height: 15),
@@ -301,14 +267,7 @@ class _DashboardState extends State<Dashboard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Recent Note",
-                    style: GoogleFonts.poppins(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                  ),
+                  sectionTitle("Recent Notes"),
                   GestureDetector(
                     onTap: () {},
                     child: Text(

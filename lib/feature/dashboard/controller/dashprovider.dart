@@ -43,7 +43,7 @@ class Userprovider extends ChangeNotifier {
     } else if (hour >= 12 && hour < 17) {
       _gettime = "Good Afternoon";
       _imagepath = "assets/heat-wave.png";
-    } else if (hour >= 16 && hour < 21) {
+    } else if (hour >= 17 && hour < 21) {
       _gettime = "Good Evening";
       _imagepath = "assets/sunsets.png";
     } else {

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeos/core/utils/navigationbar.dart';
+import 'package:lifeos/feature/ai_assistant/ui/aiassistent.dart';
+import 'package:lifeos/feature/ai_assistant/ui/aidashboard.dart';
 import 'package:lifeos/feature/dashboard/ui/dashboard.dart';
 import 'package:lifeos/feature/dashboard/ui/weatherpage.dart';
 import 'package:lifeos/feature/tasks/ui/taskdetails.dart';
@@ -42,6 +44,16 @@ class Routes {
         ],
       ),
       GoRoute(path: '/navdar', builder: (context, state) => Navigationbar()),
+      GoRoute(
+        path: '/aidashboard',
+        builder: (context, state) => AiDashboard(),
+        routes: [
+          GoRoute(
+            path: 'chatboat',
+            builder: (context, state) => AiassistentPage(),
+          ),
+        ],
+      ),
     ],
   );
 }

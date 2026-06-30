@@ -286,13 +286,29 @@ class _TaskpageuiState extends State<Taskpageui>
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                taskprovider.formatDate(date),
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 5,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
 
+                                  const SizedBox(width: 10),
+
+                                  Text(
+                                    taskprovider.formatDate(date),
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                ],
+                              ),
                               ListView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),

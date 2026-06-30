@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/ai_assistant/widget/cardwidget.dart';
 import 'package:lifeos/feature/ai_assistant/widget/tilewidget.dart';
+import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
+import 'package:provider/provider.dart';
 
 class AiDashboard extends StatelessWidget {
   const AiDashboard({super.key});
@@ -39,13 +42,14 @@ class AiDashboard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
 
             children: [
-              /// HEADER
-              Text(
-                "Welcome Back 👋",
-                style: GoogleFonts.poppins(
-                  fontSize: width * 0.075,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+              Consumer<Userprovider>(
+                builder: (context, user, child) => Text(
+                  "Welcome Back ${user.username} 👋",
+                  style: GoogleFonts.poppins(
+                    fontSize: width * 0.075,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
                 ),
               ),
 
@@ -76,13 +80,16 @@ class AiDashboard extends StatelessWidget {
                 childAspectRatio: 1.05,
 
                 children: [
-                  coreCard(
-                    context,
-                    title: "Chat with AI",
-                    subtitle: "Text based assistant",
-                    icon: Icons.chat_bubble_outline_rounded,
-                    iconColor: const Color(0xFF4C6FFF),
-                    backgroundColor: const Color(0xFFEFF2FF),
+                  GestureDetector(
+                    onTap: () => context.push('/aidashboard/chatboat'),
+                    child: coreCard(
+                      context,
+                      title: "Chat with AI",
+                      subtitle: "Text based assistant",
+                      icon: Icons.chat_bubble_outline_rounded,
+                      iconColor: const Color(0xFF4C6FFF),
+                      backgroundColor: const Color(0xFFEFF2FF),
+                    ),
                   ),
 
                   coreCard(

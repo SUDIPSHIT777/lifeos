@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/core/utils/errorpage.dart';
 import 'package:lifeos/feature/ai_assistant/controller/deepsheekprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
@@ -20,6 +21,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await dotenv.load(fileName: '.env');
+  await GoogleFonts.pendingFonts([GoogleFonts.poppins()]);
   ErrorWidget.builder = (FlutterErrorDetails details) {
     return Material(child: ErrorPage());
   };

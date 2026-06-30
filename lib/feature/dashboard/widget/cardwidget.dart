@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
@@ -39,20 +40,33 @@ class Cardwidget {
                     children: [
                       Consumer<Userprovider>(
                         builder: (context, value, child) {
-                          return Row(
-                            spacing: 10,
-                            children: [
-                              Text(
-                                "${value.gettime},",
-                                style: GoogleFonts.poppins(
-                                  fontSize: screenwidth * 0.05,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                  letterSpacing: 0.3,
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                AutoSizeText(
+                                  "${value.gettime},",
+                                  maxLines: 1,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: screenwidth * 0.04,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              Image.asset(value.imagePath, height: 30),
-                            ],
+
+                                const SizedBox(width: 6),
+
+                                Image.asset(value.imagePath, height: 25),
+                              ],
+                            ),
                           );
                         },
                       ),
@@ -147,10 +161,17 @@ class Cardwidget {
 
                     const SizedBox(height: 6),
 
-                    /// 🌤 Weather icon
                     Image.network(
                       "https:${data['current']['condition']['icon']}",
                       height: 40,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.broken_image,
+                          color: Colors.white30,
+                          size: 40,
+                        ),
+                      ),
                     ),
                   ],
                 ),

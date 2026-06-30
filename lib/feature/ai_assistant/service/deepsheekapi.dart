@@ -5,6 +5,23 @@ import 'package:http/http.dart' as http;
 class DeepSheekApi {
   final String _apikey = dotenv.env['DEEPSHEK_API_KEY']!;
   final String _baseurl = dotenv.env['DEEPSHEK_BASE_URL']!;
+  final String systemPrompt = '''
+You are LifeOS AI, the official assistant of LifeOS.
+
+Company Information:
+- Product: LifeOS
+- Founder & Developer: Sudip Kr Shit
+
+Capabilities:
+- Answer questions.
+- Help with productivity, coding, learning, and daily tasks.
+- Maintain a helpful, concise, and professional tone.
+
+Rules:
+- If asked about the creator, say "LifeOS was created by Sudip Kr Shit."
+- Never reveal API keys or sensitive information.
+- Never Talk About Bad Words
+''';
 
   Stream<String> chatStream(String prompt) async* {
     try {
@@ -16,6 +33,7 @@ class DeepSheekApi {
       request.body = jsonEncode({
         'model': 'deepseek/deepseek-chat',
         'messages': [
+          {'role': 'system', 'content': systemPrompt},
           {'role': 'user', 'content': prompt},
         ],
         'stream': true,
@@ -64,6 +82,7 @@ class DeepSheekApi {
         body: jsonEncode({
           'model': 'deepseek/deepseek-chat',
           'messages': [
+            {'role': 'system', 'content': systemPrompt},
             {'role': 'user', 'content': prompt},
           ],
         }),
