@@ -69,8 +69,8 @@ class FocusTimer extends StatelessWidget {
                           timer.isRunning ? "Pause" : "Start session",
                           style: TextStyle(
                             color: timer.isRunning
-                                ? Color(0xFFFFFFFF)
-                                : Color(0xFF000000),
+                                ? const Color(0xFFFFFFFF)
+                                : const Color(0xFF000000),
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -86,7 +86,7 @@ class FocusTimer extends StatelessWidget {
                       width: 48,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Color(0xFF000000), width: 2),
+                        border: Border.all(color: const Color(0xFF000000), width: 2),
                         color: Colors.black,
                       ),
                       child: const Icon(Icons.refresh, color: Colors.white70),
@@ -100,7 +100,7 @@ class FocusTimer extends StatelessWidget {
                       width: 48,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Color(0xFF000000), width: 2),
+                        border: Border.all(color: const Color(0xFF000000), width: 2),
                         color: Colors.black,
                       ),
                       child: const Icon(Icons.timer, color: Colors.white70),

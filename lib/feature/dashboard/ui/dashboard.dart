@@ -44,11 +44,11 @@ class _DashboardState extends State<Dashboard> {
     final screenheight = MediaQuery.of(context).size.height;
     final screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xFFF6F6F8),
+      backgroundColor: const Color(0xFFF6F6F8),
       appBar: AppBar(
-        surfaceTintColor: Color(0xFFFFFFFF),
+        surfaceTintColor: const Color(0xFFFFFFFF),
         titleSpacing: 2,
-        backgroundColor: Color(0xFFFCFCFD),
+        backgroundColor: const Color(0xFFFCFCFD),
         leading: Builder(
           builder: (context) {
             return Padding(
@@ -58,7 +58,7 @@ class _DashboardState extends State<Dashboard> {
                   Scaffold.of(context).openDrawer();
                 },
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
                       colors: [Colors.blue, Colors.purple, Colors.orangeAccent],
@@ -109,9 +109,9 @@ class _DashboardState extends State<Dashboard> {
           Padding(
             padding: EdgeInsets.only(right: screenwidth * 0.02),
             child: Container(
-              padding: EdgeInsets.all(1),
+              padding: const EdgeInsets.all(1),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF00c247), width: 2),
+                border: Border.all(color: const Color(0xFF00c247), width: 2),
                 shape: BoxShape.circle,
               ),
               child: CircleAvatar(
@@ -122,7 +122,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      drawer: Drawer(child: ProfilePage()),
+      drawer: const Drawer(child: ProfilePage()),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -165,7 +165,7 @@ class _DashboardState extends State<Dashboard> {
                 style: GoogleFonts.poppins(
                   fontSize: screenwidth * 0.045,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF7F8284),
+                  color: const Color(0xFF7F8284),
                   height: 1.2,
                 ),
               ),
@@ -296,7 +296,7 @@ class _DashboardState extends State<Dashboard> {
                   time: "Yesterday",
                 ),
               ]),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

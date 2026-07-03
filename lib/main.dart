@@ -23,7 +23,7 @@ void main() async {
   await dotenv.load(fileName: '.env');
   await GoogleFonts.pendingFonts([GoogleFonts.poppins()]);
   ErrorWidget.builder = (FlutterErrorDetails details) {
-    return Material(child: ErrorPage());
+    return const Material(child: ErrorPage());
   };
   runApp(
     MultiProvider(

@@ -74,9 +74,9 @@ class _ErrorPageState extends State<ErrorPage> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  child: Row(
+                  child:const Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children:  [
                       Icon(Icons.refresh_rounded, size: 22),
                       SizedBox(width: 8),
                       Text(

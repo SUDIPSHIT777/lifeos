@@ -40,7 +40,7 @@ class _NavigationbarState extends State<Navigationbar> {
       ),
       PersistentBottomNavBarItem(
         icon: Center(child: Image.asset("assets/ai.png", scale: 12)),
-        activeColorPrimary: Color(0xFF6D23DE),
+        activeColorPrimary: const Color(0xFF6D23DE),
       ),
       PersistentBottomNavBarItem(
         icon: Center(child: Image.asset("assets/gym.png", scale: 25)),

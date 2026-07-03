@@ -14,7 +14,7 @@ class Taskpersentage {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [Color(0xff1E3A8A), Color(0xff4F46E5), Color(0xff8B5CF6)],

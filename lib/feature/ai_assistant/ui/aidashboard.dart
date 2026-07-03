@@ -21,7 +21,7 @@ class AiDashboard extends StatelessWidget {
         backgroundColor: const Color(0xFFF5F7FB),
         surfaceTintColor: Colors.transparent,
 
-        leading: SizedBox(),
+        leading: const SizedBox(),
         centerTitle: true,
 
         title: Text(

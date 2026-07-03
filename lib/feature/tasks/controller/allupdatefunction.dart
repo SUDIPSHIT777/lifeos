@@ -47,7 +47,7 @@ class DateTimeProvider extends ChangeNotifier {
 
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: Color(0xFF4F46E5),
+                foregroundColor: const Color(0xFF4F46E5),
                 textStyle: const TextStyle(fontWeight: FontWeight.w600),
               ),
             ),

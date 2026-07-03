@@ -99,8 +99,8 @@ class Cardwidget {
           Consumer<WeatherProvider>(
             builder: (context, weather, child) {
               if (weather.isLoading) {
-                return Center(
-                  child: const SizedBox(
+                return const Center(
+                  child:  SizedBox(
                     height: 20,
                     width: 20,
                     child: CircularProgressIndicator(
@@ -250,7 +250,7 @@ class Cardwidget {
               Flexible(
                 child: FittedBox(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: .15),
                       borderRadius: BorderRadius.circular(20),

@@ -73,7 +73,7 @@ class Taskprovider extends ChangeNotifier {
 
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: Color(0xFF4F46E5),
+                foregroundColor: const Color(0xFF4F46E5),
                 textStyle: const TextStyle(fontWeight: FontWeight.w600),
               ),
             ),
@@ -280,7 +280,7 @@ class Taskprovider extends ChangeNotifier {
     } else if (percentage <= 0.7) {
       return Colors.orange;
     } else {
-      return Color.fromARGB(255, 83, 216, 87);
+      return const Color.fromARGB(255, 83, 216, 87);
     }
   }
 

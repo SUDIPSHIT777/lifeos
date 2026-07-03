@@ -16,12 +16,12 @@ class Routes {
   final GoRouter router = GoRouter(
     navigatorKey: Get.key,
     routes: [
-      GoRoute(path: '/', builder: (context, state) => Authgate()),
-      GoRoute(path: '/signup', builder: (context, state) => Signupscreen()),
-      GoRoute(path: '/login', builder: (context, state) => Loginscreen()),
+      GoRoute(path: '/', builder: (context, state) => const Authgate()),
+      GoRoute(path: '/signup', builder: (context, state) => const Signupscreen()),
+      GoRoute(path: '/login', builder: (context, state) => const Loginscreen()),
       GoRoute(
         path: '/taskpageui',
-        builder: (context, state) => Taskpageui(),
+        builder: (context, state) => const Taskpageui(),
         routes: [
           GoRoute(
             name: 'taskDetails',
@@ -35,22 +35,22 @@ class Routes {
       ),
       GoRoute(
         path: '/dashboard',
-        builder: (context, state) => Dashboard(),
+        builder: (context, state) => const Dashboard(),
         routes: [
           GoRoute(
             path: 'weatherpage',
-            builder: (context, state) => Weatherpage(),
+            builder: (context, state) => const Weatherpage(),
           ),
         ],
       ),
-      GoRoute(path: '/navdar', builder: (context, state) => Navigationbar()),
+      GoRoute(path: '/navdar', builder: (context, state) => const Navigationbar()),
       GoRoute(
         path: '/aidashboard',
-        builder: (context, state) => AiDashboard(),
+        builder: (context, state) => const AiDashboard(),
         routes: [
           GoRoute(
             path: 'chatboat',
-            builder: (context, state) => AiassistentPage(),
+            builder: (context, state) => const AiassistentPage(),
           ),
         ],
       ),

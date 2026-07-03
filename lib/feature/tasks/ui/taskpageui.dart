@@ -40,11 +40,11 @@ class _TaskpageuiState extends State<Taskpageui>
     final screenwidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color(0xFFF6F6F8),
+      backgroundColor: const Color(0xFFF6F6F8),
       appBar: AppBar(
-        surfaceTintColor: Color(0xFFFFFFFF),
+        surfaceTintColor: const Color(0xFFFFFFFF),
         titleSpacing: 2,
-        backgroundColor: Color(0xFFFCFCFD),
+        backgroundColor: const Color(0xFFFCFCFD),
         leading: Builder(
           builder: (context) {
             return Padding(
@@ -54,7 +54,7 @@ class _TaskpageuiState extends State<Taskpageui>
                   Scaffold.of(context).openDrawer();
                 },
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
                       colors: [Colors.blue, Colors.purple, Colors.orangeAccent],
@@ -104,9 +104,9 @@ class _TaskpageuiState extends State<Taskpageui>
           Padding(
             padding: EdgeInsets.only(right: screenwidth * 0.02),
             child: Container(
-              padding: EdgeInsets.all(1),
+              padding: const EdgeInsets.all(1),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF00c247), width: 2),
+                border: Border.all(color: const Color(0xFF00c247), width: 2),
                 shape: BoxShape.circle,
               ),
               child: CircleAvatar(
@@ -117,10 +117,10 @@ class _TaskpageuiState extends State<Taskpageui>
           ),
         ],
       ),
-      drawer: Drawer(child: ProfilePage()),
+      drawer: const Drawer(child: ProfilePage()),
 
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             // ================== PROGRESS ==================
@@ -165,7 +165,7 @@ class _TaskpageuiState extends State<Taskpageui>
                     Snackbardesign.showCustomSnackbar(
                       title: "Task Completed",
                       subtitle: "Congratulations You completed your task",
-                      backgroundColor: Color(0xFF00c247),
+                      backgroundColor: const Color(0xFF00c247),
                       icon: Icons.download_done_rounded,
                     );
                   });
@@ -218,9 +218,9 @@ class _TaskpageuiState extends State<Taskpageui>
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0xff7C3AED).withValues(alpha: 0.35),
+                      color: const Color(0xff7C3AED).withValues(alpha: 0.35),
                       blurRadius: 8,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
@@ -242,7 +242,7 @@ class _TaskpageuiState extends State<Taskpageui>
                         : context.read<Taskprovider>().getTasks(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
 
                       if (snapshot.hasData) {
@@ -311,7 +311,7 @@ class _TaskpageuiState extends State<Taskpageui>
                               ),
                               ListView.builder(
                                 shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemCount: dateTasks.length,
                                 padding: const EdgeInsets.all(12),
                                 itemBuilder: (context, index) {
@@ -494,11 +494,11 @@ class _TaskpageuiState extends State<Taskpageui>
       ),
 
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF1976ED),
+        backgroundColor: const Color(0xFF1976ED),
         onPressed: () {
           openTaskBottomSheet(context);
         },
-        child: Icon(Icons.add_circle, size: 28, color: Colors.white),
+        child: const Icon(Icons.add_circle, size: 28, color: Colors.white),
       ),
     );
   }

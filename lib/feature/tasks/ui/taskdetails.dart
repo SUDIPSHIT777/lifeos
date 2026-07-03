@@ -62,7 +62,7 @@ class _TaskdetailsState extends State<Taskdetails> {
         centerTitle: true,
         leading: InkWell(
           onTap: () => context.pop(),
-          child: Icon(Icons.arrow_back_ios),
+          child: const Icon(Icons.arrow_back_ios),
         ),
       ),
 

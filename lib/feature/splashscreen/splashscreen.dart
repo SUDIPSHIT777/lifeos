@@ -14,11 +14,11 @@ class _SplashscreenState extends State<Splashscreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       appBar: AppBar(
-        leading: SizedBox(),
+        leading: const SizedBox(),
         backgroundColor: const Color(0xFFFFFFFF),
       ),
       body: SingleChildScrollView(
-        physics: ScrollPhysics(),
+        physics:const ScrollPhysics(),
         child: Center(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 420),
@@ -32,7 +32,7 @@ class _SplashscreenState extends State<Splashscreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   spacing: 10,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.auto_awesome,
                       color: Color(0xFF7B4DFF),
                       size: 30,
@@ -43,7 +43,7 @@ class _SplashscreenState extends State<Splashscreen> {
                         fontSize: 26,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 10,
-                        color: Color(0xFF222222),
+                        color: const Color(0xFF222222),
                       ),
                     ),
                   ],
@@ -72,7 +72,7 @@ class _SplashscreenState extends State<Splashscreen> {
                   style: GoogleFonts.poppins(
                     fontSize: 34,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2B2B2B),
+                    color: const Color(0xFF2B2B2B),
                   ),
                 ),
 
@@ -98,15 +98,15 @@ class _SplashscreenState extends State<Splashscreen> {
                   style: GoogleFonts.poppins(
                     height: 1.5,
                     fontSize: 15.5,
-                    color: Color(0xFF6B6B6B),
+                    color: const Color(0xFF6B6B6B),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(height: 26),
                 LinearProgressIndicator(
                   minHeight: 6,
-                  backgroundColor: Color(0xFFE6E7EC),
-                  valueColor: AlwaysStoppedAnimation(Color(0xFF7B4DFF)),
+                  backgroundColor: const Color(0xFFE6E7EC),
+                  valueColor: const AlwaysStoppedAnimation(Color(0xFF7B4DFF)),
                   borderRadius: BorderRadius.circular(10),
                 ),
 
@@ -120,7 +120,7 @@ class _SplashscreenState extends State<Splashscreen> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Color(0xFF7B4DFF).withValues(alpha: .4),
+                        color: const Color(0xFF7B4DFF).withValues(alpha: .4),
                         blurRadius: 18,
                         offset: const Offset(0, 8),
                       ),
@@ -137,7 +137,7 @@ class _SplashscreenState extends State<Splashscreen> {
                           fontSize: 16.5,
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                     ],
                   ),
                 ),
@@ -147,7 +147,7 @@ class _SplashscreenState extends State<Splashscreen> {
                   style: GoogleFonts.poppins(
                     fontSize: 11,
                     letterSpacing: 2,
-                    color: Color(0xFF9A9A9A),
+                    color: const Color(0xFF9A9A9A),
                     fontWeight: FontWeight.w600,
                   ),
                 ),

@@ -88,7 +88,7 @@ class Userprovider extends ChangeNotifier {
 
   Userprovider() {
     day();
-    timer = Timer.periodic(Duration(minutes: 1), (timer) => day());
+    timer = Timer.periodic(const Duration(minutes: 1), (timer) => day());
     _updateTime();
     timers = Timer.periodic(const Duration(seconds: 1), (_) {
       _updateTime();

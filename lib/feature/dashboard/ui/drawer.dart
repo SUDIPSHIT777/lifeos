@@ -51,7 +51,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xffF5F6FA),
+      backgroundColor: const Color(0xffF5F6FA),
       body: SafeArea(
         child: Column(
           children: [
@@ -70,7 +70,7 @@ class ProfilePage extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Color(0xff5B5FEF),
+                      color: const Color(0xff5B5FEF),
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 3),
                     ),
@@ -90,7 +90,7 @@ class ProfilePage extends StatelessWidget {
                 Consumer<Userprovider>(
                   builder: (context, user, child) => Text(
                     user.username,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                   ),
                 ),
                 const SizedBox(width: 6),
@@ -99,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                   height: 30,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0xFF000000).withValues(alpha: 0.2),
+                    color: const Color(0xFF000000).withValues(alpha: 0.2),
                   ),
                   child: const Center(
                     child: Icon(Icons.edit, size: 18, color: Colors.white),
@@ -118,7 +118,7 @@ class ProfilePage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
               decoration: BoxDecoration(
-                color: Color(0xff5B5FEF).withValues(alpha: .12),
+                color: const Color(0xff5B5FEF).withValues(alpha: .12),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: const Text(
@@ -180,10 +180,10 @@ class ProfilePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    backgroundColor: Color.fromARGB(255, 28, 133, 252),
+                    backgroundColor: const Color.fromARGB(255, 28, 133, 252),
                     elevation: 0,
                   ),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.logout,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

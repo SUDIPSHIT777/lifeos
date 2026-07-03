@@ -27,7 +27,7 @@ class _LoginscreenState extends State<Loginscreen> {
     final screenheight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const ScrollPhysics(),
@@ -109,8 +109,8 @@ class _LoginscreenState extends State<Loginscreen> {
                           suffixIcon: GestureDetector(
                             onTap: () => logincontroller.isvisibility(),
                             child: logincontroller.isshow.value
-                                ? Icon(Icons.visibility_off)
-                                : Icon(Icons.visibility),
+                                ? const Icon(Icons.visibility_off)
+                                : const Icon(Icons.visibility),
                           ),
                           obscureText: logincontroller.isshow.value,
                           autofillhint: const [AutofillHints.password],
@@ -147,8 +147,8 @@ class _LoginscreenState extends State<Loginscreen> {
                               ),
                             ),
                             child: login.isLoading
-                                ? Center(
-                                    child: const CircularProgressIndicator(
+                                ? const Center(
+                                    child:  CircularProgressIndicator(
                                       color: Colors.white,
                                     ),
                                   )

@@ -108,7 +108,7 @@ class Recenttask {
               child: Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5.0),
+                    padding:const  EdgeInsets.all(5.0),
 
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,

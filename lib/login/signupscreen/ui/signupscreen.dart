@@ -28,7 +28,7 @@ class _SignupscreenState extends State<Signupscreen> {
     final screenheight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const ScrollPhysics(),
@@ -43,8 +43,8 @@ class _SignupscreenState extends State<Signupscreen> {
                     width: screenwidth * 0.22,
                     height: screenheight * 0.11,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFFFCC80), width: 4),
-                      color: Color(0xFFE3F2FD),
+                      border: Border.all(color: const Color(0xFFFFCC80), width: 4),
+                      color: const Color(0xFFE3F2FD),
                       shape: BoxShape.circle,
                     ),
                     child: Image.asset("assets/logos.png", fit: BoxFit.cover),
@@ -130,8 +130,8 @@ class _SignupscreenState extends State<Signupscreen> {
                           suffixIcon: GestureDetector(
                             onTap: () => signupcontroller.isvisibilitysignup(),
                             child: signupcontroller.isshow.value
-                                ? Icon(Icons.visibility_off)
-                                : Icon(Icons.visibility),
+                                ? const Icon(Icons.visibility_off)
+                                : const Icon(Icons.visibility),
                           ),
                           obscureText: signupcontroller.isshow.value,
                           autofillhint: const [AutofillHints.password],
@@ -148,7 +148,7 @@ class _SignupscreenState extends State<Signupscreen> {
                               onChanged: (value) =>
                                   signup.toggleCheckbox(value!),
                             ),
-                            AutoSizeText(
+                            const AutoSizeText(
                               "I agree to the ",
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
@@ -156,7 +156,7 @@ class _SignupscreenState extends State<Signupscreen> {
                                 color: Colors.grey,
                               ),
                             ),
-                            AutoSizeText(
+                            const AutoSizeText(
                               "Terms & Conditions",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
