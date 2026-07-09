@@ -9,7 +9,7 @@ Widget coreCard(
   required Color iconColor,
   required Color backgroundColor,
 }) {
-  final width = MediaQuery.of(context).size.width;
+  final width = MediaQuery.sizeOf(context).width;
 
   return Container(
     padding: const EdgeInsets.all(18),

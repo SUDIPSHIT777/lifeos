@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
-import 'package:lifeos/feature/tasks/ui/taskdetails.dart';
 import 'package:lifeos/feature/tasks/widget/deletetask.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -30,12 +30,7 @@ class Completed extends StatelessWidget {
           itemBuilder: (context, index) {
             final task = completedTasks[index];
             return GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Taskdetails(alltaskdetails: task),
-                ),
-              ),
+              onTap: () => context.pushNamed('taskDetails', extra: task),
               onLongPress: () => confirmDelete(context, task.id),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 10),
@@ -71,6 +66,7 @@ class Completed extends StatelessWidget {
                         children: [
                           Text(
                             task.title,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,

@@ -49,7 +49,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenwidth = MediaQuery.of(context).size.width;
+    final screenwidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: const Color(0xffF5F6FA),
       body: SafeArea(

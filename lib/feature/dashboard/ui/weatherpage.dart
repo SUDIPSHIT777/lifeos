@@ -25,7 +25,7 @@ class _WeatherpageState extends State<Weatherpage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
 
@@ -447,7 +447,7 @@ class _WeatherpageState extends State<Weatherpage> {
     required LinearGradient gradient,
     required IconData icon,
   }) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.sizeOf(context).width;
 
     return Container(
       width: double.infinity,

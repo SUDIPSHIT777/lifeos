@@ -11,7 +11,7 @@ class AiDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FB),

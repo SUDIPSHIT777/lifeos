@@ -60,9 +60,9 @@ class _TaskdetailsState extends State<Taskdetails> {
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
-        leading: InkWell(
-          onTap: () => context.pop(),
-          child: const Icon(Icons.arrow_back_ios),
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(CupertinoIcons.back, color: Color(0xFF1F2937)),
         ),
       ),
 

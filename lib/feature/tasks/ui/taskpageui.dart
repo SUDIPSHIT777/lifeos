@@ -36,8 +36,8 @@ class _TaskpageuiState extends State<Taskpageui>
 
   @override
   Widget build(BuildContext context) {
-    final screenheight = MediaQuery.of(context).size.height;
-    final screenwidth = MediaQuery.of(context).size.width;
+    final screenheight = MediaQuery.sizeOf(context).height;
+    final screenwidth = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F8),
@@ -131,6 +131,7 @@ class _TaskpageuiState extends State<Taskpageui>
               builder: (context, snapshot) {
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return taskpersentage.dailyProgressCard(
+                    context: context,
                     completed: 0,
                     total: 0,
                     percent: 0,
@@ -172,6 +173,7 @@ class _TaskpageuiState extends State<Taskpageui>
                 }
 
                 return taskpersentage.dailyProgressCard(
+                  context: context,
                   completed: todayCompleted,
                   total: todayTotal,
                   percent: todayPercent.toDouble(),
@@ -366,6 +368,8 @@ class _TaskpageuiState extends State<Taskpageui>
                                               children: [
                                                 Text(
                                                   task.title,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style: TextStyle(
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w600,
@@ -379,43 +383,69 @@ class _TaskpageuiState extends State<Taskpageui>
                                                   ),
                                                 ),
                                                 const SizedBox(height: 6),
-                                                Row(
+                                                Wrap(
+                                                  spacing: 10,
+                                                  runSpacing: 6,
+                                                  crossAxisAlignment:
+                                                      WrapCrossAlignment.center,
                                                   children: [
-                                                    Image.asset(
-                                                      "assets/calendar.png",
-                                                      scale: 25,
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/calendar.png",
+                                                          width: 14,
+                                                          height: 14,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Text(
+                                                          task.date != null
+                                                              ? "${task.date!.day}/${task.date!.month}/${task.date!.year}"
+                                                              : "No date",
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                                fontSize: 12,
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    const SizedBox(width: 5),
-                                                    Text(
-                                                      task.date != null
-                                                          ? "${task.date!.day}/${task.date!.month}/${task.date!.year}"
-                                                          : "No date",
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                            fontSize: 12,
-                                                            color: Colors.grey,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    Image.asset(
-                                                      "assets/waste.png",
-                                                      scale: 25,
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    Text(
-                                                      task.time?.format(
-                                                            context,
-                                                          ) ??
-                                                          "No time",
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                            fontSize: 12,
-                                                            color: Colors.grey,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
+
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/waste.png",
+                                                          width: 14,
+                                                          height: 14,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Text(
+                                                          task.time?.format(
+                                                                context,
+                                                              ) ??
+                                                              "No time",
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                                fontSize: 12,
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),

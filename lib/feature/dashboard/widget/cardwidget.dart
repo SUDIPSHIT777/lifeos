@@ -9,177 +9,205 @@ import 'package:provider/provider.dart';
 class Cardwidget {
   // ===================== MorningDetails Card ==============
   Widget morningdetails(BuildContext context) {
-    final screenwidth = MediaQuery.of(context).size.width;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
-        gradient: const LinearGradient(
-          colors: [Color(0xFF4336E0), Color(0xFF493DE0)],
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: .15),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
+    final width = MediaQuery.sizeOf(context).width;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: width * .05,
+            vertical: width * .055,
           ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Consumer<Userprovider>(
-              builder: (context, time, child) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Consumer<Userprovider>(
-                        builder: (context, value, child) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                AutoSizeText(
-                                  "${value.gettime},",
-                                  maxLines: 1,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: screenwidth * 0.04,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
-                                ),
-
-                                const SizedBox(width: 6),
-
-                                Image.asset(value.imagePath, height: 25),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    time.time,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 48,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                    ),
-                  ),
-
-                  const SizedBox(height: 8),
-                  Text(
-                    time.date,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: screenwidth * 0.04,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28),
+            gradient: const LinearGradient(
+              colors: [Color(0xFF4336E0), Color(0xFF493DE0)],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
             ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: .15),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
           ),
-          Consumer<WeatherProvider>(
-            builder: (context, weather, child) {
-              if (weather.isLoading) {
-                return const Center(
-                  child:  SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 2,
-                    ),
-                  ),
-                );
-              }
-              if (weather.error != null) {
-                return const Text(
-                  "Error",
-                  style: TextStyle(color: Colors.white),
-                );
-              }
-
-              final data = weather.weatherData;
-
-              if (data == null) {
-                return const Text(
-                  "No Data",
-                  style: TextStyle(color: Colors.white),
-                );
-              }
-
-              return ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 110),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "${data['current']['temp_c']}°C",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-
-                    Text(
-                      data['current']['condition']['text']
-                          .toString()
-                          .toUpperCase(),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.poppins(
-                        color: Colors.white.withValues(alpha: 0.7),
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        height: 1.3,
-                        letterSpacing: 1,
-                      ),
-                    ),
-
-                    const SizedBox(height: 6),
-
-                    Image.network(
-                      "https:${data['current']['condition']['icon']}",
-                      height: 40,
-                      errorBuilder: (context, error, stackTrace) => Container(
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.broken_image,
-                          color: Colors.white30,
-                          size: 40,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// LEFT
+              Expanded(
+                flex: 6,
+                child: Consumer<Userprovider>(
+                  builder: (context, time, child) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Consumer<Userprovider>(
+                          builder: (context, value, child) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: .1),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Flexible(
+                                    child: AutoSizeText(
+                                      "${value.gettime},",
+                                      maxLines: 1,
+                                      minFontSize: 10,
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Image.asset(
+                                    value.imagePath,
+                                    width: width * .06,
+                                    height: width * .06,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
-                      ),
-                    ),
-                  ],
+
+                        SizedBox(height: width * .03),
+
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            time.time,
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: width * .13,
+                              fontWeight: FontWeight.w700,
+                              height: 1,
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: width * .02),
+
+                        AutoSizeText(
+                          time.date,
+                          maxLines: 1,
+                          minFontSize: 10,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+
+              SizedBox(width: width * .04),
+
+              /// RIGHT
+              Expanded(
+                flex: 3,
+                child: Consumer<WeatherProvider>(
+                  builder: (context, weather, child) {
+                    if (weather.isLoading) {
+                      return const Center(
+                        child: SizedBox(
+                          width: 22,
+                          height: 22,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        ),
+                      );
+                    }
+
+                    if (weather.error != null) {
+                      return const Center(
+                        child: Text(
+                          "Error",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      );
+                    }
+
+                    final data = weather.weatherData;
+
+                    if (data == null) {
+                      return const Center(
+                        child: Text(
+                          "No Data",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      );
+                    }
+
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AutoSizeText(
+                          "${data['current']['temp_c']}°C",
+                          maxLines: 1,
+                          minFontSize: 16,
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+
+                        SizedBox(height: width * .015),
+
+                        AutoSizeText(
+                          data['current']['condition']['text']
+                              .toString()
+                              .toUpperCase(),
+                          textAlign: TextAlign.center,
+                          maxLines: 3,
+                          minFontSize: 8,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.poppins(
+                            color: Colors.white.withValues(alpha: .7),
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: .8,
+                          ),
+                        ),
+
+                        SizedBox(height: width * .02),
+
+                        Image.network(
+                          "https:${data['current']['condition']['icon']}",
+                          width: width * .12,
+                          height: width * .12,
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, __, ___) => Icon(
+                            Icons.cloud_off,
+                            color: Colors.white30,
+                            size: width * .10,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -250,7 +278,10 @@ class Cardwidget {
               Flexible(
                 child: FittedBox(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 5,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: .15),
                       borderRadius: BorderRadius.circular(20),
@@ -295,128 +326,168 @@ class Cardwidget {
 
   // ================ Proggress Card ====================
   Widget progressCard(BuildContext context) {
-    final screenwidth = MediaQuery.of(context).size.width;
-    return Center(
-      child: Container(
-        width: double.infinity,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
 
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: .08),
-              blurRadius: 25,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Consumer<Taskprovider>(
-              builder: (context, taskprovider, child) => Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    height: 140,
-                    width: 140,
-                    child: CircularProgressIndicator(
-                      value: taskprovider.todayPercent,
-                      strokeWidth: 12,
-                      backgroundColor: Colors.grey.shade300,
-                      valueColor: AlwaysStoppedAnimation(
-                        taskprovider.percentagecolor(taskprovider.todayPercent),
-                      ),
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+        final progressSize = (width * 0.38).clamp(110.0, 170.0);
+        final percentFont = (width * 0.075).clamp(22.0, 34.0);
+        final titleFont = (width * 0.06).clamp(18.0, 28.0);
+        final bodyFont = (width * 0.038).clamp(12.0, 16.0);
+
+        return Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+            horizontal: width * .05,
+            vertical: width * .06,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: .08),
+                blurRadius: 25,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Consumer<Taskprovider>(
+                builder: (context, taskprovider, child) {
+                  return Stack(
+                    alignment: Alignment.center,
                     children: [
-                      Text(
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        "${(taskprovider.todayPercent * 100).round()}%",
-                        style: GoogleFonts.poppins(
-                          fontSize: screenwidth * 0.07,
-                          fontWeight: FontWeight.bold,
-                          color: taskprovider.percentagecolor(
-                            taskprovider.todayPercent,
+                      SizedBox(
+                        width: progressSize,
+                        height: progressSize,
+                        child: CircularProgressIndicator(
+                          value: taskprovider.todayPercent,
+                          strokeWidth: progressSize * .085,
+                          strokeCap: StrokeCap.round,
+                          backgroundColor: Colors.grey.shade300,
+                          valueColor: AlwaysStoppedAnimation(
+                            taskprovider.percentagecolor(
+                              taskprovider.todayPercent,
+                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        "DAILY GOAL",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          letterSpacing: 1.2,
-                          color: Colors.grey.shade600,
-                          fontWeight: FontWeight.w600,
+
+                      Center(
+                        child: SizedBox(
+                          width: progressSize * .60,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  "${(taskprovider.todayPercent * 100).round()}%",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: percentFont,
+                                    fontWeight: FontWeight.bold,
+                                    color: taskprovider.percentagecolor(
+                                      taskprovider.todayPercent,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(height: progressSize * .03),
+
+                              AutoSizeText(
+                                "DAILY GOAL",
+                                maxLines: 1,
+                                minFontSize: 8,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  fontSize: bodyFont,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey.shade600,
+                                  letterSpacing: 1,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              "Momentum is high",
-              style: GoogleFonts.poppins(
-                fontSize: screenwidth * 0.06,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Consumer<Taskprovider>(
-              builder: (context, taskprovider, child) => Text(
-                "You've completed ${taskprovider.todayCompleted} of ${taskprovider.todayTotal} core objectives for the morning. Stay focused!",
-                textAlign: TextAlign.center,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
+
+              SizedBox(height: width * .06),
+
+              AutoSizeText(
+                "Momentum is high",
+                maxLines: 1,
+                minFontSize: 16,
                 style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  height: 1.5,
-                  color: Colors.grey.shade600,
-                  fontWeight: FontWeight.w500,
+                  fontSize: titleFont,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-            Container(
-              width: double.infinity,
-              height: 55,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF5B3DF5), Color(0xFF8A7BFF)],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.deepPurple.withValues(alpha: 0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 6),
+
+              const SizedBox(height: 10),
+
+              Consumer<Taskprovider>(
+                builder: (context, taskprovider, child) {
+                  return AutoSizeText(
+                    "You've completed ${taskprovider.todayCompleted} of ${taskprovider.todayTotal} core objectives for the morning. Stay focused!",
+                    textAlign: TextAlign.center,
+                    maxLines: 4,
+                    minFontSize: 11,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.poppins(
+                      fontSize: bodyFont,
+                      height: 1.45,
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  );
+                },
+              ),
+
+              SizedBox(height: width * .07),
+
+              SizedBox(
+                width: double.infinity,
+                height: (width * .14).clamp(48.0, 58.0),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF5B3DF5), Color(0xFF8A7BFF)],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.deepPurple.withValues(alpha: .3),
+                        blurRadius: 12,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  "Begin Flow",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                  child: Center(
+                    child: AutoSizeText(
+                      "Begin Flow",
+                      maxLines: 1,
+                      minFontSize: 14,
+                      style: GoogleFonts.poppins(
+                        fontSize: bodyFont + 2,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

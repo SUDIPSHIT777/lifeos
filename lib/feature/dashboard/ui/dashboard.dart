@@ -41,8 +41,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    final screenheight = MediaQuery.of(context).size.height;
-    final screenwidth = MediaQuery.of(context).size.width;
+    final screenheight = MediaQuery.sizeOf(context).height;
+    final screenwidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F8),
       appBar: AppBar(

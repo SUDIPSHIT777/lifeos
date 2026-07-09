@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/core/utils/snackbar.dart';
@@ -273,11 +274,19 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
           children: [
             Icon(icon, size: 18),
             const SizedBox(width: 8),
-            Text(
-              text,
-              style: GoogleFonts.poppins(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
+
+            Expanded(
+              child: AutoSizeText(
+                text,
+                maxLines: 1,
+                minFontSize: 10,
+                stepGranularity: 1,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.poppins(
+                  fontSize: MediaQuery.sizeOf(context).width * 0.034,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
               ),
             ),
           ],

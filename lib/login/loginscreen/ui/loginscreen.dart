@@ -23,8 +23,8 @@ class _LoginscreenState extends State<Loginscreen> {
   final Logingetx logincontroller = Get.put(Logingetx());
   @override
   Widget build(BuildContext context) {
-    final screenwidth = MediaQuery.of(context).size.width;
-    final screenheight = MediaQuery.of(context).size.height;
+    final screenwidth = MediaQuery.sizeOf(context).width;
+    final screenheight = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),

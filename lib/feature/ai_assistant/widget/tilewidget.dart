@@ -19,7 +19,7 @@ Widget sectionTitle(String title) {
       Text(
         title,
         style: GoogleFonts.poppins(
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.w600,
           color: Colors.black87,
         ),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,15 +11,12 @@ class Buttonwidget {
     required Color backgroundcolor,
     required Color iconcolor,
   }) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.sizeOf(context).width;
 
     return Container(
       width: width * 0.42,
-
       constraints: const BoxConstraints(minHeight: 145),
-
       padding: const EdgeInsets.all(18),
-
       decoration: BoxDecoration(
         color: backgroundcolor,
         borderRadius: BorderRadius.circular(28),
@@ -32,52 +30,36 @@ class Buttonwidget {
         ],
       ),
 
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Positioned(
-            right: -5,
-            bottom: 10,
-
-            child: Icon(
-              icon,
-              size: width * 0.14,
-              color: iconcolor.withValues(alpha:0.06),
+          Container(
+            width: width * .14,
+            height: width * .14,
+            decoration: BoxDecoration(
+              color: iconcolor.withValues(alpha: .14),
+              shape: BoxShape.circle,
             ),
+            child: Icon(icon, color: iconcolor, size: width * .06),
           ),
 
-          /// CONTENT
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          SizedBox(height: width * .06),
 
-            children: [
-              /// TOP ICON
-              Container(
-                width: width * 0.14,
-                height: width * 0.14,
-
-                decoration: BoxDecoration(
-                  color: iconcolor.withValues(alpha:0.14),
-                  shape: BoxShape.circle,
-                ),
-
-                child: Icon(icon, color: iconcolor, size: width * 0.06),
-              ),
-
-              const Spacer(),
-
-              /// TITLE
-              Text(
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: AutoSizeText(
                 titel,
                 maxLines: 2,
+                minFontSize: 10,
                 overflow: TextOverflow.ellipsis,
-
                 style: GoogleFonts.poppins(
-                  fontSize: width * 0.042,
-                  fontWeight: FontWeight.w600,
+                  fontSize: width * .035,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black87,
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),
