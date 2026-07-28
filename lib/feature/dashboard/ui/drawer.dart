@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/login/googleauth/googleauth.dart';
 import 'package:provider/provider.dart';
@@ -166,9 +165,9 @@ class ProfilePage extends StatelessWidget {
                   onPressed: () {
                     value.logout();
                   },
-                  label: Text(
+                  label: const Text(
                     "Log Out",
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,

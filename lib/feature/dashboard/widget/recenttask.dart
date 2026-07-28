@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/model/taskmodel.dart';
 import 'package:provider/provider.dart';
@@ -31,17 +30,17 @@ class Recenttask {
               ),
             ),
 
-            child: Column(
+            child: const Column(
               children: [
-                const Icon(
+                 Icon(
                   Icons.task_alt_rounded,
                   size: 32,
                   color: Colors.white,
                 ),
-                const SizedBox(height: 12),
+                 SizedBox(height: 12),
                 Text(
                   "No Tasks Yet",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
@@ -70,20 +69,20 @@ class Recenttask {
               ),
             ),
 
-            child: Column(
+            child:const  Column(
               children: [
-                const Icon(
+                 Icon(
                   Icons.done_all_rounded,
                   size: 32,
                   color: Colors.white,
                 ),
 
-                const SizedBox(height: 12),
+                 SizedBox(height: 12),
 
                 Text(
                   "All Tasks Completed",
 
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
@@ -137,7 +136,7 @@ class Recenttask {
                           task.title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.poppins(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -146,7 +145,7 @@ class Recenttask {
                           task.desc,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.poppins(
+                          style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
@@ -157,7 +156,7 @@ class Recenttask {
                   ),
                   Text(
                     task.priority.toUpperCase(),
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: context.read<Taskprovider>().getPriorityColor(

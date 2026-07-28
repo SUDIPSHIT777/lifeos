@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -27,23 +26,23 @@ class _SplashscreenState extends State<Splashscreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
+               const  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   spacing: 10,
                   children: [
-                    const Icon(
+                     Icon(
                       Icons.auto_awesome,
                       color: Color(0xFF7B4DFF),
                       size: 30,
                     ),
                     Text(
                       "LIFEOS",
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 10,
-                        color: const Color(0xFF222222),
+                        color:  Color(0xFF222222),
                       ),
                     ),
                   ],
@@ -67,12 +66,12 @@ class _SplashscreenState extends State<Splashscreen> {
                   ),
                 ),
                 const SizedBox(height: 48),
-                Text(
+                const Text(
                   "Intelligence",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.w700,
-                    color: const Color(0xFF2B2B2B),
+                    color:  Color(0xFF2B2B2B),
                   ),
                 ),
 
@@ -82,9 +81,9 @@ class _SplashscreenState extends State<Splashscreen> {
                       colors: [Color(0xFF6C3BFF), Color(0xFFB14DFF)],
                     ).createShader(rect);
                   },
-                  child: Text(
+                  child: const Text(
                     "Reimagined.",
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.w800,
                       color: Colors.white,
@@ -92,10 +91,10 @@ class _SplashscreenState extends State<Splashscreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text(
+                const Text(
                   "Your Unified Workspace for Tasks,\nNotes, and AI Intelligence.",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     height: 1.5,
                     fontSize: 15.5,
                     color: const Color(0xFF6B6B6B),
@@ -126,28 +125,28 @@ class _SplashscreenState extends State<Splashscreen> {
                       ),
                     ],
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "Initializing Workspace",
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: 16.5,
                         ),
                       ),
-                      const SizedBox(width: 12),
+                       SizedBox(width: 12),
                     ],
                   ),
                 ),
                 const SizedBox(height: 28),
-                Text(
+                const Text(
                   "ENTERPRISE SECURE   •   V1.0.0PLATINUM",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 11,
                     letterSpacing: 2,
-                    color: const Color(0xFF9A9A9A),
+                    color:  Color(0xFF9A9A9A),
                     fontWeight: FontWeight.w600,
                   ),
                 ),

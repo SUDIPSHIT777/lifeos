@@ -135,7 +135,7 @@ class _DashboardState extends State<Dashboard> {
                     "Hello ,",
                     overflow: TextOverflow.visible,
                     maxLines: 2,
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: screenwidth * 0.07,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
@@ -147,7 +147,7 @@ class _DashboardState extends State<Dashboard> {
                       value.username,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: screenwidth * 0.07,
                         fontWeight: FontWeight.w600,
                         color: Colors.black87,
@@ -162,7 +162,7 @@ class _DashboardState extends State<Dashboard> {
                 "Ready for your peak performance today?",
                 overflow: TextOverflow.visible,
                 maxLines: 2,
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: screenwidth * 0.045,
                   fontWeight: FontWeight.w500,
                   color: const Color(0xFF7F8284),
@@ -270,12 +270,12 @@ class _DashboardState extends State<Dashboard> {
                   sectionTitle("Recent Notes"),
                   GestureDetector(
                     onTap: () {},
-                    child: Text(
+                    child: const Text(
                       "New Note",
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0xff3D5CFF),
+                        color: Color(0xff3D5CFF),
                       ),
                     ),
                   ),

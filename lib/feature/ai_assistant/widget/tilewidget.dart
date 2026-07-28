@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 Widget sectionTitle(String title) {
   return Row(
@@ -18,7 +17,7 @@ Widget sectionTitle(String title) {
 
       Text(
         title,
-        style: GoogleFonts.poppins(
+        style: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: Colors.black87,

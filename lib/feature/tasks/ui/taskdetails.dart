@@ -55,9 +55,9 @@ class _TaskdetailsState extends State<Taskdetails> {
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
         elevation: 0,
-        title: Text(
+        title: const Text(
           "Task Details",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+          style: TextStyle(fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -81,7 +81,7 @@ class _TaskdetailsState extends State<Taskdetails> {
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
                       textInputAction: TextInputAction.newline,
-                      style: GoogleFonts.poppins(
+                      style:const  TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                       ),
@@ -165,9 +165,9 @@ class _TaskdetailsState extends State<Taskdetails> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Status",
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -198,9 +198,9 @@ class _TaskdetailsState extends State<Taskdetails> {
                   await taskProvider.deletetask(widget.alltaskdetails.id);
                   Navigator.pop(context);
                 },
-                child: Text(
+                child: const Text(
                   "Delete Task",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -233,9 +233,9 @@ class _TaskdetailsState extends State<Taskdetails> {
 
                   Navigator.pop(context);
                 },
-                child: Text(
+                child: const Text(
                   "Update Task",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),

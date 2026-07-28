@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:provider/provider.dart';
@@ -40,10 +39,10 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
-              Center(
+              const Center(
                 child: Text(
                   "New Task",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),
@@ -52,7 +51,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
               const SizedBox(height: 20),
               Text(
                 "Task Title",
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: Colors.grey.shade500,
@@ -66,7 +65,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
               const SizedBox(height: 14),
               Text(
                 "Description",
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: Colors.grey.shade500,
@@ -117,7 +116,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
               const SizedBox(height: 18),
               Text(
                 "Priority Level",
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: Colors.grey.shade500,
@@ -196,9 +195,9 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
                       );
                     }
                   },
-                  child: Text(
+                  child:const  Text(
                     "Create Task",
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -221,7 +220,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
-      style: GoogleFonts.poppins(
+      style: const TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.w500,
         color: Colors.black87,
@@ -229,7 +228,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
       cursorColor: Colors.blueAccent,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: GoogleFonts.poppins(
+        hintStyle: TextStyle(
           color: Colors.grey.shade500,
           fontSize: 14,
         ),
@@ -282,7 +281,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
                 minFontSize: 10,
                 stepGranularity: 1,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: MediaQuery.sizeOf(context).width * 0.034,
                   fontWeight: FontWeight.w500,
                   color: Colors.black87,

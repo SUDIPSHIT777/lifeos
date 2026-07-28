@@ -58,6 +58,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final Routes routes = Routes();
     return MaterialApp.router(
+      theme: ThemeData(
+        useMaterial3: true,
+        fontFamily: GoogleFonts.poppins().fontFamily,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          ThemeData(useMaterial3: true).textTheme,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       routerConfig: routes.router,
     );

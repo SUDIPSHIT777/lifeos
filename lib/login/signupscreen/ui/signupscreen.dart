@@ -63,7 +63,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   "Join Lifeos and Boost your Productivity with AI",
                   maxLines: 2,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: const Color(0xFF647DA5),
                     fontSize: screenwidth * 0.04,
                     fontWeight: FontWeight.w500,
@@ -203,9 +203,9 @@ class _SignupscreenState extends State<Signupscreen> {
                                     ? const CircularProgressIndicator(
                                         color: Colors.white,
                                       )
-                                    : AutoSizeText(
+                                    : const AutoSizeText(
                                         "Sign Up",
-                                        style: GoogleFonts.poppins(
+                                        style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -214,21 +214,21 @@ class _SignupscreenState extends State<Signupscreen> {
                         ),
                       ),
                       const SizedBox(height: 22),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Expanded(child: Divider(thickness: 1.5)),
+                           Expanded(child: Divider(thickness: 1.5)),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            padding:  EdgeInsets.symmetric(horizontal: 8),
                             child: AutoSizeText(
                               "OR CONTINUE WITH",
-                              style: GoogleFonts.poppins(
+                              style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                color: const Color(0xFF647DA5),
+                                color:  Color(0xFF647DA5),
                               ),
                             ),
                           ),
-                          const Expanded(child: Divider(thickness: 1.5)),
+                           Expanded(child: Divider(thickness: 1.5)),
                         ],
                       ),
                       const SizedBox(height: 18),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/timerset.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +39,7 @@ void openTimePicker(BuildContext context) {
 
                 Text(
                   "${timer.pickerMinutes.round()} minutes",
-                  style: GoogleFonts.poppins(
+                  style: const TextStyle(
                     color: Colors.white70,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,

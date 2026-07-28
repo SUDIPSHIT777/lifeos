@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +48,7 @@ class Taskpersentage {
                   "Daily Progress",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: (width * .045).clamp(15.0, 18.0),
                     fontWeight: FontWeight.w600,
@@ -62,7 +61,7 @@ class Taskpersentage {
                   "$completed of $total tasks completed\nDo all tasks. It's mandatory.",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white.withValues(alpha: .9),
                     fontSize: (width * .033).clamp(11.0, 14.0),
                     fontWeight: FontWeight.w500,
@@ -93,7 +92,7 @@ class Taskpersentage {
                   center: FittedBox(
                     child: Text(
                       "${(percent * 100).toInt()}%",
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         color: color,
                         fontSize: radius * .42,
                         fontWeight: FontWeight.bold,

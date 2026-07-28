@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:provider/provider.dart';
 
@@ -24,9 +23,9 @@ void confirmDelete(BuildContext context, String taskId) {
 
             const SizedBox(height: 16),
 
-            Text(
+            const Text(
               "Delete Task",
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -34,10 +33,10 @@ void confirmDelete(BuildContext context, String taskId) {
 
             const SizedBox(height: 8),
 
-            Text(
+            const Text(
               "This action cannot be undone.\nAre you sure you want to delete this task?",
               textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey,
                 height: 1.4,
@@ -57,9 +56,9 @@ void confirmDelete(BuildContext context, String taskId) {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Cancel",
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,
@@ -80,9 +79,9 @@ void confirmDelete(BuildContext context, String taskId) {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Delete",
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: 14,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,

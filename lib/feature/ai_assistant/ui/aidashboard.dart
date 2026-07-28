@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/ai_assistant/widget/cardwidget.dart';
 import 'package:lifeos/feature/ai_assistant/widget/tilewidget.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
@@ -24,9 +23,9 @@ class AiDashboard extends StatelessWidget {
         leading: const SizedBox(),
         centerTitle: true,
 
-        title: Text(
+        title: const Text(
           "AI Dashboard",
-          style: GoogleFonts.poppins(
+          style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
             color: Colors.black87,
@@ -45,7 +44,7 @@ class AiDashboard extends StatelessWidget {
               Consumer<Userprovider>(
                 builder: (context, user, child) => Text(
                   "Welcome Back ${user.username} 👋",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: width * 0.075,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
@@ -57,7 +56,7 @@ class AiDashboard extends StatelessWidget {
 
               Text(
                 "Explore AI-powered productivity tools",
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: width * 0.038,
                   color: Colors.black54,
                 ),

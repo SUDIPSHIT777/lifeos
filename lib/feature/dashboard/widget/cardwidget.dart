@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
@@ -63,7 +62,7 @@ class Cardwidget {
                                       "${value.gettime},",
                                       maxLines: 1,
                                       minFontSize: 10,
-                                      style: GoogleFonts.poppins(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -89,7 +88,7 @@ class Cardwidget {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             time.time,
-                            style: GoogleFonts.poppins(
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: width * .13,
                               fontWeight: FontWeight.w700,
@@ -105,7 +104,7 @@ class Cardwidget {
                           maxLines: 1,
                           minFontSize: 10,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.poppins(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                           ),
@@ -163,7 +162,7 @@ class Cardwidget {
                           "${data['current']['temp_c']}°C",
                           maxLines: 1,
                           minFontSize: 16,
-                          style: GoogleFonts.poppins(
+                          style:const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
@@ -179,7 +178,7 @@ class Cardwidget {
                           maxLines: 3,
                           minFontSize: 8,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             color: Colors.white.withValues(alpha: .7),
                             fontWeight: FontWeight.w600,
                             letterSpacing: .8,
@@ -220,32 +219,32 @@ class Cardwidget {
   }) {
     final progress = dailyUsed / dailyLimit;
 
-    final titleStyle = GoogleFonts.poppins(
+    final titleStyle = TextStyle(
       color: Colors.white.withValues(alpha: .75),
       fontSize: 15,
       fontWeight: FontWeight.w500,
     );
 
-    final amountStyle = GoogleFonts.poppins(
+    const amountStyle = TextStyle(
       color: Colors.white,
       fontSize: 44,
       fontWeight: FontWeight.w700,
       letterSpacing: .5,
     );
 
-    final labelStyle = GoogleFonts.poppins(
+    final labelStyle = TextStyle(
       color: Colors.white.withValues(alpha: .75),
       fontSize: 15,
       fontWeight: FontWeight.w500,
     );
 
-    final valueStyle = GoogleFonts.poppins(
+    const valueStyle = TextStyle(
       color: Colors.white,
       fontSize: 15,
       fontWeight: FontWeight.w600,
     );
 
-    final chipStyle = GoogleFonts.poppins(
+    const chipStyle = TextStyle(
       color: Colors.white,
       fontSize: 13,
       fontWeight: FontWeight.w600,
@@ -386,7 +385,7 @@ class Cardwidget {
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   "${(taskprovider.todayPercent * 100).round()}%",
-                                  style: GoogleFonts.poppins(
+                                  style: TextStyle(
                                     fontSize: percentFont,
                                     fontWeight: FontWeight.bold,
                                     color: taskprovider.percentagecolor(
@@ -403,7 +402,7 @@ class Cardwidget {
                                 maxLines: 1,
                                 minFontSize: 8,
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
+                                style: TextStyle(
                                   fontSize: bodyFont,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.grey.shade600,
@@ -425,7 +424,7 @@ class Cardwidget {
                 "Momentum is high",
                 maxLines: 1,
                 minFontSize: 16,
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: titleFont,
                   fontWeight: FontWeight.bold,
                 ),
@@ -441,7 +440,7 @@ class Cardwidget {
                     maxLines: 4,
                     minFontSize: 11,
                     overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: bodyFont,
                       height: 1.45,
                       color: Colors.grey.shade600,
@@ -475,7 +474,7 @@ class Cardwidget {
                       "Begin Flow",
                       maxLines: 1,
                       minFontSize: 14,
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: bodyFont + 2,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,

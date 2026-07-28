@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +43,7 @@ class _WeatherpageState extends State<Weatherpage> {
         centerTitle: true,
         title: Text(
           "Weather Details",
-          style: GoogleFonts.poppins(
+          style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.w600,
             fontSize: width * 0.055,
@@ -63,14 +62,14 @@ class _WeatherpageState extends State<Weatherpage> {
               return Center(
                 child: Text(
                   provider.error!,
-                  style: GoogleFonts.poppins(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
               );
             }
 
             if (provider.weatherData == null) {
-              return Center(
-                child: Text("No Weather Data", style: GoogleFonts.poppins()),
+              return const Center(
+                child: Text("No Weather Data", style: TextStyle()),
               );
             }
 
@@ -95,7 +94,7 @@ class _WeatherpageState extends State<Weatherpage> {
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
 
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: width * 0.075,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
@@ -110,7 +109,7 @@ class _WeatherpageState extends State<Weatherpage> {
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
 
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: width * 0.038,
                       color: Colors.black54,
                     ),
@@ -164,7 +163,7 @@ class _WeatherpageState extends State<Weatherpage> {
                           advice['message'],
                           textAlign: TextAlign.center,
 
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             fontSize: width * 0.05,
                             fontWeight: FontWeight.w700,
                             color: Colors.black87,
@@ -190,7 +189,7 @@ class _WeatherpageState extends State<Weatherpage> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
 
-                            style: GoogleFonts.poppins(
+                            style: TextStyle(
                               color: advice['color'],
                               fontWeight: FontWeight.w600,
                               fontSize: width * 0.035,
@@ -246,7 +245,7 @@ class _WeatherpageState extends State<Weatherpage> {
                           child: Text(
                             "${current['temp_c']}°C",
 
-                            style: GoogleFonts.poppins(
+                            style: TextStyle(
                               fontSize: width * 0.14,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
@@ -262,7 +261,7 @@ class _WeatherpageState extends State<Weatherpage> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
 
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             fontSize: width * 0.045,
                             color: Colors.black54,
                           ),
@@ -287,7 +286,7 @@ class _WeatherpageState extends State<Weatherpage> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
 
-                            style: GoogleFonts.poppins(
+                            style: TextStyle(
                               color: Colors.blueAccent,
                               fontWeight: FontWeight.w600,
                               fontSize: width * 0.035,
@@ -319,7 +318,7 @@ class _WeatherpageState extends State<Weatherpage> {
                         child: Text(
                           "Overview Statistics",
 
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             fontSize: width * 0.05,
                             fontWeight: FontWeight.w700,
                             color: Colors.black87,
@@ -419,7 +418,7 @@ class _WeatherpageState extends State<Weatherpage> {
                         child: Text(
                           "Begin Flow",
 
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: width * 0.042,
                             fontWeight: FontWeight.w600,
@@ -498,7 +497,7 @@ class _WeatherpageState extends State<Weatherpage> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
 
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         color: Colors.white70,
                         fontSize: width * 0.04,
                         fontWeight: FontWeight.w500,
@@ -533,7 +532,7 @@ class _WeatherpageState extends State<Weatherpage> {
                   value,
                   maxLines: 1,
 
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: width * 0.085,
                     fontWeight: FontWeight.bold,
@@ -549,7 +548,7 @@ class _WeatherpageState extends State<Weatherpage> {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
 
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   color: Colors.white60,
                   fontSize: width * 0.032,
                 ),

@@ -66,9 +66,9 @@ class _TaskpageuiState extends State<Taskpageui>
             );
           },
         ),
-        title: Text(
+        title: const Text(
           "LIFEOS",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
           Padding(
@@ -303,7 +303,7 @@ class _TaskpageuiState extends State<Taskpageui>
 
                                   Text(
                                     taskprovider.formatDate(date),
-                                    style: GoogleFonts.poppins(
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black87,
@@ -406,7 +406,7 @@ class _TaskpageuiState extends State<Taskpageui>
                                                               ? "${task.date!.day}/${task.date!.month}/${task.date!.year}"
                                                               : "No date",
                                                           style:
-                                                              GoogleFonts.poppins(
+                                                              const TextStyle(
                                                                 fontSize: 12,
                                                                 color:
                                                                     Colors.grey,
@@ -436,7 +436,7 @@ class _TaskpageuiState extends State<Taskpageui>
                                                               ) ??
                                                               "No time",
                                                           style:
-                                                              GoogleFonts.poppins(
+                                                              const TextStyle(
                                                                 fontSize: 12,
                                                                 color:
                                                                     Colors.grey,

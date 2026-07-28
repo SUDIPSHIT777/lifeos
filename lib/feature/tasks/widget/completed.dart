@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/widget/deletetask.dart';
 import 'package:lottie/lottie.dart';
@@ -87,7 +86,7 @@ class Completed extends StatelessWidget {
                                 task.date != null
                                     ? "${task.date!.day}/${task.date!.month}/${task.date!.year}"
                                     : "No date",
-                                style: GoogleFonts.poppins(
+                                style: const TextStyle(
                                   fontSize: 12,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w500,
@@ -98,7 +97,7 @@ class Completed extends StatelessWidget {
                               const SizedBox(width: 5),
                               Text(
                                 task.time?.format(context) ?? "No time",
-                                style: GoogleFonts.poppins(
+                                style: const TextStyle(
                                   fontSize: 12,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w500,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/feature/dashboard/widget/timer.dart';
 import 'package:provider/provider.dart';
 import 'package:lifeos/feature/dashboard/controller/timerset.dart';
@@ -21,10 +20,10 @@ class FocusTimer extends StatelessWidget {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Center(
+              const Center(
                 child: Text(
                   "DEEP FOCUS MODE",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: Colors.white54,
                     fontSize: 16,
                     letterSpacing: 2,

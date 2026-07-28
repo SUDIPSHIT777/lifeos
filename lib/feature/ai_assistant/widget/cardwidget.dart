@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 Widget coreCard(
   BuildContext context, {
@@ -66,7 +65,7 @@ Widget coreCard(
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
 
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: width * 0.042,
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,
@@ -81,7 +80,7 @@ Widget coreCard(
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
 
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: width * 0.032,
                 color: Colors.black54,
               ),
@@ -126,7 +125,6 @@ Widget smartCard(
         Positioned(
           right: 5,
           bottom: -5,
-
           child: Icon(
             icon,
             size: width * 0.15,
@@ -162,7 +160,7 @@ Widget smartCard(
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
 
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: width * 0.042,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
@@ -176,7 +174,7 @@ Widget smartCard(
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
 
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       fontSize: width * 0.034,
                       color: Colors.black54,
                     ),

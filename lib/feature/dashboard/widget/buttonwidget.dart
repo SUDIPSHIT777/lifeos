@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Buttonwidget {
   /// ================= PREMIUM BUTTON =================
@@ -53,9 +52,9 @@ class Buttonwidget {
                 maxLines: 2,
                 minFontSize: 10,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: width * .035,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black87,
                 ),
               ),
