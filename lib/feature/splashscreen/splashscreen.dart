@@ -97,7 +97,7 @@ class _SplashscreenState extends State<Splashscreen> {
                   style: TextStyle(
                     height: 1.5,
                     fontSize: 15.5,
-                    color: const Color(0xFF6B6B6B),
+                    color:  Color(0xFF6B6B6B),
                     fontWeight: FontWeight.w500,
                   ),
                 ),

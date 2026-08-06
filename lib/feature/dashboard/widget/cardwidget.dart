@@ -162,7 +162,7 @@ class Cardwidget {
                           "${data['current']['temp_c']}°C",
                           maxLines: 1,
                           minFontSize: 16,
-                          style:const TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
@@ -192,7 +192,7 @@ class Cardwidget {
                           width: width * .12,
                           height: width * .12,
                           fit: BoxFit.contain,
-                          errorBuilder: (_, __, ___) => Icon(
+                          errorBuilder: (_, _, _) => Icon(
                             Icons.cloud_off,
                             color: Colors.white30,
                             size: width * .10,
