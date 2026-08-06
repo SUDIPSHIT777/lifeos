@@ -8,87 +8,85 @@ Widget coreCard(
   required Color iconColor,
   required Color backgroundColor,
 }) {
-  final width = MediaQuery.sizeOf(context).width;
+  return LayoutBuilder(
+    builder: (context, constraints) {
+      final w = constraints.maxWidth;
+      final h = constraints.maxHeight;
 
-  return Container(
-    padding: const EdgeInsets.all(18),
-
-    decoration: BoxDecoration(
-      color: backgroundColor,
-      borderRadius: BorderRadius.circular(28),
-
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha:0.04),
-          blurRadius: 14,
-          offset: const Offset(0, 8),
-        ),
-      ],
-    ),
-
-    child: Stack(
-      children: [
-        /// FADED BACKGROUND ICON
-        Positioned(
-          right: -5,
-          bottom: -10,
-
-          child: Icon(
-            icon,
-            size: width * 0.20,
-            color: iconColor.withValues(alpha: 0.08),
-          ),
-        ),
-
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: [
-            /// ICON
-            Container(
-              width: width * 0.14,
-              height: width * 0.14,
-
-              decoration: BoxDecoration(
-                color: iconColor.withValues(alpha:0.14),
-                shape: BoxShape.circle,
-              ),
-
-              child: Icon(icon, color: iconColor, size: width * 0.06),
-            ),
-
-            const Spacer(),
-
-            /// TITLE
-            Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-
-              style: TextStyle(
-                fontSize: width * 0.042,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-              ),
-            ),
-
-            const SizedBox(height: 4),
-
-            /// SUBTITLE
-            Text(
-              subtitle,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-
-              style: TextStyle(
-                fontSize: width * 0.032,
-                color: Colors.black54,
-              ),
+      return Container(
+        padding: EdgeInsets.all(w * 0.08),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(w * 0.08),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: w * 0.06,
+              offset: Offset(0, w * 0.03),
             ),
           ],
         ),
-      ],
-    ),
+        child: Stack(
+          children: [
+            Positioned(
+              right: -w * 0.03,
+              bottom: -w * 0.05,
+              child: Icon(
+                icon,
+                size: w * 0.32,
+                color: iconColor.withValues(alpha: 0.08),
+              ),
+            ),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: w * 0.26,
+                  height: w * 0.26,
+                  decoration: BoxDecoration(
+                    color: iconColor.withValues(alpha: 0.14),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(icon, size: w * 0.12, color: iconColor),
+                ),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: w * 0.085,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                      ),
+                    ),
+
+                    SizedBox(height: h * 0.02),
+
+                    Text(
+                      subtitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: w * 0.06,
+                        color: Colors.black54,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
   );
 }
 
@@ -112,7 +110,7 @@ Widget smartCard(
 
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withValues(alpha:0.04),
+          color: Colors.black.withValues(alpha: 0.04),
           blurRadius: 14,
           offset: const Offset(0, 8),
         ),
@@ -128,7 +126,7 @@ Widget smartCard(
           child: Icon(
             icon,
             size: width * 0.15,
-            color: iconColor.withValues(alpha:0.08),
+            color: iconColor.withValues(alpha: 0.08),
           ),
         ),
 

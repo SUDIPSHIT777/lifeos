@@ -10,64 +10,81 @@ class Completed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+
     return Consumer<Taskprovider>(
       builder: (context, taskprovider, child) {
         final completedTasks = taskprovider.tasks
             .where((task) => task.isCompleted)
             .toList();
+
         if (completedTasks.isEmpty) {
           return Center(
             child: Lottie.asset(
               "assets/taskcompleted.json",
-              alignment: Alignment.center,
-              height: 300,
+              width: width * 0.75,
+              height: width * 0.75,
+              fit: BoxFit.contain,
             ),
           );
         }
+
         return ListView.builder(
+          padding: EdgeInsets.symmetric(
+            horizontal: width * 0.03,
+            vertical: width * 0.02,
+          ),
           itemCount: completedTasks.length,
           itemBuilder: (context, index) {
             final task = completedTasks[index];
+
             return GestureDetector(
               onTap: () => context.pushNamed('taskDetails', extra: task),
               onLongPress: () => confirmDelete(context, task.id),
               child: Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 12,
+                margin: EdgeInsets.only(bottom: width * 0.03),
+                padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.035,
+                  vertical: width * 0.03,
                 ),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(width * 0.04),
                 ),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Transform.scale(
-                      scale: 1.2,
+                      scale: width < 360 ? 1.0 : 1.15,
                       child: Checkbox(
                         value: task.isCompleted,
                         onChanged: (_) {
                           taskprovider.toggleTask(task);
-                          !task.isCompleted ? taskprovider.playAudio() : null;
+                          if (!task.isCompleted) {
+                            taskprovider.playAudio();
+                          }
                         },
-                        checkColor: Colors.white,
                         activeColor: Colors.blue,
+                        checkColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
+
+                    SizedBox(width: width * 0.025),
+
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             task.title,
+                            maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: width * 0.04,
                               fontWeight: FontWeight.w600,
                               decoration: task.isCompleted
                                   ? TextDecoration.lineThrough
@@ -77,28 +94,38 @@ class Completed extends StatelessWidget {
                                   : Colors.black,
                             ),
                           ),
-                          const SizedBox(height: 6),
-                          Row(
+
+                          SizedBox(height: width * 0.015),
+
+                          Wrap(
+                            spacing: width * 0.02,
+                            runSpacing: 5,
+                            crossAxisAlignment: WrapCrossAlignment.center,
                             children: [
-                              Image.asset("assets/calendar.png", scale: 25),
-                              const SizedBox(width: 5),
+                              Image.asset(
+                                "assets/calendar.png",
+                                width: width * 0.04,
+                              ),
                               Text(
                                 task.date != null
                                     ? "${task.date!.day}/${task.date!.month}/${task.date!.year}"
                                     : "No date",
-                                style: const TextStyle(
-                                  fontSize: 12,
+                                style: TextStyle(
+                                  fontSize: width * 0.03,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              const SizedBox(width: 5),
-                              Image.asset("assets/waste.png", scale: 25),
-                              const SizedBox(width: 5),
+
+                              Image.asset(
+                                "assets/waste.png",
+                                width: width * 0.04,
+                              ),
+
                               Text(
                                 task.time?.format(context) ?? "No time",
-                                style: const TextStyle(
-                                  fontSize: 12,
+                                style: TextStyle(
+                                  fontSize: width * 0.03,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -108,12 +135,15 @@ class Completed extends StatelessWidget {
                         ],
                       ),
                     ),
+
+                    SizedBox(width: width * 0.02),
+
                     Consumer<Taskprovider>(
                       builder: (context, taskcolor, _) {
                         return Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 5,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.025,
+                            vertical: width * 0.015,
                           ),
                           decoration: BoxDecoration(
                             color: taskcolor
@@ -126,16 +156,16 @@ class Completed extends StatelessWidget {
                             children: [
                               Icon(
                                 taskcolor.getPriorityIcon(task.priority),
-                                size: 14,
+                                size: width * 0.035,
                                 color: taskcolor.getPriorityColor(
                                   task.priority,
                                 ),
                               ),
-                              const SizedBox(width: 4),
+                              SizedBox(width: width * 0.01),
                               Text(
                                 task.priority.toUpperCase(),
                                 style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: width * 0.026,
                                   fontWeight: FontWeight.bold,
                                   color: taskcolor.getPriorityColor(
                                     task.priority,

@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/core/utils/snackbar.dart';
-import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
-import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:lifeos/feature/tasks/widget/completed.dart';
@@ -36,89 +33,25 @@ class _TaskpageuiState extends State<Taskpageui>
 
   @override
   Widget build(BuildContext context) {
-    final screenheight = MediaQuery.sizeOf(context).height;
-    final screenwidth = MediaQuery.sizeOf(context).width;
-
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F8),
       appBar: AppBar(
-        surfaceTintColor: const Color(0xFFFFFFFF),
-        titleSpacing: 2,
-        backgroundColor: const Color(0xFFFCFCFD),
-        leading: Builder(
-          builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: GestureDetector(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      colors: [Colors.blue, Colors.purple, Colors.orangeAccent],
-                    ),
-                  ),
-                  child: Image.asset("assets/logos.png", fit: BoxFit.cover),
-                ),
-              ),
-            );
-          },
-        ),
-        title: const Text(
-          "LIFEOS",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 14),
-            child: Consumer<Userprovider>(
-              builder: (context, value, child) => GestureDetector(
-                onTap: () {
-                  value.showNotificationSnackbar();
-                },
-                child: Container(
-                  height: screenheight * 0.05,
-                  width: screenwidth * 0.11,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.notifications_none,
-                    size: 22,
-                    color: Color(0xff475467),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: screenwidth * 0.02),
-            child: Container(
-              padding: const EdgeInsets.all(1),
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFF00c247), width: 2),
-                shape: BoxShape.circle,
-              ),
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image.asset("assets/boy.png", fit: BoxFit.cover),
-              ),
-            ),
-          ),
-        ],
-      ),
-      drawer: const Drawer(child: ProfilePage()),
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: const Color(0xFFF5F7FB),
+        surfaceTintColor: Colors.transparent,
 
+        leading: const SizedBox(),
+        centerTitle: true,
+        title: const Text(
+          "Goal Tracker",
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            color: Colors.black87,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
