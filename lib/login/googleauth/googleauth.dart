@@ -20,7 +20,10 @@ class GoogleAuth extends ChangeNotifier {
         final userCredential = await _auth.signInWithPopup(googleProvider);
         return userCredential.user;
       } else {
-        await _googleSignIn.initialize();
+        await _googleSignIn.initialize(
+          serverClientId:
+              '892421261757-ihuf084o947rpld3f2a2fqpceciklmgm.apps.googleusercontent.com',
+        );
         final GoogleSignInAccount googleUser = await _googleSignIn
             .authenticate();
         final GoogleSignInAuthentication googleAuth = googleUser.authentication;

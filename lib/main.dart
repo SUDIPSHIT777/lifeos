@@ -6,6 +6,7 @@ import 'package:lifeos/feature/ai_assistant/controller/deepsheekprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/timerset.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
+import 'package:lifeos/feature/finance/controller/expenssprovider.dart';
 import 'package:lifeos/feature/splashscreen/splashprovider.dart';
 import 'package:lifeos/feature/tasks/controller/allupdatefunction.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
@@ -39,6 +40,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => Deepsheekprovider()),
         ChangeNotifierProvider(create: (context) => Signupprovider()),
         ChangeNotifierProvider(create: (context) => Loginprovider()),
+        ChangeNotifierProvider(create: (context) => ExpenseProvider()),
       ],
       child: const MyApp(),
     ),
