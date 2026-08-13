@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeos/feature/ai_assistant/widget/cardwidget.dart';
 import 'package:lifeos/feature/ai_assistant/widget/tilewidget.dart';
+import 'package:lifeos/feature/ai_assistant/ui/voiceassistantui.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,13 +24,30 @@ class AiDashboard extends StatelessWidget {
         leading: const SizedBox(),
         centerTitle: true,
 
-        title: const Text(
-          "AI Dashboard",
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w700,
-            color: Colors.black87,
-          ),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Icon(Icons.smart_toy, color: Colors.white, size: 18),
+            ),
+            const SizedBox(width: 10),
+            const Text(
+              'Ai Dashboard',
+              style: TextStyle(
+                color: Color(0xFF1E293B),
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                letterSpacing: -0.5,
+              ),
+            ),
+          ],
         ),
       ),
 
@@ -91,22 +109,28 @@ class AiDashboard extends StatelessWidget {
                     ),
                   ),
 
-                  coreCard(
-                    context,
-                    title: "Talk with AI",
-                    subtitle: "Natural conversation",
-                    icon: Icons.mic_none_rounded,
-                    iconColor: const Color(0xFF8B5CF6),
-                    backgroundColor: const Color(0xFFF3ECFF),
+                  GestureDetector(
+                    onTap: () => VoiceAssistantContainer.show(context),
+                    child: coreCard(
+                      context,
+                      title: "Talk with AI",
+                      subtitle: "Natural conversation",
+                      icon: Icons.mic_none_rounded,
+                      iconColor: const Color(0xFF8B5CF6),
+                      backgroundColor: const Color(0xFFF3ECFF),
+                    ),
                   ),
 
-                  coreCard(
-                    context,
-                    title: "Translate",
-                    subtitle: "AI translator",
-                    icon: Icons.translate_rounded,
-                    iconColor: const Color(0xFF06B6D4),
-                    backgroundColor: const Color(0xFFE7FBFF),
+                  GestureDetector(
+                    onTap: () => context.push('/aidashboard/translator'),
+                    child: coreCard(
+                      context,
+                      title: "Translate",
+                      subtitle: "AI translator",
+                      icon: Icons.translate_rounded,
+                      iconColor: const Color(0xFF06B6D4),
+                      backgroundColor: const Color(0xFFE7FBFF),
+                    ),
                   ),
 
                   coreCard(

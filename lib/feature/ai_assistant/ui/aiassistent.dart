@@ -60,52 +60,41 @@ class _AiassistentPageState extends State<AiassistentPage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(65),
         child: AppBar(
+          centerTitle: true,
           elevation: 0.5,
           shadowColor: Colors.black12,
           leading: IconButton(
             onPressed: () => context.pop(),
             icon: const Icon(CupertinoIcons.back, color: Color(0xFF1F2937)),
           ),
-          title: Consumer<Userprovider>(
-            builder: (context, user, child) => Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFEFF6FF),
-                    borderRadius: BorderRadius.circular(12),
+          title: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
                   ),
-                  child: const Icon(
-                    CupertinoIcons.sparkles,
-                    color: Color(0xFF2563EB),
-                    size: 20,
-                  ),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                const SizedBox(width: 12),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      user.username,
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xFF111827),
-                        fontSize: 16,
-                      ),
-                    ),
-                    Text(
-                      user.gettime,
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xFF6B7280),
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
+                child: const Icon(
+                  Icons.smart_toy,
+                  color: Colors.white,
+                  size: 18,
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 10),
+              const Text(
+                'AI Assistant',
+                style: TextStyle(
+                  color: Color(0xFF1E293B),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -0.5,
+                ),
+              ),
+            ],
           ),
           backgroundColor: Colors.white,
           surfaceTintColor: Colors.white,

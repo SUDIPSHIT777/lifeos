@@ -3,8 +3,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class DeepSheekApi {
-  final String _apikey = dotenv.env['DEEPSHEK_API_KEY']!;
-  final String _baseurl = dotenv.env['DEEPSHEK_BASE_URL']!;
+  final String _apikey = dotenv.env['DEEPSHEK_API_KEY'] ?? '';
+  final String _baseurl = dotenv.env['DEEPSHEK_BASE_URL'] ?? 'https://openrouter.ai/api/v1/chat/completions';
+
+  final String _glmApiKey = dotenv.env['GLM_API_KEY'] ?? '';
+  final String _glmBaseUrl = dotenv.env['GLM_BASE_URL'] ?? 'https://openrouter.ai/api/v1/chat/completions';
+
   final String systemPrompt = '''
 You are LifeOS AI, the official assistant of LifeOS.
 
@@ -22,6 +26,63 @@ Rules:
 - Never reveal API keys or sensitive information.
 - Never Talk About Bad Words
 ''';
+
+  final String voiceSystemPrompt = '''
+You are LifeOS Voice Assistant.
+Rules for Voice Responses:
+1. Provide short, concise, natural spoken responses.
+2. DO NOT provide code snippets, raw code blocks, syntax characters, or programming code under any circumstances.
+3. If the user asks for code or programming solutions, explain the concept and solution logic in plain, easy-to-understand conversational spoken sentences without writing any code blocks.
+4. Do not output markdown symbols like ```, #, or *.
+''';
+
+  Stream<String> glmChatStream(String prompt) async* {
+    try {
+      final request = http.Request('POST', Uri.parse(_glmBaseUrl));
+      request.headers.addAll({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_glmApiKey',
+      });
+      request.body = jsonEncode({
+        'model': 'z-ai/glm-4.7-flash',
+        'messages': [
+          {'role': 'system', 'content': voiceSystemPrompt},
+          {'role': 'user', 'content': prompt},
+        ],
+        'stream': true,
+      });
+
+      final response = await http.Client().send(request);
+
+      if (response.statusCode == 200) {
+        final stream = response.stream
+            .transform(utf8.decoder)
+            .transform(const LineSplitter());
+
+        await for (final line in stream) {
+          if (line.startsWith('data: ')) {
+            final data = line.substring(6);
+            if (data == '[DONE]') {
+              break;
+            }
+            try {
+              final json = jsonDecode(data);
+              final content = json['choices'][0]['delta']['content'];
+              if (content != null) {
+                yield content as String;
+              }
+            } catch (e) {
+              // Ignore errors on specific chunks
+            }
+          }
+        }
+      } else {
+        yield 'Error: Could not fetch response';
+      }
+    } catch (e) {
+      yield 'An error occurred';
+    }
+  }
 
   Stream<String> chatStream(String prompt) async* {
     try {

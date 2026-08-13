@@ -12,6 +12,8 @@ import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/focustimer.dart';
 import 'package:lifeos/feature/dashboard/widget/notes.dart';
 import 'package:lifeos/feature/dashboard/widget/recenttask.dart';
+import 'package:lifeos/feature/finance/ui/add_transaction_modal.dart';
+import 'package:lifeos/feature/finance/widget/blancecard.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:provider/provider.dart';
@@ -215,12 +217,20 @@ class _DashboardState extends State<Dashboard> {
                         ),
 
                         /// FINANCE
-                        buttonwidget.button(
-                          context,
-                          titel: "Log Finance",
-                          icon: Icons.payments,
-                          backgroundcolor: const Color(0xFFFFEDD5),
-                          iconcolor: const Color(0xFFEA580C),
+                        GestureDetector(
+                          onTap: () {
+                            AddTransactionModal.show(
+                              context,
+                              mode: ModalMode.setBalance,
+                            );
+                          },
+                          child: buttonwidget.button(
+                            context,
+                            titel: "Log Finance",
+                            icon: Icons.payments,
+                            backgroundcolor: const Color(0xFFFFEDD5),
+                            iconcolor: const Color(0xFFEA580C),
+                          ),
                         ),
 
                         /// HABIT
@@ -252,11 +262,13 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 15),
               sectionTitle("Finance Management"),
               const SizedBox(height: 15),
-              cardwidget.monthlySpendingCard(
-                totalSpending: 3240.50,
-                dailyUsed: 150,
-                dailyLimit: 200,
-                percentChange: 12.5,
+              balanceCard(
+                onAdd: () {
+                  AddTransactionModal.show(context, mode: ModalMode.setBalance);
+                },
+                onSend: () {
+                  AddTransactionModal.show(context, mode: ModalMode.addExpense);
+                },
               ),
               const SizedBox(height: 15),
               sectionTitle("Focus Mode"),

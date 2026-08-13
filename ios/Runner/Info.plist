@@ -4,6 +4,10 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs location to show weather</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires microphone access to listen to your voice commands.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This app uses speech recognition to convert your voice to text.</string>
  	<key>io.flutter.embedded_views_preview</key>
   	<true/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>

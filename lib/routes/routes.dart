@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lifeos/core/utils/navigationbar.dart';
 import 'package:lifeos/feature/ai_assistant/ui/aiassistent.dart';
 import 'package:lifeos/feature/ai_assistant/ui/aidashboard.dart';
+import 'package:lifeos/feature/ai_assistant/ui/translateui.dart';
 import 'package:lifeos/feature/dashboard/ui/dashboard.dart';
 import 'package:lifeos/feature/dashboard/ui/weatherpage.dart';
 import 'package:lifeos/feature/tasks/ui/taskdetails.dart';
@@ -17,7 +18,10 @@ class Routes {
     navigatorKey: Get.key,
     routes: [
       GoRoute(path: '/', builder: (context, state) => const Authgate()),
-      GoRoute(path: '/signup', builder: (context, state) => const Signupscreen()),
+      GoRoute(
+        path: '/signup',
+        builder: (context, state) => const Signupscreen(),
+      ),
       GoRoute(path: '/login', builder: (context, state) => const Loginscreen()),
       GoRoute(
         path: '/taskpageui',
@@ -43,7 +47,10 @@ class Routes {
           ),
         ],
       ),
-      GoRoute(path: '/navdar', builder: (context, state) => const Navigationbar()),
+      GoRoute(
+        path: '/navdar',
+        builder: (context, state) => const Navigationbar(),
+      ),
       GoRoute(
         path: '/aidashboard',
         builder: (context, state) => const AiDashboard(),
@@ -52,6 +59,11 @@ class Routes {
             path: 'chatboat',
             builder: (context, state) => const AiassistentPage(),
           ),
+          GoRoute(
+            path: 'translator',
+            builder: (context, state) => TranslateScreen(),
+          ),
+          
         ],
       ),
     ],

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeos/core/utils/errorpage.dart';
+import 'package:lifeos/feature/ai_assistant/controller/translateprovider.dart';
 import 'package:lifeos/feature/ai_assistant/controller/deepsheekprovider.dart';
+import 'package:lifeos/feature/ai_assistant/controller/voiceassistantprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/timerset.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
@@ -38,6 +40,8 @@ void main() async {
         ChangeNotifierProvider(create: (context) => WeatherProvider()),
         ChangeNotifierProvider(create: (context) => DateTimeProvider()),
         ChangeNotifierProvider(create: (context) => Deepsheekprovider()),
+        ChangeNotifierProvider(create: (context) => TranslateProvider()),
+        ChangeNotifierProvider(create: (context) => VoiceAssistantProvider()),
         ChangeNotifierProvider(create: (context) => Signupprovider()),
         ChangeNotifierProvider(create: (context) => Loginprovider()),
         ChangeNotifierProvider(create: (context) => ExpenseProvider()),
