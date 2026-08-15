@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:lifeos/feature/ai_assistant/widget/tilewidget.dart';
 import 'package:lifeos/feature/finance/controller/expenssprovider.dart';
 import 'package:lifeos/feature/finance/ui/add_transaction_modal.dart';
@@ -32,8 +33,11 @@ class _FinancepageState extends State<Financepage> {
             onPressed: () {
               provider.clearAll();
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('All finance data reset')),
+              Snackbardesign.showCustomSnackbar(
+                backgroundColor: Colors.redAccent,
+                icon: Icons.cleaning_services,
+                subtitle: "Clear All Data",
+                title: "Clear",
               );
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),

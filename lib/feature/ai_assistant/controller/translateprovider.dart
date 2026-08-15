@@ -232,6 +232,8 @@ class TranslateProvider extends ChangeNotifier {
         content: Text('Translation copied to clipboard'),
         behavior: SnackBarBehavior.floating,
         duration: Duration(seconds: 2),
+        backgroundColor: Colors.green,
+        showCloseIcon: true,
       ),
     );
   }
@@ -243,7 +245,9 @@ class TranslateProvider extends ChangeNotifier {
       const SnackBar(
         content: Text('Source text copied to clipboard'),
         behavior: SnackBarBehavior.floating,
-        duration: Duration(seconds: 2),
+        duration: Duration(seconds: 1),
+        backgroundColor: Colors.green,
+        showCloseIcon: true,
       ),
     );
   }

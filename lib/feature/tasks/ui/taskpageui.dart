@@ -120,7 +120,7 @@ class _TaskpageuiState extends State<Taskpageui>
                     Snackbardesign.showCustomSnackbar(
                       title: "Task Completed",
                       subtitle: "Congratulations You completed your task",
-                      backgroundColor: const Color(0xFF00c247),
+                      backgroundColor: Colors.green,
                       icon: Icons.download_done_rounded,
                     );
                   });

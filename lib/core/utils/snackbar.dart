@@ -8,7 +8,9 @@ class Snackbardesign {
     required Color backgroundColor,
     required IconData icon,
   }) {
-    Get.snackbar(" "," ",
+    Get.snackbar(
+      " ",
+      " ",
       titleText: Text(
         title,
         style: const TextStyle(
@@ -25,7 +27,7 @@ class Snackbardesign {
           subtitle,
           style: TextStyle(
             fontSize: 14,
-            color: Colors.white.withValues(alpha: 0.9),
+            color: Colors.white,
             height: 1.3,
             fontWeight: FontWeight.w500,
           ),
@@ -35,30 +37,12 @@ class Snackbardesign {
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       borderRadius: 16,
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-      backgroundGradient: LinearGradient(
-        colors: [backgroundColor, backgroundColor.withValues(alpha: 0.7)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
+      backgroundColor: backgroundColor,
       colorText: Colors.white,
       forwardAnimationCurve: Curves.easeOutBack,
       reverseAnimationCurve: Curves.easeIn,
       duration: const Duration(seconds: 3),
       isDismissible: true,
-      boxShadows: [
-        BoxShadow(
-          color: backgroundColor.withValues(alpha: 0.7),
-          blurRadius: 25,
-          spreadRadius: 3,
-          offset: const Offset(0, 0),
-        ),
-        BoxShadow(
-          color: backgroundColor.withValues(alpha: 0.4),
-          blurRadius: 40,
-          spreadRadius: 6,
-          offset: const Offset(0, 0),
-        ),
-      ],
       borderWidth: 1,
       borderColor: backgroundColor,
       icon: Container(

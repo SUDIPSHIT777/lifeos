@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:lifeos/model/userdatabase.dart';
 import 'package:lifeos/model/usermodel.dart';
 
@@ -50,21 +49,6 @@ class Userprovider extends ChangeNotifier {
       _gettime = "Good Night";
       _imagepath = "assets/cloudy-night.png";
     }
-    notifyListeners();
-  }
-
-  Future<void> showNotificationSnackbar() async {
-    if (_isNotificationBusy) return;
-    _isNotificationBusy = true;
-    notifyListeners();
-    await Future.delayed(const Duration(seconds: 2));
-    Snackbardesign.showCustomSnackbar(
-      title: "Notification",
-      subtitle: "Lifeos is improve your Task Management",
-      backgroundColor: const Color(0xFF00c247),
-      icon: Icons.energy_savings_leaf,
-    );
-    _isNotificationBusy = false;
     notifyListeners();
   }
 

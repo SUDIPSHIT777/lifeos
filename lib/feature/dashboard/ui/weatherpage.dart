@@ -41,12 +41,13 @@ class _WeatherpageState extends State<Weatherpage> {
           icon: const Icon(CupertinoIcons.back, color: Colors.black),
         ),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Weather Details",
           style: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.w600,
-            fontSize: width * 0.055,
+            color: Color(0xFF1E293B),
+            fontSize: 20,
+            fontWeight: FontWeight.w800,
+            letterSpacing: -0.5,
           ),
         ),
       ),
@@ -80,7 +81,10 @@ class _WeatherpageState extends State<Weatherpage> {
 
             return RefreshIndicator(
               onRefresh: provider.refresh,
+              color: Colors.black,
+              backgroundColor: Colors.white,
               child: ListView(
+                physics: BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(
                   horizontal: width * 0.05,
                   vertical: 20,

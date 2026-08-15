@@ -32,14 +32,14 @@ class Loginprovider extends ChangeNotifier {
       Snackbardesign.showCustomSnackbar(
         title: "Login",
         subtitle: "Login Successful",
-        backgroundColor: const Color(0xFF00c247),
+        backgroundColor: Colors.green,
         icon: Icons.done_outline_outlined,
       );
     } on FirebaseAuthException catch (e) {
       Snackbardesign.showCustomSnackbar(
         title: "Login",
         subtitle: e.message ?? "Login Failed",
-        backgroundColor: const Color(0xFFFF9800),
+        backgroundColor: Colors.red,
         icon: Icons.error_outline_outlined,
       );
     } finally {

@@ -6,49 +6,8 @@ import 'package:provider/provider.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  Widget menuTile({
-    required IconData icon,
-    required String title,
-    bool highlight = false,
-  }) {
-    const primary = Color(0xff5B5FEF);
-    return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
-      decoration: BoxDecoration(
-        color: highlight ? primary.withValues(alpha: .10) : Colors.white,
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(icon, color: Colors.grey.shade700),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: highlight ? FontWeight.w600 : FontWeight.w500,
-                color: highlight ? primary : Colors.black87,
-              ),
-            ),
-          ),
-          const Icon(Icons.chevron_right, color: Colors.grey),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final screenwidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: const Color(0xffF5F6FA),
       body: SafeArea(
@@ -89,7 +48,10 @@ class ProfilePage extends StatelessWidget {
                 Consumer<Userprovider>(
                   builder: (context, user, child) => Text(
                     user.username,
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 6),
@@ -132,62 +94,109 @@ class ProfilePage extends StatelessWidget {
 
             const SizedBox(height: 28),
 
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  menuTile(
-                    icon: Icons.person,
-                    title: "Profile Details",
-                    highlight: true,
-                  ),
-                  menuTile(
-                    icon: Icons.shield_outlined,
-                    title: "Security & Password",
-                  ),
-                  menuTile(
-                    icon: Icons.notifications_none,
-                    title: "Notification Preferences",
-                  ),
-                  menuTile(icon: Icons.link, title: "Connected Accounts"),
-                  menuTile(
-                    icon: Icons.manage_accounts_outlined,
-                    title: "Account Management",
-                  ),
-                ],
-              ),
-            ),
-
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Consumer<GoogleAuth>(
-                builder: (context, value, child) => ElevatedButton.icon(
-                  onPressed: () {
-                    value.logout();
-                  },
-                  label: const Text(
-                    "Log Out",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                builder: (context, value, child) {
+                  return Container(
+                    height: 68,
+                    decoration: BoxDecoration(
                       color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.red.withValues(alpha: 0.08),
+                        width: 1,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.06),
+                          blurRadius: 20,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(screenwidth * 0.9, 50),
-                    iconAlignment: IconAlignment.end,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () => value.logout(),
+                        borderRadius: BorderRadius.circular(20),
+                        splashColor: Colors.red.withValues(alpha: 0.05),
+                        highlightColor: Colors.red.withValues(alpha: 0.03),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14),
+                          child: Row(
+                            children: [
+                              // Logout Icon
+                              Container(
+                                width: 44,
+                                height: 44,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.red.shade50,
+                                      Colors.red.shade100,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(14),
+                                ),
+                                child: Icon(
+                                  Icons.logout_rounded,
+                                  color: Colors.red.shade600,
+                                  size: 23,
+                                ),
+                              ),
+
+                              const SizedBox(width: 14),
+
+                              // Text
+                              const Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Log Out",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0xFF1E1E1E),
+                                      ),
+                                    ),
+                                    SizedBox(height: 3),
+                                    Text(
+                                      "Sign out from your account",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFF8A8A8A),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              // Arrow
+                              Container(
+                                width: 34,
+                                height: 34,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade100,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: 14,
+                                  color: Color(0xFF777777),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                    backgroundColor: const Color.fromARGB(255, 28, 133, 252),
-                    elevation: 0,
-                  ),
-                  icon: const Icon(
-                    Icons.logout,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ],

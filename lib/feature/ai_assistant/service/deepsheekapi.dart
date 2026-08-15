@@ -6,8 +6,8 @@ class DeepSheekApi {
   final String _apikey = dotenv.env['DEEPSHEK_API_KEY'] ?? '';
   final String _baseurl = dotenv.env['DEEPSHEK_BASE_URL'] ?? 'https://openrouter.ai/api/v1/chat/completions';
 
-  final String _glmApiKey = dotenv.env['GLM_API_KEY'] ?? '';
-  final String _glmBaseUrl = dotenv.env['GLM_BASE_URL'] ?? 'https://openrouter.ai/api/v1/chat/completions';
+  final String _gammakey = dotenv.env['GAMMA_KEY'] ?? '';
+  final String _gammabaseurl = dotenv.env['GAMMA_BASE_URL'] ?? 'https://openrouter.ai/api/v1/chat/completions';
 
   final String systemPrompt = '''
 You are LifeOS AI, the official assistant of LifeOS.
@@ -36,15 +36,15 @@ Rules for Voice Responses:
 4. Do not output markdown symbols like ```, #, or *.
 ''';
 
-  Stream<String> glmChatStream(String prompt) async* {
+  Stream<String> gammachatstream(String prompt) async* {
     try {
-      final request = http.Request('POST', Uri.parse(_glmBaseUrl));
+      final request = http.Request('POST', Uri.parse(_gammabaseurl));
       request.headers.addAll({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_glmApiKey',
+        'Authorization': 'Bearer $_gammakey',
       });
       request.body = jsonEncode({
-        'model': 'z-ai/glm-4.7-flash',
+        'model': 'google/gemma-4-31B-it:novita',
         'messages': [
           {'role': 'system', 'content': voiceSystemPrompt},
           {'role': 'user', 'content': prompt},

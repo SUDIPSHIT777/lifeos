@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:lifeos/feature/finance/controller/expenssprovider.dart';
 import 'package:lifeos/model/financemodel.dart';
 import 'package:provider/provider.dart';
@@ -9,12 +10,12 @@ enum ModalMode { setBalance, addExpense }
 class AddTransactionModal extends StatefulWidget {
   final ModalMode mode;
 
-  const AddTransactionModal({
-    super.key,
-    this.mode = ModalMode.addExpense,
-  });
+  const AddTransactionModal({super.key, this.mode = ModalMode.addExpense});
 
-  static void show(BuildContext context, {ModalMode mode = ModalMode.addExpense}) {
+  static void show(
+    BuildContext context, {
+    ModalMode mode = ModalMode.addExpense,
+  }) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -58,6 +59,8 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
         const SnackBar(
           content: Text('Please enter a valid amount'),
           backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+          showCloseIcon: true,
         ),
       );
       return;
@@ -69,10 +72,14 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
       // Replaces base balance directly (e.g. set 200 replaces 100 with 200, no addition!)
       provider.setBaseBalance(amount);
       Navigator.of(context).pop();
+      if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Balance set to ${provider.formatCurrency(amount)}'),
-          backgroundColor: const Color(0xFF10B981),
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.green,
+          showCloseIcon: true,
         ),
       );
     } else {
@@ -85,12 +92,11 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
       );
 
       Navigator.of(context).pop();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Expense logged successfully!'),
-          backgroundColor: Color(0xFF10B981),
-        ),
+      Snackbardesign.showCustomSnackbar(
+        backgroundColor: Color(0xFF00c247),
+        icon: Icons.payments_outlined,
+        subtitle: 'Expense Set Successfully',
+        title: "Set Balance",
       );
     }
   }
@@ -248,7 +254,9 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
             const SizedBox(height: 8),
             TextField(
               controller: _amountController,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               autofocus: true,
               style: const TextStyle(
                 fontSize: 22,
@@ -257,10 +265,16 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
               ),
               decoration: InputDecoration(
                 hintText: '0.00',
-                prefixIcon: const Icon(Icons.currency_rupee, color: Color(0xFF315DE5)),
+                prefixIcon: const Icon(
+                  Icons.currency_rupee,
+                  color: Color(0xFF315DE5),
+                ),
                 filled: true,
                 fillColor: const Color(0xFFF8FAFC),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
@@ -271,7 +285,10 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Color(0xFF315DE5), width: 2),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF315DE5),
+                    width: 2,
+                  ),
                 ),
               ),
             ),
@@ -293,10 +310,16 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                 controller: _titleController,
                 decoration: InputDecoration(
                   hintText: 'e.g. Burger House, Monthly Rent',
-                  prefixIcon: const Icon(Icons.edit_note_rounded, color: Color(0xFF64748B)),
+                  prefixIcon: const Icon(
+                    Icons.edit_note_rounded,
+                    color: Color(0xFF64748B),
+                  ),
                   filled: true,
                   fillColor: const Color(0xFFF8FAFC),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 14,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
@@ -307,7 +330,10 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF315DE5), width: 2),
+                    borderSide: const BorderSide(
+                      color: Color(0xFF315DE5),
+                      width: 2,
+                    ),
                   ),
                 ),
               ),
@@ -328,7 +354,8 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                 spacing: 8,
                 runSpacing: 8,
                 children: ExpenseCategory.defaultCategories.map((cat) {
-                  final isSelected = _selectedCategory.toLowerCase() == cat.name.toLowerCase();
+                  final isSelected =
+                      _selectedCategory.toLowerCase() == cat.name.toLowerCase();
                   return ChoiceChip(
                     label: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -346,8 +373,12 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                     selectedColor: cat.color,
                     backgroundColor: const Color(0xFFF1F5F9),
                     labelStyle: TextStyle(
-                      color: isSelected ? Colors.white : const Color(0xFF334155),
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: isSelected
+                          ? Colors.white
+                          : const Color(0xFF334155),
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                     ),
                     onSelected: (selected) {
                       if (selected) {
@@ -368,7 +399,11 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.calendar_today_rounded, size: 18, color: Color(0xFF64748B)),
+                      const Icon(
+                        Icons.calendar_today_rounded,
+                        size: 18,
+                        color: Color(0xFF64748B),
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         'Date: ${DateFormat("MMM d, yyyy").format(_selectedDate)}',

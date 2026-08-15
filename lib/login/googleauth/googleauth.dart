@@ -51,7 +51,7 @@ class GoogleAuth extends ChangeNotifier {
       Snackbardesign.showCustomSnackbar(
         title: "Logout",
         subtitle: "Logged out successfully",
-        backgroundColor: const Color(0xFFFF9800),
+        backgroundColor: Colors.deepOrange,
         icon: Icons.logout,
       );
       notifyListeners();
@@ -79,7 +79,7 @@ class GoogleAuth extends ChangeNotifier {
       Snackbardesign.showCustomSnackbar(
         title: "Login Failed",
         subtitle: "No User Found Try Again",
-        backgroundColor: const Color(0xFFFF9800),
+        backgroundColor: Colors.deepOrange,
         icon: Icons.error_outline,
       );
     }

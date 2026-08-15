@@ -42,10 +42,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
               const Center(
                 child: Text(
                   "New Task",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
               ),
               const SizedBox(height: 20),
@@ -190,12 +187,12 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
                       Snackbardesign.showCustomSnackbar(
                         title: "Date Is Required",
                         subtitle: "Please Fill the Date",
-                        backgroundColor: const Color(0xFFFF9800),
+                        backgroundColor: Colors.deepOrangeAccent,
                         icon: Icons.error_outline,
                       );
                     }
                   },
-                  child:const  Text(
+                  child: const Text(
                     "Create Task",
                     style: TextStyle(
                       fontSize: 16,
@@ -228,10 +225,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
       cursorColor: Colors.blueAccent,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: TextStyle(
-          color: Colors.grey.shade500,
-          fontSize: 14,
-        ),
+        hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 14),
         filled: true,
         fillColor: Colors.white,
         contentPadding: const EdgeInsets.symmetric(

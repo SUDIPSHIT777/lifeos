@@ -29,7 +29,6 @@ class _DashboardState extends State<Dashboard> {
   final WeatherService weatherservice = WeatherService();
   final Buttonwidget buttonwidget = Buttonwidget();
   final Cardwidget cardwidget = Cardwidget();
-  final Recenttask recenttask = Recenttask();
   @override
   void initState() {
     super.initState();
@@ -43,7 +42,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    final screenheight = MediaQuery.sizeOf(context).height;
     final screenwidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F8),
@@ -52,80 +50,48 @@ class _DashboardState extends State<Dashboard> {
         titleSpacing: 2,
         backgroundColor: const Color(0xFFFCFCFD),
         leading: Builder(
-          builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: GestureDetector(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      colors: [Colors.blue, Colors.purple, Colors.orangeAccent],
-                    ),
-                  ),
-                  child: Image.asset("assets/logos.png", fit: BoxFit.cover),
-                ),
-              ),
-            );
-          },
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: Image.asset(
+              "assets/menubar.png",
+              width: 25,
+              height: 25,
+              fit: BoxFit.contain,
+            ),
+            padding: EdgeInsets.zero,
+          ),
         ),
+        centerTitle: true,
         title: Text(
           "LIFEOS",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+          style: GoogleFonts.spectral(
+            fontSize: 22,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 14),
-            child: Consumer<Userprovider>(
-              builder: (context, value, child) => GestureDetector(
-                onTap: () {
-                  value.showNotificationSnackbar();
-                },
-                child: Container(
-                  height: screenheight * 0.05,
-                  width: screenwidth * 0.11,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.notifications_none,
-                    size: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff475467),
-                  ),
-                ),
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            width: 50,
+            height: 50,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.purple, Colors.orangeAccent],
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: screenwidth * 0.02),
-            child: Container(
-              padding: const EdgeInsets.all(1),
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFF00c247), width: 2),
-                shape: BoxShape.circle,
-              ),
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image.asset("assets/boy.png", fit: BoxFit.cover),
-              ),
+
+            child: ClipOval(
+              child: Image.asset("assets/logos.png", fit: BoxFit.cover),
             ),
           ),
         ],
       ),
       drawer: const Drawer(child: ProfilePage()),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
@@ -258,7 +224,7 @@ class _DashboardState extends State<Dashboard> {
 
               sectionTitle("Recent Task"),
               const SizedBox(height: 15),
-              recenttask.recentTaskWidget(context),
+              recentTaskWidget(context),
               const SizedBox(height: 15),
               sectionTitle("Finance Management"),
               const SizedBox(height: 15),

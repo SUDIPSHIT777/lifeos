@@ -54,8 +54,13 @@ class _TaskdetailsState extends State<Taskdetails> {
         surfaceTintColor: Colors.white,
         elevation: 0,
         title: const Text(
-          "Task Details",
-          style: TextStyle(fontWeight: FontWeight.w600),
+          'Goal Details',
+          style: TextStyle(
+            color: Color(0xFF1E293B),
+            fontSize: 20,
+            fontWeight: FontWeight.w800,
+            letterSpacing: -0.5,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -79,7 +84,7 @@ class _TaskdetailsState extends State<Taskdetails> {
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
                       textInputAction: TextInputAction.newline,
-                      style:const  TextStyle(
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                       ),
@@ -165,9 +170,7 @@ class _TaskdetailsState extends State<Taskdetails> {
                       children: [
                         const Text(
                           "Status",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         CupertinoSwitch(
                           value: widget.alltaskdetails.isCompleted,

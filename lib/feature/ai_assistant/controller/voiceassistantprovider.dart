@@ -130,7 +130,7 @@ class VoiceAssistantProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final stream = _api.glmChatStream(query);
+      final stream = _api.gammachatstream(query);
       await for (final chunk in stream) {
         _aiResponse += chunk;
         notifyListeners();

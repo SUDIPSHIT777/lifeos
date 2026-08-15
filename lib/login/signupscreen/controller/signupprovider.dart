@@ -40,14 +40,14 @@ class Signupprovider with ChangeNotifier {
       Snackbardesign.showCustomSnackbar(
         title: "Sign Up",
         subtitle: "Signup Successful",
-        backgroundColor: const Color(0xFF00c247),
+        backgroundColor: Colors.green,
         icon: Icons.done_outline_outlined,
       );
     } on FirebaseAuthException catch (e) {
       Snackbardesign.showCustomSnackbar(
         title: "Sign Up",
         subtitle: e.message ?? "Signup Failed",
-        backgroundColor: const Color(0xFFFF9800),
+        backgroundColor: Colors.red,
         icon: Icons.error_outline_outlined,
       );
     } finally {
@@ -55,7 +55,6 @@ class Signupprovider with ChangeNotifier {
       notifyListeners();
     }
   }
-
 
   bool _isChecked = false;
   bool get isChecked => _isChecked;
