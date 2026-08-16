@@ -31,6 +31,7 @@ class GoogleAuth extends ChangeNotifier {
           idToken: googleAuth.idToken,
         );
         final userCredential = await _auth.signInWithCredential(credential);
+        log(userCredential.user.toString());
         return userCredential.user;
       }
     } catch (e) {

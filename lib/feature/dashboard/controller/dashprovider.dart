@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lifeos/model/userdatabase.dart';
@@ -10,15 +11,19 @@ class Userprovider extends ChangeNotifier {
   final Userdatabase userdatabase = Userdatabase();
   Usermodel? userdata;
   bool loading = false;
-  String get username => userdata?.name ?? "User";
-  String get email => userdata?.email ?? "user@email.com";
+  String get username =>
+      userdata?.name ??
+      FirebaseAuth.instance.currentUser?.displayName ??
+      "User";
+
+  String get email =>
+      userdata?.email ??
+      FirebaseAuth.instance.currentUser?.email ??
+      "user@email.com";
   // ========== Timer ============
   late Timer timer;
   String _gettime = "";
   String get gettime => _gettime;
-  // ============ Notification ==============
-  bool _isNotificationBusy = false;
-  bool get isNotificationBusy => _isNotificationBusy;
 
   // =============== image and date path ===========
   String _imagepath = "";
