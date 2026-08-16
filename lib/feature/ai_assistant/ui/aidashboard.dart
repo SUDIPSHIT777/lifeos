@@ -18,7 +18,7 @@ class AiDashboard extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor: const Color(0xFFF5F7FB),
+        backgroundColor: const Color(0xFFFCFCFD),
         surfaceTintColor: Colors.transparent,
 
         leading: const SizedBox(),
