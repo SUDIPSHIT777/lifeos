@@ -164,35 +164,59 @@ class AiDashboard extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              smartCard(
-                context,
-                title: "Compose Email",
-                subtitle: "Write professional emails easily",
-                icon: Icons.email_outlined,
-                iconColor: const Color(0xFFFF5DA2),
-                backgroundColor: const Color(0xFFFFEEF5),
+              GestureDetector(
+                onTap: () {
+                  context.push(
+                    '/aidashboard/chatboat',
+                    extra: "Write professional email",
+                  );
+                },
+                child: smartCard(
+                  context,
+                  title: "Compose Email",
+                  subtitle: "Write professional emails easily",
+                  icon: Icons.email_outlined,
+                  iconColor: const Color(0xFFFF5DA2),
+                  backgroundColor: const Color(0xFFFFEEF5),
+                ),
               ),
 
               const SizedBox(height: 16),
 
-              smartCard(
-                context,
-                title: "Generate Ideas",
-                subtitle: "Brainstorm creative concepts",
-                icon: Icons.lightbulb_outline_rounded,
-                iconColor: const Color(0xFFFF9800),
-                backgroundColor: const Color(0xFFFFF3E6),
+              GestureDetector(
+                onTap: () {
+                  context.push(
+                    '/aidashboard/chatboat',
+                    extra: "Generate Brainstorm creative concepts Ideas ",
+                  );
+                },
+                child: smartCard(
+                  context,
+                  title: "Generate Ideas",
+                  subtitle: "Brainstorm creative concepts",
+                  icon: Icons.lightbulb_outline_rounded,
+                  iconColor: const Color(0xFFFF9800),
+                  backgroundColor: const Color(0xFFFFF3E6),
+                ),
               ),
 
               const SizedBox(height: 16),
 
-              smartCard(
-                context,
-                title: "Plan Tasks",
-                subtitle: "Organize your workflow",
-                icon: Icons.task_alt_rounded,
-                iconColor: const Color(0xFF4C6FFF),
-                backgroundColor: const Color(0xFFEFF2FF),
+              GestureDetector(
+                onTap: () {
+                  context.push(
+                    '/aidashboard/chatboat',
+                    extra: "Organize my workflow & Plan my whole day Tasks",
+                  );
+                },
+                child: smartCard(
+                  context,
+                  title: "Plan Tasks",
+                  subtitle: "Organize your workflow",
+                  icon: Icons.task_alt_rounded,
+                  iconColor: const Color(0xFF4C6FFF),
+                  backgroundColor: const Color(0xFFEFF2FF),
+                ),
               ),
 
               const SizedBox(height: 30),

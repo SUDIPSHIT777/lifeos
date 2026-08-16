@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:lifeos/feature/ai_assistant/controller/deepsheekprovider.dart';
 
 class AiassistentPage extends StatefulWidget {
-  const AiassistentPage({super.key});
+  final String? initialPrompt;
+  const AiassistentPage({super.key, this.initialPrompt});
 
   @override
   State<AiassistentPage> createState() => _AiassistentPageState();
@@ -49,7 +50,14 @@ class _AiassistentPageState extends State<AiassistentPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
       context.read<Userprovider>().loaduserdata();
+      final prompt = widget.initialPrompt;
+      if (prompt != null && prompt.trim().isNotEmpty) {
+        if (!mounted) return;
+        context.read<Deepsheekprovider>().sendMessage(prompt);
+        _scrollToBottom();
+      }
     });
   }
 

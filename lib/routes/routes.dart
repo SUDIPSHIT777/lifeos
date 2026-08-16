@@ -57,13 +57,15 @@ class Routes {
         routes: [
           GoRoute(
             path: 'chatboat',
-            builder: (context, state) => const AiassistentPage(),
+            builder: (context, state) {
+              final prompt = state.extra as String?;
+              return AiassistentPage(initialPrompt: prompt);
+            },
           ),
           GoRoute(
             path: 'translator',
             builder: (context, state) => TranslateScreen(),
           ),
-          
         ],
       ),
     ],
