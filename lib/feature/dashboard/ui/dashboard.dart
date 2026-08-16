@@ -54,6 +54,7 @@ class _DashboardState extends State<Dashboard> {
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
+            color: Colors.white,
             icon: Image.asset(
               "assets/menubar.png",
               width: 25,
