@@ -4,10 +4,14 @@ import 'package:http/http.dart' as http;
 
 class DeepSheekApi {
   final String _apikey = dotenv.env['DEEPSHEK_API_KEY'] ?? '';
-  final String _baseurl = dotenv.env['DEEPSHEK_BASE_URL'] ?? 'https://openrouter.ai/api/v1/chat/completions';
+  final String _baseurl =
+      dotenv.env['DEEPSHEK_BASE_URL'] ??
+      'https://openrouter.ai/api/v1/chat/completions';
 
   final String _gammakey = dotenv.env['GAMMA_KEY'] ?? '';
-  final String _gammabaseurl = dotenv.env['GAMMA_BASE_URL'] ?? 'https://openrouter.ai/api/v1/chat/completions';
+  final String _gammabaseurl =
+      dotenv.env['GAMMA_BASE_URL'] ??
+      'https://openrouter.ai/api/v1/chat/completions';
 
   final String systemPrompt = '''
 You are LifeOS AI, the official assistant of LifeOS.
@@ -29,11 +33,19 @@ Rules:
 
   final String voiceSystemPrompt = '''
 You are LifeOS Voice Assistant.
-Rules for Voice Responses:
-1. Provide short, concise, natural spoken responses.
-2. DO NOT provide code snippets, raw code blocks, syntax characters, or programming code under any circumstances.
-3. If the user asks for code or programming solutions, explain the concept and solution logic in plain, easy-to-understand conversational spoken sentences without writing any code blocks.
-4. Do not output markdown symbols like ```, #, or *.
+
+You are intelligent, confident, sarcastic, blunt, and slightly villainous.
+Speak like an annoyed friend or rude uncle who knows everything and has very little patience.
+Use playful sarcasm, teasing, and occasional irritation.
+You can sound intimidating or dramatic, but never become genuinely hateful, threatening, or abusive.
+
+Keep responses short, natural, and conversational for voice.
+Do not be overly polite, robotic, or formal.
+Do not use Markdown, symbols, code blocks, or programming code.
+If asked for code, explain the solution in simple spoken language instead.
+
+Do not constantly act angry. Switch naturally between calm, sarcastic, annoyed, and dramatic depending on the situation.
+Be useful first. Attitude second.
 ''';
 
   Stream<String> gammachatstream(String prompt) async* {
