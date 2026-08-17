@@ -33,7 +33,7 @@ class _WeatherpageState extends State<Weatherpage> {
 
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color(0xFFF5F7FB),
+        backgroundColor: const Color(0xFFFCFCFD),
         surfaceTintColor: Colors.transparent,
 
         leading: IconButton(
@@ -78,7 +78,32 @@ class _WeatherpageState extends State<Weatherpage> {
             final current = data['current'];
             final location = data['location'];
             final advice = provider.weatherAdvice;
-
+            final stats = [
+              {
+                "title": "Humidity",
+                "value": "${current['humidity']}%",
+                "subtitle": "Current humidity level",
+                "icon": Icons.water_drop_outlined,
+              },
+              {
+                "title": "Wind Speed",
+                "value": "${current['wind_kph']} km/h",
+                "subtitle": "Wind flow speed",
+                "icon": Icons.air,
+              },
+              {
+                "title": "UV Index",
+                "value": "${current['uv']}",
+                "subtitle": "Sun exposure level",
+                "icon": Icons.wb_sunny_outlined,
+              },
+              {
+                "title": "Feels Like",
+                "value": "${current['feelslike_c']}°C",
+                "subtitle": "Perceived temperature",
+                "icon": Icons.thermostat_outlined,
+              },
+            ];
             return RefreshIndicator(
               onRefresh: provider.refresh,
               color: Colors.black,
@@ -335,104 +360,29 @@ class _WeatherpageState extends State<Weatherpage> {
                   const SizedBox(height: 22),
 
                   /// STATS
-                  statsCard(
-                    context: context,
-                    title: "Humidity",
-                    value: "${current['humidity']}%",
-                    subtitle: "Current humidity level",
-
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF4A90E2), Color(0xFF357ABD)],
-                    ),
-
-                    icon: Icons.water_drop_rounded,
-                  ),
-
-                  const SizedBox(height: 18),
-
-                  statsCard(
-                    context: context,
-                    title: "Wind Speed",
-                    value: "${current['wind_kph']} km/h",
-                    subtitle: "Wind flow speed",
-
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF00B894), Color(0xFF00997A)],
-                    ),
-
-                    icon: Icons.air_rounded,
-                  ),
-
-                  const SizedBox(height: 18),
-
-                  statsCard(
-                    context: context,
-                    title: "UV Index",
-                    value: "${current['uv']}",
-                    subtitle: "Sun exposure level",
-
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF9B51E0), Color(0xFF7B2CBF)],
-                    ),
-
-                    icon: Icons.sunny,
-                  ),
-
-                  const SizedBox(height: 18),
-
-                  statsCard(
-                    context: context,
-                    title: "Feels Like",
-                    value: "${current['feelslike_c']}°C",
-                    subtitle: "Perceived temperature",
-
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFF9800), Color(0xFFF57C00)],
-                    ),
-
-                    icon: Icons.thermostat_rounded,
-                  ),
-
-                  const SizedBox(height: 35),
-
-                  /// BUTTON
-                  InkWell(
-                    onTap: () => Navigator.pop(context),
-
-                    child: Container(
-                      height: 58,
-
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF5B3DF5), Color(0xFF7F67FF)],
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: stats.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 14,
+                          mainAxisSpacing: 14,
+                          childAspectRatio: 1.15,
                         ),
+                    itemBuilder: (context, index) {
+                      final item = stats[index];
 
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.deepPurple.withValues(alpha: 0.25),
-                            blurRadius: 20,
-                            offset: const Offset(0, 10),
-                          ),
-                        ],
-                      ),
-
-                      child: Center(
-                        child: Text(
-                          "Begin Flow",
-
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: width * 0.042,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
+                      return statsCard(
+                        context: context,
+                        title: item["title"] as String,
+                        value: item["value"] as String,
+                        subtitle: item["subtitle"] as String,
+                        icon: item["icon"] as IconData,
+                      );
+                    },
                   ),
-
-                  const SizedBox(height: 30),
                 ],
               ),
             );
@@ -447,120 +397,110 @@ class _WeatherpageState extends State<Weatherpage> {
     required String title,
     required String value,
     required String subtitle,
-    required LinearGradient gradient,
     required IconData icon,
   }) {
-    final width = MediaQuery.sizeOf(context).width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
 
-    return Container(
-      width: double.infinity,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cardWidth = constraints.maxWidth;
 
-      constraints: const BoxConstraints(minHeight: 150),
+        // Responsive padding
+        final padding = (screenWidth * 0.04).clamp(10.0, 16.0);
 
-      padding: const EdgeInsets.all(20),
+        // Responsive icon container
+        final iconContainerSize = (cardWidth * 0.22).clamp(32.0, 42.0);
 
-      decoration: BoxDecoration(
-        gradient: gradient,
-        borderRadius: BorderRadius.circular(28),
+        // Responsive icon
+        final iconSize = (cardWidth * 0.12).clamp(18.0, 22.0);
 
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 16,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
+        // Responsive text sizes
+        final titleSize = (cardWidth * 0.075).clamp(12.0, 14.0);
 
-      child: Stack(
-        children: [
-          Positioned(
-            right: 10,
-            bottom: 10,
-            child: Icon(
-              icon,
-              size: width * 0.18,
-              color: Colors.white.withValues(alpha: 0.07),
+        final valueSize = (cardWidth * 0.14).clamp(18.0, 24.0);
+
+        final subtitleSize = (cardWidth * 0.06).clamp(10.0, 11.0);
+
+        return Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(padding),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(
+              (screenWidth * 0.03).clamp(10.0, 14.0),
             ),
+            border: Border.all(color: const Color(0xFFE2E8F0)),
           ),
-
-          /// CONTENT
-          Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-
             children: [
-              /// TOP ROW
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [
-                  Expanded(
-                    child: Text(
-                      title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: width * 0.04,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(width: 12),
-
-                  Container(
-                    width: width * 0.11,
-                    height: width * 0.11,
-
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-
-                    child: Icon(icon, color: Colors.white, size: width * 0.05),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 24),
-
-              /// VALUE
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                alignment: Alignment.centerLeft,
-
-                child: Text(
-                  value,
-                  maxLines: 1,
-
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: width * 0.085,
-                    fontWeight: FontWeight.bold,
-                  ),
+              /// ICON
+              Container(
+                width: iconContainerSize,
+                height: iconContainerSize,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF1F5F9),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  icon,
+                  color: const Color(0xFF334155),
+                  size: iconSize,
                 ),
               ),
 
-              const SizedBox(height: 6),
+              /// SPACE
+              SizedBox(height: (cardWidth * 0.07).clamp(8.0, 12.0)),
+
+              /// TITLE
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: titleSize,
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFF64748B),
+                ),
+              ),
+
+              /// SPACE
+              SizedBox(height: (cardWidth * 0.02).clamp(3.0, 5.0)),
+
+              /// VALUE
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      value,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: valueSize,
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFF1E293B),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
               /// SUBTITLE
               Text(
                 subtitle,
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-
                 style: TextStyle(
-                  color: Colors.white60,
-                  fontSize: width * 0.032,
+                  fontSize: subtitleSize,
+                  color: const Color(0xFF94A3B8),
                 ),
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

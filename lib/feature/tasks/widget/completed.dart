@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
+import 'package:lifeos/feature/tasks/widget/containericon.dart';
 import 'package:lifeos/feature/tasks/widget/deletetask.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class Completed extends StatelessWidget {
@@ -21,11 +21,10 @@ class Completed extends StatelessWidget {
 
         if (completedTasks.isEmpty) {
           return Center(
-            child: Lottie.asset(
-              "assets/taskcompleted.json",
-              width: width * 0.75,
-              height: width * 0.75,
-              fit: BoxFit.contain,
+            child: simpleContainer(
+              title: "Completed The Goal",
+              subtitle: "Completed the Goal With Lifeos",
+              icon: Icons.done_outline,
             ),
           );
         }

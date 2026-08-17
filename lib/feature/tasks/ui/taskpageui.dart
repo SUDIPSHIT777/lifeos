@@ -5,6 +5,7 @@ import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:lifeos/feature/tasks/widget/completed.dart';
+import 'package:lifeos/feature/tasks/widget/containericon.dart';
 import 'package:lifeos/feature/tasks/widget/deletetask.dart';
 import 'package:lifeos/feature/tasks/widget/taskpersentage.dart';
 import 'package:lifeos/model/taskmodel.dart';
@@ -215,17 +216,10 @@ class _TaskpageuiState extends State<Taskpageui>
 
                       if (tasks.isEmpty) {
                         return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const SizedBox(height: 12),
-                              Flexible(
-                                child: Lottie.asset(
-                                  "assets/Man with task list.json",
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ],
+                          child: simpleContainer(
+                            subtitle: 'Improve your Productivity with lifeos',
+                            title: "Add Goal",
+                            icon: Icons.golf_course_sharp,
                           ),
                         );
                       }
