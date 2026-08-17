@@ -7,7 +7,7 @@ import 'package:lifeos/feature/habit/widget/habit_card.dart';
 class HabitPage extends StatelessWidget {
   const HabitPage({super.key});
 
-  void _openAddHabitModal(BuildContext context) {
+  void openAddHabitModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -194,7 +194,7 @@ class HabitPage extends StatelessWidget {
             width: double.infinity,
             height: 48,
             child: ElevatedButton.icon(
-              onPressed: () => _openAddHabitModal(context),
+              onPressed: () => openAddHabitModal(context),
               icon: const Icon(Icons.add, color: Colors.white, size: 20),
               label: const Text(
                 'Add Habit',

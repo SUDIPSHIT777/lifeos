@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:lifeos/feature/ai_assistant/widget/tilewidget.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
@@ -10,10 +11,11 @@ import 'package:lifeos/feature/dashboard/ui/drawer.dart';
 import 'package:lifeos/feature/dashboard/widget/buttonwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/cardwidget.dart';
 import 'package:lifeos/feature/dashboard/widget/focustimer.dart';
-import 'package:lifeos/feature/dashboard/widget/notes.dart';
 import 'package:lifeos/feature/dashboard/widget/recenttask.dart';
 import 'package:lifeos/feature/finance/ui/add_transaction_modal.dart';
 import 'package:lifeos/feature/finance/widget/blancecard.dart';
+import 'package:lifeos/feature/habit/widget/add_habit_modal.dart'
+    show AddHabitModal;
 import 'package:lifeos/feature/tasks/controller/taskprovider.dart';
 import 'package:lifeos/feature/tasks/ui/taskaddui.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +29,6 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final WeatherService weatherservice = WeatherService();
-  final Buttonwidget buttonwidget = Buttonwidget();
   final Cardwidget cardwidget = Cardwidget();
   @override
   void initState() {
@@ -38,6 +39,18 @@ class _DashboardState extends State<Dashboard> {
       final provider = context.read<Taskprovider>();
       provider.getTasks().listen((_) {});
     });
+  }
+
+  void openHabitDashboard(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => const AddHabitModal(),
+    );
   }
 
   @override
@@ -174,7 +187,7 @@ class _DashboardState extends State<Dashboard> {
                         GestureDetector(
                           onTap: () => openTaskBottomSheet(context),
 
-                          child: buttonwidget.button(
+                          child: button(
                             context,
                             titel: "Add Task",
                             icon: Icons.add_task_sharp,
@@ -191,7 +204,7 @@ class _DashboardState extends State<Dashboard> {
                               mode: ModalMode.setBalance,
                             );
                           },
-                          child: buttonwidget.button(
+                          child: button(
                             context,
                             titel: "Log Finance",
                             icon: Icons.payments,
@@ -201,21 +214,33 @@ class _DashboardState extends State<Dashboard> {
                         ),
 
                         /// HABIT
-                        buttonwidget.button(
-                          context,
-                          titel: "Habit",
-                          icon: Icons.fitness_center_sharp,
-                          backgroundcolor: const Color(0xFFF3E8FF),
-                          iconcolor: const Color(0xFF9333EA),
+                        GestureDetector(
+                          onTap: () => openHabitDashboard(context),
+                          child: button(
+                            context,
+                            titel: "Habit",
+                            icon: Icons.fitness_center_sharp,
+                            backgroundcolor: const Color(0xFFF3E8FF),
+                            iconcolor: const Color(0xFF9333EA),
+                          ),
                         ),
 
                         /// NOTE
-                        buttonwidget.button(
-                          context,
-                          titel: "New Note",
-                          icon: Icons.note_alt,
-                          backgroundcolor: const Color(0xFFD1FAE5),
-                          iconcolor: const Color(0xFF059669),
+                        GestureDetector(
+                          onTap: () => Snackbardesign.showCustomSnackbar(
+                            title: "Note",
+                            subtitle:
+                                "You Can Not Take Note the Server is Off ",
+                            backgroundColor: Colors.deepOrange,
+                            icon: Icons.tv_off_sharp,
+                          ),
+                          child: button(
+                            context,
+                            titel: "New Note",
+                            icon: Icons.note_alt,
+                            backgroundcolor: const Color(0xFFD1FAE5),
+                            iconcolor: const Color(0xFF059669),
+                          ),
                         ),
                       ],
                     ),
@@ -242,40 +267,6 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 15),
               const FocusTimer(),
               const SizedBox(height: 15),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  sectionTitle("Recent Notes"),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      "New Note",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff3D5CFF),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15),
-              horizontalNotes([
-                NoteModel(
-                  title: "App Idea: Grocery...",
-                  subtitle:
-                      "Need to integrate with local supermarket APIs for real-time inventory tracking.",
-                  time: "2 hours ago",
-                ),
-                NoteModel(
-                  title: "Meeting Notes",
-                  subtitle:
-                      "Focus on AI integration. Users want a natural language interface.",
-                  time: "Yesterday",
-                ),
-              ]),
-              const SizedBox(height: 20),
             ],
           ),
         ),

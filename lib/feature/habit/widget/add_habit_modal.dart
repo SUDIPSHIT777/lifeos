@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:lifeos/feature/habit/controller/habitprovider.dart';
 import 'package:lifeos/model/habitmodel.dart';
@@ -27,12 +28,7 @@ class _AddHabitModalState extends State<AddHabitModal> {
     0xFF8B5CF6, // Purple
   ];
 
-  final List<String> _tagOptions = [
-    'Daily',
-    'Morning',
-    'Evening',
-    'Weekly',
-  ];
+  final List<String> _tagOptions = ['Daily', 'Morning', 'Evening', 'Weekly'];
 
   @override
   void dispose() {
@@ -43,12 +39,17 @@ class _AddHabitModalState extends State<AddHabitModal> {
   void _submit() {
     if (_formKey.currentState!.validate()) {
       context.read<HabitProvider>().addHabit(
-            title: _titleController.text.trim(),
-            categoryTag: _categoryTag,
-            iconCode: _selectedIconCode,
-            colorValue: _selectedColor,
-          );
-
+        title: _titleController.text.trim(),
+        categoryTag: _categoryTag,
+        iconCode: _selectedIconCode,
+        colorValue: _selectedColor,
+      );
+      Snackbardesign.showCustomSnackbar(
+        title: "Habit",
+        subtitle: "Habit Add Successfully",
+        backgroundColor: Colors.green,
+        icon: Icons.webhook_rounded,
+      );
       Navigator.pop(context);
     }
   }
@@ -75,10 +76,7 @@ class _AddHabitModalState extends State<AddHabitModal> {
                 children: [
                   const Text(
                     'Add New Habit',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   IconButton(
                     onPressed: () => Navigator.pop(context),
@@ -98,10 +96,14 @@ class _AddHabitModalState extends State<AddHabitModal> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 12,
+                  ),
                 ),
-                validator: (val) =>
-                    val == null || val.trim().isEmpty ? 'Please enter a name' : null,
+                validator: (val) => val == null || val.trim().isEmpty
+                    ? 'Please enter a name'
+                    : null,
               ),
               const SizedBox(height: 16),
 
@@ -125,8 +127,6 @@ class _AddHabitModalState extends State<AddHabitModal> {
                 }).toList(),
               ),
               const SizedBox(height: 16),
-
-              // Icon Selection
               const Text(
                 'Choose Icon',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
@@ -143,7 +143,8 @@ class _AddHabitModalState extends State<AddHabitModal> {
                     final isSelected = _selectedIconCode == icon.codePoint;
 
                     return GestureDetector(
-                      onTap: () => setState(() => _selectedIconCode = icon.codePoint),
+                      onTap: () =>
+                          setState(() => _selectedIconCode = icon.codePoint),
                       child: Container(
                         width: 44,
                         height: 44,
@@ -153,12 +154,17 @@ class _AddHabitModalState extends State<AddHabitModal> {
                               : Colors.grey.shade100,
                           shape: BoxShape.circle,
                           border: isSelected
-                              ? Border.all(color: Color(_selectedColor), width: 2)
+                              ? Border.all(
+                                  color: Color(_selectedColor),
+                                  width: 2,
+                                )
                               : null,
                         ),
                         child: Icon(
                           icon,
-                          color: isSelected ? Color(_selectedColor) : Colors.grey.shade600,
+                          color: isSelected
+                              ? Color(_selectedColor)
+                              : Colors.grey.shade600,
                           size: 20,
                         ),
                       ),
@@ -188,7 +194,11 @@ class _AddHabitModalState extends State<AddHabitModal> {
                         shape: BoxShape.circle,
                       ),
                       child: isSelected
-                          ? const Icon(Icons.check, color: Colors.white, size: 18)
+                          ? const Icon(
+                              Icons.check,
+                              color: Colors.white,
+                              size: 18,
+                            )
                           : null,
                     ),
                   );
@@ -201,7 +211,9 @@ class _AddHabitModalState extends State<AddHabitModal> {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: _submit,
+                  onPressed: () {
+                    _submit();
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(_selectedColor),
                     shape: RoundedRectangleBorder(
