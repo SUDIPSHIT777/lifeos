@@ -9,7 +9,6 @@ import 'package:lifeos/feature/tasks/widget/containericon.dart';
 import 'package:lifeos/feature/tasks/widget/deletetask.dart';
 import 'package:lifeos/feature/tasks/widget/taskpersentage.dart';
 import 'package:lifeos/model/taskmodel.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class Taskpageui extends StatefulWidget {
