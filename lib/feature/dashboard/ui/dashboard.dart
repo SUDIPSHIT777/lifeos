@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lifeos/core/utils/snackbar.dart';
 import 'package:lifeos/feature/ai_assistant/widget/tilewidget.dart';
 import 'package:lifeos/feature/dashboard/controller/dashprovider.dart';
 import 'package:lifeos/feature/dashboard/controller/weatherprovider.dart';
@@ -226,22 +225,22 @@ class _DashboardState extends State<Dashboard> {
                         ),
 
                         /// NOTE
-                        GestureDetector(
-                          onTap: () => Snackbardesign.showCustomSnackbar(
-                            title: "Note",
-                            subtitle:
-                                "You Can Not Take Note the Server is Off ",
-                            backgroundColor: Colors.deepOrange,
-                            icon: Icons.tv_off_sharp,
-                          ),
-                          child: button(
-                            context,
-                            titel: "New Note",
-                            icon: Icons.note_alt,
-                            backgroundcolor: const Color(0xFFD1FAE5),
-                            iconcolor: const Color(0xFF059669),
-                          ),
-                        ),
+                        // GestureDetector(
+                        //   onTap: () => Snackbardesign.showCustomSnackbar(
+                        //     title: "Note",
+                        //     subtitle:
+                        //         "You Can Not Take Note the Server is Off ",
+                        //     backgroundColor: Colors.deepOrange,
+                        //     icon: Icons.tv_off_sharp,
+                        //   ),
+                        //   child: button(
+                        //     context,
+                        //     titel: "New Note",
+                        //     icon: Icons.note_alt,
+                        //     backgroundcolor: const Color(0xFFD1FAE5),
+                        //     iconcolor: const Color(0xFF059669),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ],

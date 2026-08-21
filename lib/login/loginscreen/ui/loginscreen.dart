@@ -148,7 +148,7 @@ class _LoginscreenState extends State<Loginscreen> {
                             ),
                             child: login.isLoading
                                 ? const Center(
-                                    child:  CircularProgressIndicator(
+                                    child: CircularProgressIndicator(
                                       color: Colors.white,
                                     ),
                                   )
@@ -166,18 +166,18 @@ class _LoginscreenState extends State<Loginscreen> {
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           Expanded(child: Divider(thickness: 1.5)),
+                          Expanded(child: Divider(thickness: 1.5)),
                           Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: 8),
+                            padding: EdgeInsets.symmetric(horizontal: 8),
                             child: AutoSizeText(
                               "OR CONTINUE WITH",
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                color:  Color(0xFF647DA5),
+                                color: Color(0xFF647DA5),
                               ),
                             ),
                           ),
-                           Expanded(child: Divider(thickness: 1.5)),
+                          Expanded(child: Divider(thickness: 1.5)),
                         ],
                       ),
                       const SizedBox(height: 18),
@@ -185,42 +185,28 @@ class _LoginscreenState extends State<Loginscreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Consumer<GoogleAuth>(
-                            builder: (context, value, child) =>
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    value.googlesigncheck(context);
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    fixedSize: const Size(150, 50),
-                                    backgroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                  label: const AutoSizeText(
-                                    "Google",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  icon: Image.asset(
-                                    "assets/google.png",
-                                    scale: 20,
+                            builder: (context, value, child) => Expanded(
+                              child: ElevatedButton.icon(
+                                onPressed: () {
+                                  value.googlesigncheck(context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: const Size(150, 50),
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                          ),
-                          ElevatedButton.icon(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(150, 50),
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                label: const AutoSizeText(
+                                  "Google",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                icon: Image.asset(
+                                  "assets/google.png",
+                                  scale: 20,
+                                ),
                               ),
                             ),
-                            label: const AutoSizeText(
-                              "Facebook",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            icon: Image.asset("assets/facebook.png", scale: 20),
                           ),
                         ],
                       ),

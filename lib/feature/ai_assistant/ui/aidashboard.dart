@@ -133,27 +133,27 @@ class AiDashboard extends StatelessWidget {
                     ),
                   ),
 
-                  GestureDetector(
-                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'This Scanner Features is of Due Some Issue',
-                        ),
-                        backgroundColor: Colors.red,
-                        behavior: SnackBarBehavior.floating,
-                        showCloseIcon: true,
-                        duration: Duration(seconds: 1),
-                      ),
-                    ),
-                    child: coreCard(
-                      context,
-                      title: "Scanner",
-                      subtitle: "Scan text & images",
-                      icon: Icons.document_scanner_outlined,
-                      iconColor: const Color(0xFF10B981),
-                      backgroundColor: const Color(0xFFEAFBF5),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                  //     SnackBar(
+                  //       content: Text(
+                  //         'This Scanner Features is of Due Some Issue',
+                  //       ),
+                  //       backgroundColor: Colors.red,
+                  //       behavior: SnackBarBehavior.floating,
+                  //       showCloseIcon: true,
+                  //       duration: Duration(seconds: 1),
+                  //     ),
+                  //   ),
+                  //   child: coreCard(
+                  //     context,
+                  //     title: "Scanner",
+                  //     subtitle: "Scan text & images",
+                  //     icon: Icons.document_scanner_outlined,
+                  //     iconColor: const Color(0xFF10B981),
+                  //     backgroundColor: const Color(0xFFEAFBF5),
+                  //   ),
+                  // ),
                 ],
               ),
 
